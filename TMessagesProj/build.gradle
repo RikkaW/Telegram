@@ -5,26 +5,26 @@ repositories {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:23.4.0'
-    compile "com.google.android.gms:play-services-gcm:8.4.0"
-    compile "com.google.android.gms:play-services-maps:8.4.0"
+    compile 'com.android.support:support-v4:24.2.1'
+    compile "com.google.android.gms:play-services-gcm:9.6.1"
+    compile "com.google.android.gms:play-services-maps:9.6.1"
     compile 'net.hockeyapp.android:HockeySDK:4.0.1'
     compile 'com.googlecode.mp4parser:isoparser:1.0.6'
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.3'
+    compileSdkVersion 24
+    buildToolsVersion '24.0.2'
 
     useLibrary 'org.apache.http.legacy'
-    defaultConfig.applicationId = "org.telegram.messenger"
+    defaultConfig.applicationId = "rikka.rikkagram"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
-    signingConfigs {
+    /*signingConfigs {
         debug {
             storeFile file("config/release.keystore")
             storePassword RELEASE_STORE_PASSWORD
@@ -38,7 +38,7 @@ android {
             keyAlias RELEASE_KEY_ALIAS
             keyPassword RELEASE_KEY_PASSWORD
         }
-    }
+    }*/
 
     buildTypes {
         debug {
@@ -51,7 +51,7 @@ android {
         release {
             debuggable false
             jniDebuggable false
-            signingConfig signingConfigs.release
+            //signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -59,7 +59,7 @@ android {
         foss {
             debuggable false
             jniDebuggable false
-            signingConfig signingConfigs.release
+            //signingConfig signingConfigs.release
         }
     }
 
@@ -113,7 +113,7 @@ android {
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionName "3.10.1"
     }
 }

@@ -1,49 +1,73 @@
 {
   "project_info": {
-    "project_id": "tmessages2",
-    "project_number": "760348033671",
-    "name": "Telegram"
+    "project_number": "729406368729",
+    "firebase_url": "https://rikkagram.firebaseio.com",
+    "project_id": "rikkagram",
+    "storage_bucket": "rikkagram.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:760348033671:android:f6afd7b67eae3860",
-        "client_id": "android:org.telegram.messenger",
-        "client_type": 1,
+        "mobilesdk_app_id": "1:729406368729:android:cc6547f7405eaa23",
         "android_client_info": {
-          "package_name": "org.telegram.messenger",
-          "certificate_hash": []
+          "package_name": "rikka.rikkagram"
         }
       },
-      "oauth_client": [],
-      "api_key": [],
+      "oauth_client": [
+        {
+          "client_id": "729406368729-cqns6ban3cfgs9j6d1nmmlgsb86jsh21.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPuabwXutR2u2tNFjVB2qNnanlTjog2lo"
+        }
+      ],
       "services": {
-        "cloud_messaging_service": {
-          "status": 2,
-          "apns_config": []
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
         }
       }
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:760348033671:android:dc022572c167a16c",
-        "client_id": "android:org.telegram.messenger.beta",
-        "client_type": 1,
+        "mobilesdk_app_id": "1:729406368729:android:a20d0092faf8a265",
         "android_client_info": {
-          "package_name": "org.telegram.messenger.beta",
-          "certificate_hash": []
+          "package_name": "rikka.rikkagram.beta"
         }
       },
-      "oauth_client": [],
-      "api_key": [],
+      "oauth_client": [
+        {
+          "client_id": "729406368729-cqns6ban3cfgs9j6d1nmmlgsb86jsh21.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPuabwXutR2u2tNFjVB2qNnanlTjog2lo"
+        }
+      ],
       "services": {
-        "cloud_messaging_service": {
-          "status": 2,
-          "apns_config": []
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
         }
       }
     }
   ],
-  "client_info": [],
-  "ARTIFACT_VERSION": "1"
+  "configuration_version": "1"
 }

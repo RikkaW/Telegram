@@ -392,7 +392,7 @@ public class Emoji {
                         }
                     }
                 }
-                if (doneEmoji) {
+                if (false/*doneEmoji*/) {
                     if (i + 2 < length) {
                         if (cs.charAt(i + 1) == 0xD83C && cs.charAt(i + 2) >= 0xDFFB && cs.charAt(i + 2) <= 0xDFFF) {
                             emojiCode.append(cs.subSequence(i + 1, i + 3));

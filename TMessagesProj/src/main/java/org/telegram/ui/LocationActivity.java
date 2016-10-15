@@ -47,6 +47,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
@@ -286,11 +287,17 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
 
         if (messageObject != null) {
             mapView = new MapView(context);
+            mapView.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    LocationActivity.this.googleMap = googleMap;
+                }
+            });
             frameLayout.setBackgroundDrawable(new MapPlaceholderDrawable());
             mapView.onCreate(null);
             try {
                 MapsInitializer.initialize(context);
-                googleMap = mapView.getMap();
+                //googleMap = mapView.getMap();
             } catch (Exception e) {
                 FileLog.e("tmessages", e);
             }
@@ -520,7 +527,13 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             }
             try {
                 MapsInitializer.initialize(context);
-                googleMap = mapView.getMap();
+                //googleMap = mapView.getMap();
+                mapView.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(GoogleMap googleMap) {
+                        LocationActivity.this.googleMap = googleMap;
+                    }
+                });
             } catch (Exception e) {
                 FileLog.e("tmessages", e);
             }

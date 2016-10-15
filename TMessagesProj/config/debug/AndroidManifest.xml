@@ -10,19 +10,19 @@
     <uses-feature android:name="android.hardware.LOCATION" android:required="false" />
 
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="org.telegram.messenger.permission.MAPS_RECEIVE"/>
-    <uses-permission android:name="org.telegram.messenger.permission.C2D_MESSAGE" />
+    <uses-permission android:name="rikka.rikkagram.beta.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="rikka.rikkagram.beta.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <permission android:name="org.telegram.messenger.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
-    <permission android:name="org.telegram.messenger.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <permission android:name="rikka.rikkagram.beta.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
+    <permission android:name="rikka.rikkagram.beta.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 
     <application
         android:allowBackup="false"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/AppNameBeta"
+        android:label="Rikkagram Beta"
         android:theme="@style/Theme.TMessages.Start"
         android:name=".ApplicationLoader"
         android:hardwareAccelerated="@bool/useHardwareAcceleration"
