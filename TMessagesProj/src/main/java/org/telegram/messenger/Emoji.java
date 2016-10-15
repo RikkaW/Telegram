@@ -425,7 +425,7 @@ public class Emoji {
                         }
                     }
                 }
-                if (/*doneEmoji*/) {
+                if (false/*doneEmoji*/) {
                     if (emojiOnly != null) {
                         emojiOnly[0]++;
                     }
