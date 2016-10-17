@@ -48,7 +48,7 @@
         android:name=".ApplicationLoader"
         android:allowBackup="false"
         android:hardwareAccelerated="@bool/useHardwareAcceleration"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:largeHeap="true"
         android:theme="@style/Theme.TMessages.Start"
         android:manageSpaceActivity="org.telegram.ui.ManageSpaceActivity">
@@ -108,7 +108,7 @@
                 <data android:host="telegram.dog" android:scheme="http" />
                 <data android:host="telegram.dog" android:scheme="https" />
             </intent-filter>
-            <intent-filter android:icon="@drawable/ic_launcher" android:priority="1">
+            <intent-filter android:icon="@mipmap/ic_launcher" android:priority="1">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -124,7 +124,7 @@
             android:excludeFromRecents="true"
             android:stateNotNeeded="true"
             android:theme="@style/Theme.TMessages.Transparent">
-            <intent-filter android:icon="@drawable/ic_launcher" android:priority="1">
+            <intent-filter android:icon="@mipmap/ic_launcher" android:priority="1">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -205,7 +205,7 @@
         </service>
 
         <service
-            android:name="org.telegram.messenger.TgChooserTargetService"
+            android:name=".TgChooserTargetService"
             android:label="@string/AppName"
             android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE">
             <intent-filter>

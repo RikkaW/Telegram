@@ -118,13 +118,13 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 24
-        versionName "3.13.1"
+        versionName "3.13.1.0"
 
         externalNativeBuild {
             ndkBuild {
-                arguments "NDK_APPLICATION_MK:=jni/Application.mk", "APP_PLATFORM:=android-14"
+                arguments "NDK_APPLICATION_MK:=jni/Application.mk", "APP_PLATFORM:=android-19"
                 abiFilters "armeabi-v7a", "x86"
             }
         }

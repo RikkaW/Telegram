@@ -10,6 +10,7 @@ package org.telegram.messenger;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
@@ -26,6 +27,7 @@ public class GcmRegistrationIntentService extends IntentService {
             InstanceID instanceID = InstanceID.getInstance(this);
             final String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
             FileLog.d("tmessages", "GCM Registration Token: " + token);
+            Log.d("tmessages", "GCM Registration Token: " + token);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public void run() {
@@ -35,6 +37,7 @@ public class GcmRegistrationIntentService extends IntentService {
             });
         } catch (Exception e) {
             FileLog.e("tmessages", e);
+            Log.e("tmessages", e.getMessage());
             final int failCount = intent.getIntExtra("failCount", 0);
             if (failCount < 60) {
                 AndroidUtilities.runOnUIThread(new Runnable() {

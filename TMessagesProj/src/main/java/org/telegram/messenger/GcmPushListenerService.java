@@ -9,6 +9,7 @@
 package org.telegram.messenger;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
 
@@ -22,6 +23,8 @@ public class GcmPushListenerService extends GcmListenerService {
     @Override
     public void onMessageReceived(String from, final Bundle bundle) {
         FileLog.d("tmessages", "GCM received bundle: " + bundle + " from: " + from);
+        Log.d("tmessages", "GCM received bundle: " + bundle + " from: " + from);
+
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public void run() {
