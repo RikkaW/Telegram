@@ -146,6 +146,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
     // Rikkagram
     private int googleEmojiRow;
+    private int fakeBoldRow;
 
     private int raiseToSpeakRow;
     private int sendByEnterRow;
@@ -249,6 +250,10 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         backgroundRow = rowCount++;
         languageRow = rowCount++;
         enableAnimationsRow = rowCount++;
+
+        // Rikkagram
+        //fakeBoldRow = rowCount++;
+
         mediaDownloadSection = rowCount++;
         mediaDownloadSection2 = rowCount++;
         mobileDownloadRow = rowCount++;
@@ -718,6 +723,15 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     MessagesController.getInstance().useGoogleEmoji = !googleEmoji;
                     if (view instanceof TextCheckCell) {
                         ((TextCheckCell) view).setChecked(!googleEmoji);
+                    }
+                } else if (position == fakeBoldRow) {
+                    SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
+                    boolean fakeBold = preferences.getBoolean("fakeBold", false);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putBoolean("fakeBold", !fakeBold);
+                    editor.commit();
+                    if (view instanceof TextCheckCell) {
+                        ((TextCheckCell) view).setChecked(!fakeBold);
                     }
                 }
             }
@@ -1341,7 +1355,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     TextCheckCell textCell = (TextCheckCell) holder.itemView;
                     SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
                     if (position == enableAnimationsRow) {
-                        textCell.setTextAndCheck(LocaleController.getString("EnableAnimations", R.string.EnableAnimations), preferences.getBoolean("view_animations", true), false);
+                        textCell.setTextAndCheck(LocaleController.getString("EnableAnimations", R.string.EnableAnimations), preferences.getBoolean("view_animations", true), true);
                     } else if (position == sendByEnterRow) {
                         textCell.setTextAndCheck(LocaleController.getString("SendByEnter", R.string.SendByEnter), preferences.getBoolean("send_by_enter", false), false);
                     } else if (position == saveToGalleryRow) {
@@ -1356,6 +1370,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         textCell.setTextAndValueAndCheck(LocaleController.getString("DirectShare", R.string.DirectShare), LocaleController.getString("DirectShareInfo", R.string.DirectShareInfo), MediaController.getInstance().canDirectShare(), false, true);
                     } else if (position == googleEmojiRow) { // Rikkagram
                         textCell.setTextAndValueAndCheck(LocaleController.getString("UseGoogleEmoji", R.string.UseGoogleEmoji), LocaleController.getString("UseGoogleEmojiInfo", R.string.UseGoogleEmojiInfo), preferences.getBoolean("useGoogleEmoji", true), false, true);
+                    } else if (position == fakeBoldRow) {
+                        textCell.setTextAndValueAndCheck("Replace medium font as bold"/*LocaleController.getString("UseGoogleEmoji", R.string.UseGoogleEmoji)*/, "Use it if no medium font in system"/*LocaleController.getString("UseGoogleEmojiInfo", R.string.UseGoogleEmojiInfo)*/, preferences.getBoolean("fakeBold", false), false, true);
                     }
                     break;
                 }
@@ -1459,7 +1475,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         position == mobileDownloadRow || position == clearLogsRow || position == roamingDownloadRow || position == languageRow || position == usernameRow ||
                         position == switchBackendButtonRow || position == telegramFaqRow || position == contactsSortRow || position == contactsReimportRow || position == saveToGalleryRow ||
                         position == stickersRow || position == cacheRow || position == raiseToSpeakRow || position == privacyPolicyRow || position == customTabsRow || position == directShareRow || position == versionRow ||
-                        position == emojiRow || position == googleEmojiRow) { // Rikkagram
+                        position == emojiRow || position == googleEmojiRow || position == fakeBoldRow) { // Rikkagram
                     if (holder.itemView.getBackground() == null) {
                         holder.itemView.setBackgroundResource(R.drawable.list_selector);
                     }
@@ -1570,7 +1586,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
             if (position == settingsSectionRow || position == supportSectionRow || position == messagesSectionRow || position == mediaDownloadSection || position == contactsSectionRow) {
                 return 1;
-            } else if (position == enableAnimationsRow || position == sendByEnterRow || position == saveToGalleryRow || position == autoplayGifsRow || position == raiseToSpeakRow || position == customTabsRow || position == directShareRow || position == googleEmojiRow) { // Rikkagram
+            } else if (position == enableAnimationsRow || position == sendByEnterRow || position == saveToGalleryRow || position == autoplayGifsRow || position == raiseToSpeakRow || position == customTabsRow || position == directShareRow || position == googleEmojiRow || position == fakeBoldRow) { // Rikkagram
                 return 3;
             } else if (position == notificationRow || position == backgroundRow || position == askQuestionRow || position == sendLogsRow || position == privacyRow || position == clearLogsRow || position == switchBackendButtonRow || position == telegramFaqRow || position == contactsReimportRow || position == textSizeRow || position == languageRow || position == contactsSortRow || position == stickersRow || position == cacheRow || position == privacyPolicyRow || position == emojiRow) {
                 return 2;

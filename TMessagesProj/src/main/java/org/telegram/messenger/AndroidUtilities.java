@@ -18,6 +18,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -47,6 +48,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.StateSet;
 import android.view.Display;
 import android.view.Surface;
@@ -370,18 +372,29 @@ public class AndroidUtilities {
     public static Typeface getTypeface(String assetPath) {
         synchronized (typefaceCache) {
             if (!typefaceCache.containsKey(assetPath)) {
+                boolean medium = "fonts/rmedium.ttf".equals(assetPath);
+                boolean italic = "fonts/ritalic.ttf".equals(assetPath);
+
                 try {
                     Typeface t = null;
-                    if (assetPath.equals("fonts/rmedium.ttf") || assetPath.equals("fonts/ritalic.ttf")) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            if (assetPath.equals("fonts/rmedium.ttf")) {
-                                t = Typeface.create("sans-serif-medium", Typeface.NORMAL);
-                            } else {
-                                t = Typeface.create("sans-serif", Typeface.ITALIC);
-                            }
-                        }
-                    } else {
+
+                    SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
+                    boolean fakeBold = preferences.getBoolean("fakeBold", false);
+
+                    if ((!medium && !italic) || (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP && !fakeBold)) {
                         t = Typeface.createFromAsset(ApplicationLoader.applicationContext.getAssets(), assetPath);
+                    } else {
+                        int style = Typeface.NORMAL;
+                        if (medium && fakeBold) {
+                            style = Typeface.BOLD;
+                        }
+
+                        if (medium) {
+                            t = Typeface.create(fakeBold ? "sans-serif" : "sans-serif-medium", style);
+                        }
+                        if (italic) {
+                            t = Typeface.create("sans-serif", Typeface.ITALIC);
+                        }
                     }
 
                     typefaceCache.put(assetPath, t);

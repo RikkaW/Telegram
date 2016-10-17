@@ -80,7 +80,7 @@ android {
         }
     }
 
-    defaultConfig.versionCode = 851
+    defaultConfig.versionCode = 851 + 1
 
     sourceSets.debug {
         manifest.srcFile 'config/debug/AndroidManifest.xml'
@@ -120,7 +120,7 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 24
-        versionName "3.13.1.0"
+        versionName "3.13.1.1"
 
         externalNativeBuild {
             ndkBuild {
