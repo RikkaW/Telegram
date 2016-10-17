@@ -138,6 +138,7 @@ public class MessagesController implements NotificationCenter.NotificationCenter
     public boolean enableJoined = true;
     public boolean allowBigEmoji = false;
     public boolean useSystemEmoji = false;
+    public boolean useGoogleEmoji = true;
     public int fontSize = AndroidUtilities.dp(16);
     public int maxGroupCount = 200;
     public int maxBroadcastCount = 100;
@@ -260,6 +261,7 @@ public class MessagesController implements NotificationCenter.NotificationCenter
         fontSize = preferences.getInt("fons_size", AndroidUtilities.isTablet() ? 18 : 16);
         allowBigEmoji = preferences.getBoolean("allowBigEmoji", false);
         useSystemEmoji = preferences.getBoolean("useSystemEmoji", false);
+        useGoogleEmoji = preferences.getBoolean("useGoogleEmoji", true);
         String disabledFeaturesString = preferences.getString("disabledFeatures", null);
         if (disabledFeaturesString != null && disabledFeaturesString.length() != 0) {
             try {

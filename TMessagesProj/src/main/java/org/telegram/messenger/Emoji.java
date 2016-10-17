@@ -8,11 +8,6 @@
 
 package org.telegram.messenger;
 
-import java.io.File;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Locale;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -25,11 +20,19 @@ import android.os.Build;
 import android.text.Spannable;
 import android.text.Spanned;
 import android.text.TextPaint;
+import android.text.style.CharacterStyle;
 import android.text.style.DynamicDrawableSpan;
 import android.text.style.ImageSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import org.telegram.ui.Components.TypefaceSpan;
+
+import java.io.File;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Locale;
 
 public class Emoji {
     private static HashMap<CharSequence, DrawableInfo> rects = new HashMap<>();
@@ -351,7 +354,7 @@ public class Emoji {
         StringBuilder emojiCode = new StringBuilder(16);
         boolean nextIsSkinTone;
         EmojiDrawable drawable;
-        EmojiSpan span;
+        CharacterStyle span;
         int length = cs.length();
         boolean doneEmoji = false;
         //s.setSpansCount(emojiCount);
@@ -425,7 +428,7 @@ public class Emoji {
                         }
                     }
                 }
-                if (false/*doneEmoji*/) {
+                if (doneEmoji) {
                     if (emojiOnly != null) {
                         emojiOnly[0]++;
                     }
@@ -445,7 +448,11 @@ public class Emoji {
                     }
                     drawable = Emoji.getEmojiDrawable(emojiCode.subSequence(0, emojiCode.length()));
                     if (drawable != null) {
-                        span = new EmojiSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM, size, fontMetrics);
+                        if (MessagesController.getInstance().useGoogleEmoji) {
+                            span = new TypefaceSpan(AndroidUtilities.getTypeface("fonts/NotoColorEmoji.ttf"));
+                        } else {
+                            span = new EmojiSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM, size, fontMetrics);
+                        }
                         s.setSpan(span, startIndex, startIndex + startLength, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                         emojiCount++;
                     }

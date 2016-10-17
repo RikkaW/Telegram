@@ -16,6 +16,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
@@ -694,14 +695,26 @@ public class NotificationsController {
                     return;
                 }
                 lastBadgeCount = count;
+
+                boolean exist = true;
+                PackageManager packageManager = ApplicationLoader.applicationContext.getPackageManager();
                 try {
-                    ContentValues cv = new ContentValues();
-                    cv.put("tag", "org.telegram.messenger/org.telegram.ui.LaunchActivity");
-                    cv.put("count", count);
-                    ApplicationLoader.applicationContext.getContentResolver().insert(Uri.parse("content://com.teslacoilsw.notifier/unread_count"), cv);
-                } catch (Throwable e) {
-                    //ignore
+                    PackageInfo info = packageManager.getPackageInfo("com.teslacoilsw.notifier", PackageManager.GET_META_DATA);
+                } catch (PackageManager.NameNotFoundException e) {
+                    exist = false;
                 }
+
+                if (exist) {
+                    try {
+                        ContentValues cv = new ContentValues();
+                        cv.put("tag", "org.telegram.messenger/org.telegram.ui.LaunchActivity");
+                        cv.put("count", count);
+                        ApplicationLoader.applicationContext.getContentResolver().insert(Uri.parse("content://com.teslacoilsw.notifier/unread_count"), cv);
+                    } catch (Throwable e) {
+                        //ignore
+                    }
+                }
+
                 try {
                     if (launcherClassName == null) {
                         launcherClassName = getLauncherClassName(ApplicationLoader.applicationContext);

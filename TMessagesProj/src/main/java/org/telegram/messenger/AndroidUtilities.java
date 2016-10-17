@@ -371,12 +371,14 @@ public class AndroidUtilities {
         synchronized (typefaceCache) {
             if (!typefaceCache.containsKey(assetPath)) {
                 try {
-                    Typeface t;
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        if (assetPath.equals("fonts/rmedium.ttf")) {
-                            t = Typeface.create("sans-serif-medium", Typeface.NORMAL);
-                        } else {
-                            t = Typeface.create("sans-serif", Typeface.ITALIC);
+                    Typeface t = null;
+                    if (assetPath.equals("fonts/rmedium.ttf") || assetPath.equals("fonts/ritalic.ttf")) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            if (assetPath.equals("fonts/rmedium.ttf")) {
+                                t = Typeface.create("sans-serif-medium", Typeface.NORMAL);
+                            } else {
+                                t = Typeface.create("sans-serif", Typeface.ITALIC);
+                            }
                         }
                     } else {
                         t = Typeface.createFromAsset(ApplicationLoader.applicationContext.getAssets(), assetPath);

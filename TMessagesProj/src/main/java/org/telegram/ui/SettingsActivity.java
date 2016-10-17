@@ -143,6 +143,10 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     private int stickersRow;
     private int emojiRow;
     private int cacheRow;
+
+    // Rikkagram
+    private int googleEmojiRow;
+
     private int raiseToSpeakRow;
     private int sendByEnterRow;
     private int supportSectionRow;
@@ -261,6 +265,10 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         stickersRow = rowCount++;
         //emojiRow = rowCount++;
         textSizeRow = rowCount++;
+
+        // Rikkagram
+        googleEmojiRow = rowCount++;
+
         cacheRow = rowCount++;
         raiseToSpeakRow = rowCount++;
         sendByEnterRow = rowCount++;
@@ -701,6 +709,16 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     linearLayout.addView(cell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, 48));
                     builder.setCustomView(linearLayout);
                     showDialog(builder.create());
+                } else if (position == googleEmojiRow) { // Rikkagram
+                    SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
+                    boolean googleEmoji = preferences.getBoolean("useGoogleEmoji", true);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putBoolean("useGoogleEmoji", !googleEmoji);
+                    editor.commit();
+                    MessagesController.getInstance().useGoogleEmoji = !googleEmoji;
+                    if (view instanceof TextCheckCell) {
+                        ((TextCheckCell) view).setChecked(!googleEmoji);
+                    }
                 }
             }
         });
@@ -1336,6 +1354,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         textCell.setTextAndValueAndCheck(LocaleController.getString("ChromeCustomTabs", R.string.ChromeCustomTabs), LocaleController.getString("ChromeCustomTabsInfo", R.string.ChromeCustomTabsInfo), MediaController.getInstance().canCustomTabs(), false, true);
                     } else if (position == directShareRow) {
                         textCell.setTextAndValueAndCheck(LocaleController.getString("DirectShare", R.string.DirectShare), LocaleController.getString("DirectShareInfo", R.string.DirectShareInfo), MediaController.getInstance().canDirectShare(), false, true);
+                    } else if (position == googleEmojiRow) { // Rikkagram
+                        textCell.setTextAndValueAndCheck(LocaleController.getString("UseGoogleEmoji", R.string.UseGoogleEmoji), LocaleController.getString("UseGoogleEmojiInfo", R.string.UseGoogleEmojiInfo), preferences.getBoolean("useGoogleEmoji", true), false, true);
                     }
                     break;
                 }
@@ -1439,7 +1459,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         position == mobileDownloadRow || position == clearLogsRow || position == roamingDownloadRow || position == languageRow || position == usernameRow ||
                         position == switchBackendButtonRow || position == telegramFaqRow || position == contactsSortRow || position == contactsReimportRow || position == saveToGalleryRow ||
                         position == stickersRow || position == cacheRow || position == raiseToSpeakRow || position == privacyPolicyRow || position == customTabsRow || position == directShareRow || position == versionRow ||
-                        position == emojiRow) {
+                        position == emojiRow || position == googleEmojiRow) { // Rikkagram
                     if (holder.itemView.getBackground() == null) {
                         holder.itemView.setBackgroundResource(R.drawable.list_selector);
                     }
@@ -1550,7 +1570,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
             if (position == settingsSectionRow || position == supportSectionRow || position == messagesSectionRow || position == mediaDownloadSection || position == contactsSectionRow) {
                 return 1;
-            } else if (position == enableAnimationsRow || position == sendByEnterRow || position == saveToGalleryRow || position == autoplayGifsRow || position == raiseToSpeakRow || position == customTabsRow || position == directShareRow) {
+            } else if (position == enableAnimationsRow || position == sendByEnterRow || position == saveToGalleryRow || position == autoplayGifsRow || position == raiseToSpeakRow || position == customTabsRow || position == directShareRow || position == googleEmojiRow) { // Rikkagram
                 return 3;
             } else if (position == notificationRow || position == backgroundRow || position == askQuestionRow || position == sendLogsRow || position == privacyRow || position == clearLogsRow || position == switchBackendButtonRow || position == telegramFaqRow || position == contactsReimportRow || position == textSizeRow || position == languageRow || position == contactsSortRow || position == stickersRow || position == cacheRow || position == privacyPolicyRow || position == emojiRow) {
                 return 2;
