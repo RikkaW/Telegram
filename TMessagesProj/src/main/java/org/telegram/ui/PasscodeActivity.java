@@ -15,6 +15,7 @@ import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Vibrator;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -143,7 +144,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
             menu.addItemWithWidth(done_button, R.drawable.ic_done, AndroidUtilities.dp(56));
 
             titleTextView = new TextView(context);
-            titleTextView.setTextColor(0xff757575);
+            //titleTextView.setTextColor(0xff757575);
             if (type == 1) {
                 if (UserConfig.passcodeHash.length() != 0) {
                     titleTextView.setText(LocaleController.getString("EnterNewPasscode", R.string.EnterNewPasscode));
@@ -165,7 +166,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
 
             passwordEditText = new EditText(context);
             passwordEditText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-            passwordEditText.setTextColor(0xff000000);
+            //passwordEditText.setTextColor(0xff000000);
             passwordEditText.setMaxLines(1);
             passwordEditText.setLines(1);
             passwordEditText.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -292,7 +293,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
             updateDropDownTextView();
         } else {
             actionBar.setTitle(LocaleController.getString("Passcode", R.string.Passcode));
-            frameLayout.setBackgroundColor(0xfff0f0f0);
+            frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
             listView = new ListView(context);
             listView.setDivider(null);
             listView.setDividerHeight(0);
@@ -321,7 +322,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                                 View child = listView.getChildAt(a);
                                 if (child instanceof TextSettingsCell) {
                                     TextSettingsCell textCell = (TextSettingsCell) child;
-                                    textCell.setTextColor(0xffc6c6c6);
+                                    //textCell.setTextColor(0xffc6c6c6);
                                     break;
                                 }
                             }
@@ -636,7 +637,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
             if (viewType == 0) {
                 if (view == null) {
                     view = new TextCheckCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 TextCheckCell textCell = (TextCheckCell) view;
 
@@ -648,12 +649,13 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
             } else if (viewType == 1) {
                 if (view == null) {
                     view = new TextSettingsCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 TextSettingsCell textCell = (TextSettingsCell) view;
                 if (i == changePasscodeRow) {
                     textCell.setText(LocaleController.getString("ChangePasscode", R.string.ChangePasscode), false);
-                    textCell.setTextColor(UserConfig.passcodeHash.length() == 0 ? 0xffc6c6c6 : 0xff000000);
+                    Context context = view.getContext();
+                    textCell.setTextColor(ContextCompat.getColor(context, UserConfig.passcodeHash.length() == 0 ? R.color.disabled_text : R.color.primary_text));
                 } else if (i == autoLockRow) {
                     String val;
                     if (UserConfig.autoLockIn == 0) {
@@ -674,14 +676,14 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                 }
                 if (i == passcodeDetailRow) {
                     ((TextInfoPrivacyCell) view).setText(LocaleController.getString("ChangePasscodeInfo", R.string.ChangePasscodeInfo));
-                    if (autoLockDetailRow != -1) {
+                    /*if (autoLockDetailRow != -1) {
                         view.setBackgroundResource(R.drawable.greydivider);
                     } else {
                         view.setBackgroundResource(R.drawable.greydivider_bottom);
-                    }
+                    }*/
                 } else if (i == autoLockDetailRow) {
                     ((TextInfoPrivacyCell) view).setText(LocaleController.getString("AutoLockInfo", R.string.AutoLockInfo));
-                    view.setBackgroundResource(R.drawable.greydivider_bottom);
+                    //view.setBackgroundResource(R.drawable.greydivider_bottom);
                 }
             }
             return view;

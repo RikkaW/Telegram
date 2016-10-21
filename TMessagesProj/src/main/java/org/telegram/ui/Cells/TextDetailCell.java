@@ -9,6 +9,7 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -18,9 +19,12 @@ import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.ForegroundFrameLayout;
+import org.telegram.ui.Components.ForegroundTextView;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class TextDetailCell extends FrameLayout {
+public class TextDetailCell extends ForegroundFrameLayout {
 
     private TextView textView;
     private TextView valueTextView;
@@ -29,8 +33,11 @@ public class TextDetailCell extends FrameLayout {
     public TextDetailCell(Context context) {
         super(context);
 
+        setElevation(AndroidUtilities.dp(2));
+        setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
+
         textView = new TextView(context);
-        textView.setTextColor(0xff212121);
+        textView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         textView.setLines(1);
         textView.setMaxLines(1);

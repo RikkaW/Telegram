@@ -13,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -48,11 +49,15 @@ public class StickerSetCell extends FrameLayout {
 
         if (paint == null) {
             paint = new Paint();
-            paint.setColor(0xffd9d9d9);
+            paint.setColor(ContextCompat.getColor(context, R.color.divider));
         }
 
+        /*setElevation(AndroidUtilities.dp(2));
+        setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));*/
+        //setStateListAnimator();
+
         textView = new TextView(context);
-        textView.setTextColor(0xff212121);
+        textView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         textView.setLines(1);
         textView.setMaxLines(1);
@@ -62,7 +67,7 @@ public class StickerSetCell extends FrameLayout {
         addView(textView, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT, LocaleController.isRTL ? 40 : 71, 10, LocaleController.isRTL ? 71 : 40, 0));
 
         valueTextView = new TextView(context);
-        valueTextView.setTextColor(0xff8a8a8a);
+        //valueTextView.setTextColor(0xff8a8a8a);
         valueTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
         valueTextView.setLines(1);
         valueTextView.setMaxLines(1);
@@ -139,6 +144,12 @@ public class StickerSetCell extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         if (needDivider) {
             canvas.drawLine(0, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, paint);
+        }
+    }
+
+    public static void setDividerColor(Context context, boolean night) {
+        if (paint != null) {
+            paint.setColor(ContextCompat.getColor(context, night ? R.color.chat_list_divider : R.color.divider_light));
         }
     }
 }

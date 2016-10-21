@@ -11,6 +11,7 @@ package org.telegram.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -87,7 +88,7 @@ public class IdenticonActivity extends BaseFragment {
         LinearLayout linearLayout = (LinearLayout) fragmentView;
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setWeightSum(100);
-        linearLayout.setBackgroundColor(0xfff0f0f0);
+        linearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
         fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -104,12 +105,12 @@ public class IdenticonActivity extends BaseFragment {
         frameLayout.addView(identiconView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
 
         frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(0xffffffff);
+        frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.background));
         frameLayout.setPadding(AndroidUtilities.dp(10), 0, AndroidUtilities.dp(10), AndroidUtilities.dp(10));
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT, 50.0f));
 
         TextView textView = new TextView(context);
-        textView.setTextColor(0xff7f7f7f);
+        textView.setTextColor(ContextCompat.getColor(context, R.color.secondary_text));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         textView.setLinksClickable(true);
         textView.setClickable(true);

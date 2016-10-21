@@ -10,6 +10,7 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -48,7 +49,7 @@ public class MentionCell extends LinearLayout {
         addView(imageView, LayoutHelper.createLinear(28, 28, 12, 4, 0, 0));
 
         nameTextView = new TextView(context);
-        nameTextView.setTextColor(0xff000000);
+        nameTextView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         nameTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
         nameTextView.setSingleLine(true);
         nameTextView.setGravity(Gravity.LEFT);
@@ -125,12 +126,12 @@ public class MentionCell extends LinearLayout {
         usernameTextView.setText(Emoji.replaceEmoji(help, usernameTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20), false));
     }
 
-    public void setIsDarkTheme(boolean isDarkTheme) {
+    public void setIsDarkTheme(Context context, boolean isDarkTheme) {
         if (isDarkTheme) {
             nameTextView.setTextColor(0xffffffff);
             usernameTextView.setTextColor(0xff999999);
         } else {
-            nameTextView.setTextColor(0xff000000);
+            nameTextView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
             usernameTextView.setTextColor(0xff999999);
         }
     }

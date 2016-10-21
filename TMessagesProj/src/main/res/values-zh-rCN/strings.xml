@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <string name="AppName">Telegram</string>
-    <string name="AppNameBeta">Telegram Beta</string>
+    <string name="AppName">Rikkagram</string>
+    <string name="AppNameBeta">Rikkagram Beta</string>
     <string name="LanguageName">简体中文</string>
     <string name="LanguageNameInEnglish">Simplified Chinese</string>
     <string name="LanguageCode">zh_CN</string>
@@ -679,7 +679,7 @@
     <string name="CacheSettings">缓存设置</string>
     <string name="LocalDatabase">本地数据库</string>
     <string name="LocalDatabaseClear">清空缓存的消息记录？</string>
-    <string name="LocalDatabaseInfo">清空本地数据库将删除缓存在本地的聊天记录并压缩数据库以节省存储空间。Telegram需要一些数据来维持正常工作，所以数据库大小不会完全归零。\n\n此操作需要一些时间来完成。</string>
+    <string name="LocalDatabaseInfo">清空本地数据库将删除缓存在本地的聊天记录并压缩数据库以节省存储空间。Telegram 需要一些数据来维持正常工作，所以数据库大小不会完全归零。\n\n此操作需要一些时间来完成。</string>
     <string name="ClearMediaCache">清除媒体缓存</string>
     <string name="CacheClear">清除</string>
     <string name="CalculatingSize">正在计算...</string>
@@ -1301,4 +1301,5 @@
     <!--Rikkagram-->
     <string name="UseGoogleEmoji">Google emoji</string>
     <string name="UseGoogleEmojiInfo">使用 Noto Color Emoji 而不是 iOS emoji</string>
+    <string name="NightMode">暗色主题（开发中）</string>
 </resources>

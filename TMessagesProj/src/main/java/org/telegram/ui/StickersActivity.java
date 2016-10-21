@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.view.MotionEvent;
@@ -167,7 +168,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
 
         fragmentView = new FrameLayout(context);
         FrameLayout frameLayout = (FrameLayout) fragmentView;
-        frameLayout.setBackgroundColor(0xfff0f0f0);
+        frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
 
         listView = new RecyclerListView(context);
         listView.setFocusable(true);
@@ -386,7 +387,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                             ((TextSettingsCell) holder.itemView).setText(LocaleController.getString("ArchivedMasks", R.string.ArchivedMasks), false);
                         }
                     } else if (position == masksRow) {
-                        ((TextSettingsCell) holder.itemView).setText(LocaleController.getString("Masks", R.string.Masks), true);
+                        ((TextSettingsCell) holder.itemView).setText(LocaleController.getString("Masks", R.string.Masks), false);
                     }
                     break;
             }
@@ -453,25 +454,13 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     break;
                 case 1:
                     view = new TextInfoPrivacyCell(mContext);
-                    view.setBackgroundResource(R.drawable.greydivider_bottom);
                     break;
                 case 2:
-                    view = new TextSettingsCell(mContext) {
-                        @Override
-                        public boolean onTouchEvent(MotionEvent event) {
-                            if (Build.VERSION.SDK_INT >= 21 && getBackground() != null) {
-                                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-                                    getBackground().setHotspot(event.getX(), event.getY());
-                                }
-                            }
-                            return super.onTouchEvent(event);
-                        }
-                    };
-                    view.setBackgroundResource(R.drawable.list_selector_white);
+                    view = new TextSettingsCell(mContext);
+                    view.setForeground(view.getContext().getDrawable(R.drawable.list_selector));
                     break;
                 case 3:
                     view = new ShadowSectionCell(mContext);
-                    view.setBackgroundResource(R.drawable.greydivider_bottom);
                     break;
             }
             view.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));

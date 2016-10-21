@@ -23,6 +23,7 @@ import android.content.res.Configuration;
 import android.graphics.Outline;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -320,6 +321,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         FrameLayout frameLayout = new FrameLayout(context);
         fragmentView = frameLayout;
+        fragmentView.setBackgroundColor(ContextCompat.getColor(context, R.color.chat_list_background));
         
         listView = new RecyclerListView(context);
         listView.setVerticalScrollBarEnabled(true);
@@ -650,6 +652,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         progressView.setVisibility(View.GONE);
         frameLayout.addView(progressView, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER));
 
+        // TODO fab color
         floatingButton = new ImageView(context);
         floatingButton.setVisibility(onlySelect ? View.GONE : View.VISIBLE);
         floatingButton.setScaleType(ImageView.ScaleType.CENTER);

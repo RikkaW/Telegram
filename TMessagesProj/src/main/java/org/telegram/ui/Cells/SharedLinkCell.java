@@ -15,6 +15,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -83,18 +84,22 @@ public class SharedLinkCell extends FrameLayout {
     private static TextPaint descriptionTextPaint;
     private static Paint paint;
 
+    private static int TEXT_COLOR;
+
     public SharedLinkCell(Context context) {
         super(context);
 
         if (titleTextPaint == null) {
             titleTextPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
             titleTextPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-            titleTextPaint.setColor(0xff212121);
+
+            TEXT_COLOR = ContextCompat.getColor(context, R.color.primary_text);
+            titleTextPaint.setColor(TEXT_COLOR);
 
             descriptionTextPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
 
             paint = new Paint();
-            paint.setColor(0xffd9d9d9);
+            paint.setColor(ContextCompat.getColor(context, R.color.divider));
             paint.setStrokeWidth(1);
 
             urlPaint = new Paint();
@@ -446,7 +451,7 @@ public class SharedLinkCell extends FrameLayout {
         }
 
         if (descriptionLayout != null) {
-            descriptionTextPaint.setColor(0xff212121);
+            descriptionTextPaint.setColor(TEXT_COLOR);
             canvas.save();
             canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8 : AndroidUtilities.leftBaseline), descriptionY);
             descriptionLayout.draw(canvas);
@@ -454,7 +459,7 @@ public class SharedLinkCell extends FrameLayout {
         }
 
         if (descriptionLayout2 != null) {
-            descriptionTextPaint.setColor(0xff212121);
+            descriptionTextPaint.setColor(TEXT_COLOR);
             canvas.save();
             canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8 : AndroidUtilities.leftBaseline), description2Y);
             descriptionLayout2.draw(canvas);
@@ -491,5 +496,9 @@ public class SharedLinkCell extends FrameLayout {
                 canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
             }
         }
+    }
+
+    public static void resetDivider() {
+        titleTextPaint = null;
     }
 }

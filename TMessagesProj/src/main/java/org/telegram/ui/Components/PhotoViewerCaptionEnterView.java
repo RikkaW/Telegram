@@ -506,6 +506,8 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
             if (sizeNotifierLayout != null) {
                 emojiPadding = currentHeight;
                 sizeNotifierLayout.requestLayout();
+
+                // TODO tint
                 emojiButton.setImageResource(R.drawable.ic_keyboard_w);
                 onWindowSizeChanged();
             }

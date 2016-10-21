@@ -26,6 +26,8 @@ import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -100,10 +102,12 @@ public class Switch extends CompoundButton {
         mThumbDrawable = context.getResources().getDrawable(R.drawable.switch_thumb);
         if (mThumbDrawable != null) {
             mThumbDrawable.setCallback(this);
+            mThumbDrawable.setTintList(ContextCompat.getColorStateList(context, R.color.tint_switch_thumb));
         }
         mTrackDrawable = context.getResources().getDrawable(R.drawable.switch_track);
         if (mTrackDrawable != null) {
             mTrackDrawable.setCallback(this);
+            mTrackDrawable.setTintList(ContextCompat.getColorStateList(context, R.color.tint_switch_track));
         }
 
         if (AndroidUtilities.density < 1) {
@@ -411,12 +415,12 @@ public class Switch extends CompoundButton {
             setThumbPosition(checked ? 1 : 0);
         }
 
-        if (mTrackDrawable != null) {
+        /*if (mTrackDrawable != null) {
             mTrackDrawable.setColorFilter(new PorterDuffColorFilter(checked ? 0xffa0d6fa : 0xffc7c7c7, PorterDuff.Mode.MULTIPLY));
         }
         if (mThumbDrawable != null) {
             mThumbDrawable.setColorFilter(new PorterDuffColorFilter(checked ? 0xff45abef : 0xffededed, PorterDuff.Mode.MULTIPLY));
-        }
+        }*/
     }
 
     @Override

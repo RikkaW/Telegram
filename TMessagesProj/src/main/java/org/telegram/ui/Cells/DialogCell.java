@@ -9,10 +9,13 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -137,7 +140,6 @@ public class DialogCell extends BaseCell {
         if (namePaint == null) {
             namePaint = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
 
-            namePaint.setColor(0xff212121);
             namePaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
 
             nameEncryptedPaint = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
@@ -145,11 +147,8 @@ public class DialogCell extends BaseCell {
             nameEncryptedPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
 
             messagePaint = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
-            messagePaint.setColor(Theme.DIALOGS_MESSAGE_TEXT_COLOR);
-            messagePaint.linkColor = Theme.DIALOGS_MESSAGE_TEXT_COLOR;
 
             linePaint = new Paint();
-            linePaint.setColor(0xffdcdcdc);
 
             backPaint = new Paint();
             backPaint.setColor(0x0f000000);
@@ -176,6 +175,8 @@ public class DialogCell extends BaseCell {
             muteDrawable = getResources().getDrawable(R.drawable.mute_grey);
             verifiedDrawable = getResources().getDrawable(R.drawable.check_list);
             botDrawable = getResources().getDrawable(R.drawable.bot_list);
+
+            resetPaintColor(context);
         }
 
         namePaint.setTextSize(AndroidUtilities.dp(17));
@@ -190,6 +191,22 @@ public class DialogCell extends BaseCell {
         avatarImage = new ImageReceiver(this);
         avatarImage.setRoundRadius(AndroidUtilities.dp(26));
         avatarDrawable = new AvatarDrawable();
+    }
+
+    public static void resetPaintColor(Context context) {
+        if (namePaint == null) {
+            return;
+        }
+
+        namePaint.setColor(ContextCompat.getColor(context, R.color.primary_text));
+        messagePaint.setColor(ContextCompat.getColor(context, R.color.secondary_text)/*Theme.DIALOGS_MESSAGE_TEXT_COLOR*/);
+        messagePaint.linkColor = ContextCompat.getColor(context, R.color.secondary_text)/*Theme.DIALOGS_MESSAGE_TEXT_COLOR*/;
+        linePaint.setColor(ContextCompat.getColor(context, R.color.chat_list_divider));
+
+        DrawableCompat.setTint(groupDrawable, ContextCompat.getColor(context, R.color.primary_text));
+        DrawableCompat.setTint(broadcastDrawable, ContextCompat.getColor(context, R.color.primary_text));
+        DrawableCompat.setTint(botDrawable, ContextCompat.getColor(context, R.color.primary_text));
+        DrawableCompat.setTint(muteDrawable, ContextCompat.getColor(context, R.color.disabled_text));
     }
 
     public void setDialog(TLRPC.TL_dialog dialog, int i, int type) {

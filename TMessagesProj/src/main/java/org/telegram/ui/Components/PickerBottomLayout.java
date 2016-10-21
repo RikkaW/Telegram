@@ -9,6 +9,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -38,7 +39,7 @@ public class PickerBottomLayout extends FrameLayout {
         super(context);
         isDarkTheme = darkTheme;
 
-        setBackgroundColor(isDarkTheme ? 0xff1a1a1a : 0xffffffff);
+        setBackgroundColor(isDarkTheme ? 0xff1a1a1a : ContextCompat.getColor(context, R.color.background));
 
         cancelButton = new TextView(context);
         cancelButton.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);

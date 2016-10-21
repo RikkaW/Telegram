@@ -32,6 +32,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -809,6 +810,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         Theme.loadRecources(context);
         Theme.loadChatResources(context);
+
+        //fragmentView.setBackgroundColor(ContextCompat.getColor(context, R.color.chat_drawable_tint));
 
         actionBar.setAddToContainer(false);
         actionBar.setBackButtonDrawable(new BackDrawable(false));
@@ -2472,7 +2475,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         chatActivityEnterView.addTopView(replyLayout, 48);
 
         View lineView = new View(context);
-        lineView.setBackgroundColor(0xffe8e8e8);
+        lineView.setBackgroundColor(ContextCompat.getColor(context, R.color.replay_panel_divider));
         replyLayout.addView(lineView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 1, Gravity.BOTTOM | Gravity.LEFT));
 
         replyIconImageView = new ImageView(context);
@@ -6826,6 +6829,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     public void onResume() {
         super.onResume();
 
+        SizeNotifierFrameLayout contentView = (SizeNotifierFrameLayout) fragmentView;
+        contentView.setBackgroundImage(ApplicationLoader.getCachedWallpaper());
+
         AndroidUtilities.requestAdjustResize(getParentActivity(), classGuid);
         MediaController.getInstance().startRaiseToEarSensors(this);
         checkRaiseSensors();
@@ -7081,7 +7087,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     private void createDeleteMessagesAlert(final MessageObject finalSelectedObject) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), R.style.Theme_TMessages_Dialog_Alert_Chat);
         builder.setMessage(LocaleController.formatString("AreYouSureDeleteMessages", R.string.AreYouSureDeleteMessages, LocaleController.formatPluralString("messages", finalSelectedObject != null ? 1 : selectedMessagesIds[0].size() + selectedMessagesIds[1].size())));
         builder.setTitle(LocaleController.getString("Message", R.string.Message));
 
@@ -7256,7 +7262,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 if (getParentActivity() == null) {
                     return;
                 }
-                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), R.style.Theme_TMessages_Dialog_Alert_Chat);
 
                 ArrayList<CharSequence> items = new ArrayList<>();
                 final ArrayList<Integer> options = new ArrayList<>();

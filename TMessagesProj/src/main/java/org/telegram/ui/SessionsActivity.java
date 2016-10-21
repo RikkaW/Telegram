@@ -13,6 +13,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -102,12 +103,12 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
 
         fragmentView = new FrameLayout(context);
         FrameLayout frameLayout = (FrameLayout) fragmentView;
-        frameLayout.setBackgroundColor(0xfff0f0f0);
+        frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
 
         emptyLayout = new LinearLayout(context);
         emptyLayout.setOrientation(LinearLayout.VERTICAL);
         emptyLayout.setGravity(Gravity.CENTER);
-        emptyLayout.setBackgroundResource(R.drawable.greydivider_bottom);
+        //emptyLayout.setBackgroundResource(R.drawable.greydivider_bottom);
         emptyLayout.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, AndroidUtilities.displaySize.y - ActionBar.getCurrentActionBarHeight()));
 
         ImageView imageView = new ImageView(context);
@@ -119,7 +120,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         imageView.setLayoutParams(layoutParams2);
 
         TextView textView = new TextView(context);
-        textView.setTextColor(0xff8a8a8a);
+        textView.setTextColor(ContextCompat.getColor(context, R.color.disabled_text) /*0xff8a8a8a*/);
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
@@ -133,7 +134,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         textView.setLayoutParams(layoutParams2);
 
         textView = new TextView(context);
-        textView.setTextColor(0xff8a8a8a);
+        textView.setTextColor(ContextCompat.getColor(context, R.color.disabled_text) /*0xff8a8a8a*/);
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);
         textView.setPadding(AndroidUtilities.dp(20), 0, AndroidUtilities.dp(20), 0);
@@ -400,7 +401,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             if (type == 0) {
                 if (view == null) {
                     view = new TextSettingsCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 TextSettingsCell textCell = (TextSettingsCell) view;
                 if (i == terminateAllSessionsRow) {
@@ -413,15 +414,15 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 }
                 if (i == terminateAllSessionsDetailRow) {
                     ((TextInfoPrivacyCell) view).setText(LocaleController.getString("ClearOtherSessionsHelp", R.string.ClearOtherSessionsHelp));
-                    view.setBackgroundResource(R.drawable.greydivider);
+                    //view.setBackgroundResource(R.drawable.greydivider);
                 } else if (i == otherSessionsTerminateDetail) {
                     ((TextInfoPrivacyCell) view).setText(LocaleController.getString("TerminateSessionInfo", R.string.TerminateSessionInfo));
-                    view.setBackgroundResource(R.drawable.greydivider_bottom);
+                    //view.setBackgroundResource(R.drawable.greydivider_bottom);
                 }
             } else if (type == 2) {
                 if (view == null) {
                     view = new HeaderCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 if (i == currentSessionSectionRow) {
                     ((HeaderCell) view).setText(LocaleController.getString("CurrentSession", R.string.CurrentSession));
@@ -438,7 +439,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             } else if (type == 4) {
                 if (view == null) {
                     view = new SessionCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 if (i == currentSessionRow) {
                     ((SessionCell) view).setSession(currentSession, !sessions.isEmpty());

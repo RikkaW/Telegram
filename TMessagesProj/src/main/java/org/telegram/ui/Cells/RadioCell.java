@@ -10,7 +10,10 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.annotation.ColorInt;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -19,6 +22,7 @@ import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
 
@@ -34,12 +38,15 @@ public class RadioCell extends FrameLayout {
 
         if (paint == null) {
             paint = new Paint();
-            paint.setColor(0xffd9d9d9);
+            paint.setColor(ContextCompat.getColor(context, R.color.divider));
             paint.setStrokeWidth(1);
         }
 
+        setElevation(AndroidUtilities.dp(2));
+        setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
+
         textView = new TextView(context);
-        textView.setTextColor(0xff212121);
+        textView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         textView.setLines(1);
         textView.setMaxLines(1);
@@ -82,6 +89,12 @@ public class RadioCell extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         if (needDivider) {
             canvas.drawLine(getPaddingLeft(), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, paint);
+        }
+    }
+
+    public static void setDividerColor(Context context, boolean night) {
+        if (paint != null) {
+            paint.setColor(ContextCompat.getColor(context, night ? R.color.divider_dark : R.color.divider_light));
         }
     }
 }

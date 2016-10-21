@@ -94,8 +94,8 @@ public class ChangeUsernameActivity extends BaseFragment {
 
         firstNameField = new EditText(context);
         firstNameField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
-        firstNameField.setHintTextColor(0xff979797);
-        firstNameField.setTextColor(0xff212121);
+        //firstNameField.setHintTextColor(0xff979797);
+        //firstNameField.setTextColor(0xff212121);
         firstNameField.setMaxLines(1);
         firstNameField.setLines(1);
         firstNameField.setPadding(0, 0, 0, 0);

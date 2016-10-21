@@ -10,15 +10,18 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.SimpleTextView;
+import org.telegram.ui.Components.ForegroundFrameLayout;
 
-public class TextCell extends FrameLayout {
+public class TextCell extends ForegroundFrameLayout {
 
     private SimpleTextView textView;
     private SimpleTextView valueTextView;
@@ -28,8 +31,11 @@ public class TextCell extends FrameLayout {
     public TextCell(Context context) {
         super(context);
 
+        setElevation(AndroidUtilities.dp(2));
+        setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
+
         textView = new SimpleTextView(context);
-        textView.setTextColor(0xff212121);
+        textView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         textView.setTextSize(16);
         textView.setGravity(LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT);
         addView(textView);

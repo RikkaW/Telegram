@@ -21,6 +21,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.util.TypedValue;
@@ -580,7 +581,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
         emptyView.setOrientation(LinearLayout.VERTICAL);
         emptyView.setGravity(Gravity.CENTER);
         emptyView.setVisibility(View.GONE);
-        emptyView.setBackgroundColor(0xfff0f0f0);
+        emptyView.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
         frameLayout.addView(emptyView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
         emptyView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -593,7 +594,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
         emptyView.addView(emptyImageView, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT));
 
         emptyTextView = new TextView(context);
-        emptyTextView.setTextColor(0xff8a8a8a);
+        emptyTextView.setTextColor(ContextCompat.getColor(context, R.color.disabled_text));
         emptyTextView.setGravity(Gravity.CENTER);
         emptyTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);
         emptyTextView.setPadding(AndroidUtilities.dp(40), 0, AndroidUtilities.dp(40), AndroidUtilities.dp(128));
@@ -603,7 +604,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
         progressView.setGravity(Gravity.CENTER);
         progressView.setOrientation(LinearLayout.VERTICAL);
         progressView.setVisibility(View.GONE);
-        progressView.setBackgroundColor(0xfff0f0f0);
+        progressView.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
         frameLayout.addView(progressView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
 
         ProgressBar progressBar = new ProgressBar(context);
@@ -1445,7 +1446,7 @@ public class MediaActivity extends BaseFragment implements NotificationCenter.No
         public View getSectionHeaderView(int section, View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = new SharedMediaSectionCell(mContext);
-                convertView.setBackgroundColor(0xffffffff);
+                convertView.setBackgroundColor(ContextCompat.getColor(convertView.getContext(), R.color.search_type_background));
             }
             if (section < sharedMediaData[0].sections.size()) {
                 String name = sharedMediaData[0].sections.get(section);

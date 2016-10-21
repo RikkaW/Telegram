@@ -9,6 +9,7 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.FrameLayout;
@@ -17,10 +18,11 @@ import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
+import org.telegram.ui.Components.ForegroundFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.ActionBar.Theme;
 
-public class ChatUnreadCell extends FrameLayout {
+public class ChatUnreadCell extends ForegroundFrameLayout {
 
     private TextView textView;
 
@@ -28,8 +30,9 @@ public class ChatUnreadCell extends FrameLayout {
         super(context);
 
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundResource(R.drawable.newmsg_divider);
-        addView(frameLayout, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 27, Gravity.LEFT | Gravity.TOP, 0, 7, 0, 0));
+        frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.chat_drawable_tint)); //setBackgroundResource(R.drawable.newmsg_divider);
+        frameLayout.setElevation(AndroidUtilities.dp(1));
+        addView(frameLayout, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 27, Gravity.LEFT | Gravity.TOP, 0, AndroidUtilities.dp(4), 0, AndroidUtilities.dp(4)));
 
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.ic_ab_new);
@@ -41,7 +44,7 @@ public class ChatUnreadCell extends FrameLayout {
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
         textView.setTextColor(Theme.CHAT_UNREAD_TEXT_COLOR);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        addView(textView, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER));
+        frameLayout.addView(textView, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER));
     }
 
     public void setText(String text) {

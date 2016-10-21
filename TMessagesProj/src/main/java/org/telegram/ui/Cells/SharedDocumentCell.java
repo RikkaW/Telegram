@@ -12,6 +12,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -69,7 +70,7 @@ public class SharedDocumentCell extends FrameLayout implements MediaController.F
 
         if (paint == null) {
             paint = new Paint();
-            paint.setColor(0xffd9d9d9);
+            paint.setColor(ContextCompat.getColor(context, R.color.divider));
             paint.setStrokeWidth(1);
         }
 
@@ -79,7 +80,7 @@ public class SharedDocumentCell extends FrameLayout implements MediaController.F
         addView(placeholderImabeView, LayoutHelper.createFrame(40, 40, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 0 : 12, 8, LocaleController.isRTL ? 12 : 0, 0));
 
         extTextView = new TextView(context);
-        extTextView.setTextColor(0xffffffff);
+        extTextView.setTextColor(ContextCompat.getColor(context, R.color.primary_text_inverse));
         extTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
         extTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         extTextView.setLines(1);
@@ -100,7 +101,7 @@ public class SharedDocumentCell extends FrameLayout implements MediaController.F
         });
 
         nameTextView = new TextView(context);
-        nameTextView.setTextColor(0xff212121);
+        nameTextView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         nameTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         nameTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         nameTextView.setLines(1);
@@ -115,7 +116,7 @@ public class SharedDocumentCell extends FrameLayout implements MediaController.F
         addView(statusImageView, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 8 : 72, 35, LocaleController.isRTL ? 72 : 8, 0));
 
         dateTextView = new TextView(context);
-        dateTextView.setTextColor(0xff999999);
+        dateTextView.setTextColor(ContextCompat.getColor(context, R.color.secondary_text));
         dateTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
         dateTextView.setLines(1);
         dateTextView.setMaxLines(1);
@@ -352,5 +353,9 @@ public class SharedDocumentCell extends FrameLayout implements MediaController.F
     @Override
     public int getObserverTag() {
         return TAG;
+    }
+
+    public static void resetDivider() {
+        paint = null;
     }
 }

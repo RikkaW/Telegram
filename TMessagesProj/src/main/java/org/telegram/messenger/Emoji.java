@@ -15,6 +15,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Spannable;
@@ -449,7 +450,7 @@ public class Emoji {
                     drawable = Emoji.getEmojiDrawable(emojiCode.subSequence(0, emojiCode.length()));
                     if (drawable != null) {
                         if (MessagesController.getInstance().useGoogleEmoji) {
-                            span = new TypefaceSpan(AndroidUtilities.getTypeface("fonts/NotoColorEmoji.ttf"));
+                            span = new TypefaceSpan(AndroidUtilities.getTypeface("fonts/NotoColorEmoji.ttf"), 0, 0xffffffff);
                         } else {
                             span = new EmojiSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM, size, fontMetrics);
                         }

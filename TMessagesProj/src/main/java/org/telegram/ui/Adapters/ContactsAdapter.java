@@ -8,7 +8,9 @@
 
 package org.telegram.ui.Adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,6 +25,7 @@ import org.telegram.ui.Cells.GreySectionCell;
 import org.telegram.ui.Cells.LetterSectionCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.UserCell;
+import org.telegram.ui.Components.ForegroundFrameLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -191,6 +194,7 @@ public class ContactsAdapter extends BaseSectionsAdapter {
         return convertView;
     }
 
+    @SuppressLint("NewApi")
     @Override
     public View getItemView(int section, int position, View convertView, ViewGroup parent) {
         int type = getItemViewType(section, position);
@@ -198,15 +202,20 @@ public class ContactsAdapter extends BaseSectionsAdapter {
             if (convertView == null) {
                 convertView = new DividerCell(mContext);
                 convertView.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 28 : 72), 0, AndroidUtilities.dp(LocaleController.isRTL ? 72 : 28), 0);
+                convertView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.chat_list_background));
+                convertView.setElevation(AndroidUtilities.dp(2));
             }
         } else if (type == 3) {
             if (convertView == null) {
                 convertView = new GreySectionCell(mContext);
                 ((GreySectionCell) convertView).setText(LocaleController.getString("Contacts", R.string.Contacts).toUpperCase());
+                //convertView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.s));
+                convertView.setElevation(AndroidUtilities.dp(2));
             }
         } else if (type == 2) {
             if (convertView == null) {
                 convertView = new TextCell(mContext);
+                convertView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.chat_list_background));
             }
             TextCell actionCell = (TextCell) convertView;
             if (needPhonebook) {
@@ -225,6 +234,7 @@ public class ContactsAdapter extends BaseSectionsAdapter {
         } else if (type == 1) {
             if (convertView == null) {
                 convertView = new TextCell(mContext);
+                convertView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.chat_list_background));
             }
             ContactsController.Contact contact = ContactsController.getInstance().phoneBookContacts.get(position);
             TextCell textCell = (TextCell) convertView;
@@ -238,6 +248,7 @@ public class ContactsAdapter extends BaseSectionsAdapter {
         } else if (type == 0) {
             if (convertView == null) {
                 convertView = new UserCell(mContext, 58, 1, false);
+                convertView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.chat_list_background));
                 ((UserCell) convertView).setStatusColors(0xffa8a8a8, 0xff3b84c0);
             }
 
@@ -256,6 +267,11 @@ public class ContactsAdapter extends BaseSectionsAdapter {
                 } else {
                     convertView.setAlpha(1.0f);
                 }
+            }
+        }
+        if (type != 4) {
+            if (convertView instanceof ForegroundFrameLayout) {
+                convertView.setForeground(convertView.getContext().getDrawable(R.drawable.list_selector));
             }
         }
         return convertView;

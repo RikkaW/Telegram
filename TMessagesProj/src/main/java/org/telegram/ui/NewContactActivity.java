@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Vibrator;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -226,8 +227,8 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
 
         firstNameField = new EditText(context);
         firstNameField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
-        firstNameField.setHintTextColor(0xff979797);
-        firstNameField.setTextColor(0xff212121);
+        //firstNameField.setHintTextColor(0xff979797);
+        firstNameField.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         firstNameField.setMaxLines(1);
         firstNameField.setLines(1);
         firstNameField.setSingleLine(true);
@@ -268,8 +269,8 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
 
         lastNameField = new EditText(context);
         lastNameField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
-        lastNameField.setHintTextColor(0xff979797);
-        lastNameField.setTextColor(0xff212121);
+        //lastNameField.setHintTextColor(0xff979797);
+        lastNameField.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         lastNameField.setMaxLines(1);
         lastNameField.setLines(1);
         lastNameField.setSingleLine(true);
@@ -311,7 +312,7 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
         countryButton = new TextView(context);
         countryButton.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
         countryButton.setPadding(AndroidUtilities.dp(6), AndroidUtilities.dp(10), AndroidUtilities.dp(6), 0);
-        countryButton.setTextColor(0xff212121);
+        countryButton.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         countryButton.setMaxLines(1);
         countryButton.setSingleLine(true);
         countryButton.setEllipsize(TextUtils.TruncateAt.END);
@@ -357,7 +358,7 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
 
         codeField = new EditText(context);
         codeField.setInputType(InputType.TYPE_CLASS_PHONE);
-        codeField.setTextColor(0xff212121);
+        codeField.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         AndroidUtilities.clearCursorDrawable(codeField);
         codeField.setPadding(AndroidUtilities.dp(10), 0, 0, 0);
         codeField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
@@ -458,8 +459,8 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
 
         phoneField = new HintEditText(context);
         phoneField.setInputType(InputType.TYPE_CLASS_PHONE);
-        phoneField.setTextColor(0xff212121);
-        phoneField.setHintTextColor(0xff979797);
+        phoneField.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
+        //phoneField.setHintTextColor(0xff979797);
         phoneField.setPadding(0, 0, 0, 0);
         AndroidUtilities.clearCursorDrawable(phoneField);
         phoneField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);

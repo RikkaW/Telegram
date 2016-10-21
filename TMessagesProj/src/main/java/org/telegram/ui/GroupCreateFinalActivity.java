@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -269,7 +270,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         nameTextView.setMaxLines(4);
         nameTextView.setGravity(Gravity.CENTER_VERTICAL | (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT));
         nameTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
-        nameTextView.setHintTextColor(0xff979797);
+        //nameTextView.setHintTextColor(0xff979797);
         nameTextView.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
         nameTextView.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         nameTextView.setPadding(0, 0, 0, AndroidUtilities.dp(8));
@@ -277,7 +278,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         inputFilters[0] = new InputFilter.LengthFilter(100);
         nameTextView.setFilters(inputFilters);
         AndroidUtilities.clearCursorDrawable(nameTextView);
-        nameTextView.setTextColor(0xff212121);
+        nameTextView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         frameLayout.addView(nameTextView);
         layoutParams1 = (FrameLayout.LayoutParams) nameTextView.getLayoutParams();
         layoutParams1.width = LayoutHelper.MATCH_PARENT;

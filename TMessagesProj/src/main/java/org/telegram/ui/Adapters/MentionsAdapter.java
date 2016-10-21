@@ -826,7 +826,7 @@ public class MentionsAdapter extends BaseSearchAdapterRecycler {
             view = new BotSwitchCell(mContext);
         } else {
             view = new MentionCell(mContext);
-            ((MentionCell) view).setIsDarkTheme(isDarkTheme);
+            ((MentionCell) view).setIsDarkTheme(mContext, isDarkTheme);
         }
         return new Holder(view);
     }

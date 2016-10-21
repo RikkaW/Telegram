@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.TypedValue;
@@ -145,7 +146,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         avatarImage.setLayoutParams(layoutParams3);
 
         nameTextView = new TextView(context);
-        nameTextView.setTextColor(0xff212121);
+        nameTextView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         nameTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
         nameTextView.setLines(1);
         nameTextView.setMaxLines(1);
@@ -183,8 +184,8 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
 
         firstNameField = new EditText(context);
         firstNameField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
-        firstNameField.setHintTextColor(0xff979797);
-        firstNameField.setTextColor(0xff212121);
+        //firstNameField.setHintTextColor(0xff979797);
+        firstNameField.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         firstNameField.setMaxLines(1);
         firstNameField.setLines(1);
         firstNameField.setSingleLine(true);
@@ -215,8 +216,8 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
 
         lastNameField = new EditText(context);
         lastNameField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
-        lastNameField.setHintTextColor(0xff979797);
-        lastNameField.setTextColor(0xff212121);
+        //lastNameField.setHintTextColor(0xff979797);
+        lastNameField.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         lastNameField.setMaxLines(1);
         lastNameField.setLines(1);
         lastNameField.setSingleLine(true);

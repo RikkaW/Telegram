@@ -11,8 +11,11 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.annotation.ColorInt;
+import android.support.v4.content.ContextCompat;
 
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
 
 public class DividerCell extends BaseCell {
 
@@ -22,8 +25,14 @@ public class DividerCell extends BaseCell {
         super(context);
         if (paint == null) {
             paint = new Paint();
-            paint.setColor(0xffd9d9d9);
+            paint.setColor(ContextCompat.getColor(context, R.color.divider));
             paint.setStrokeWidth(1);
+        }
+    }
+
+    public static void setDividerColor(Context context, boolean night) {
+        if (paint != null) {
+            paint.setColor(ContextCompat.getColor(context, night ? R.color.divider_dark : R.color.divider_light));
         }
     }
 

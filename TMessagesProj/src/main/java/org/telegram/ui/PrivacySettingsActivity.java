@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -124,7 +125,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
 
         fragmentView = new FrameLayout(context);
         FrameLayout frameLayout = (FrameLayout) fragmentView;
-        frameLayout.setBackgroundColor(0xfff0f0f0);
+        frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
 
         ListView listView = new ListView(context);
         listView.setDivider(null);
@@ -338,7 +339,6 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
             if (type == 0) {
                 if (view == null) {
                     view = new TextSettingsCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
                 }
                 TextSettingsCell textCell = (TextSettingsCell) view;
                 if (i == blockedRow) {
@@ -387,21 +387,20 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 }
                 if (i == deleteAccountDetailRow) {
                     ((TextInfoPrivacyCell) view).setText(LocaleController.getString("DeleteAccountHelp", R.string.DeleteAccountHelp));
-                    view.setBackgroundResource(secretSectionRow == -1 ? R.drawable.greydivider_bottom : R.drawable.greydivider);
+                    //view.setBackgroundResource(secretSectionRow == -1 ? R.drawable.greydivider_bottom : R.drawable.greydivider);
                 } else if (i == groupsDetailRow) {
                     ((TextInfoPrivacyCell) view).setText(LocaleController.getString("GroupsAndChannelsHelp", R.string.GroupsAndChannelsHelp));
-                    view.setBackgroundResource(R.drawable.greydivider);
+                    //view.setBackgroundResource(R.drawable.greydivider);
                 } else if (i == sessionsDetailRow) {
                     ((TextInfoPrivacyCell) view).setText(LocaleController.getString("SessionsInfo", R.string.SessionsInfo));
-                    view.setBackgroundResource(R.drawable.greydivider);
+                    //view.setBackgroundResource(R.drawable.greydivider);
                 } else if (i == secretDetailRow) {
                     ((TextInfoPrivacyCell) view).setText("");
-                    view.setBackgroundResource(R.drawable.greydivider_bottom);
+                    //view.setBackgroundResource(R.drawable.greydivider_bottom);
                 }
             } else if (type == 2) {
                 if (view == null) {
                     view = new HeaderCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
                 }
                 if (i == privacySectionRow) {
                     ((HeaderCell) view).setText(LocaleController.getString("PrivacyTitle", R.string.PrivacyTitle));
@@ -415,7 +414,6 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
             } else if (type == 3) {
                 if (view == null) {
                     view = new TextCheckCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
                 }
                 TextCheckCell textCell = (TextCheckCell) view;
                 if (i == secretWebpageRow) {

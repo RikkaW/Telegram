@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.DayNight" parent="@style/Theme"/>
+    <style name="Theme.DayNight.Dialog.Alert" parent="@android:style/Theme.Material.Dialog.Alert"/>
+
+    <!--EDIT TEXT-->
+
+    <style name="Theme.TMessages.EditText" parent="android:Widget.Material.EditText">
+        <item name="android:background">@drawable/edit_text</item>
+    </style>
+
+    <style name="Theme.TMessages.TextView.Drawer" parent="@style/Theme.TMessages.TextView"/>
+
+    <style name="Theme.TMessages.Dialog.Alert.Chat" parent="@style/Theme.TMessages.Dialog.Alert">
+        <item name="android:colorBackground">@color/chat_list_background</item>
+    </style>
+</resources>

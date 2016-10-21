@@ -9,6 +9,7 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.text.method.LinkMovementMethod;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -17,10 +18,12 @@ import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.ForegroundFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.ActionBar.Theme;
 
-public class TextInfoPrivacyCell extends FrameLayout {
+public class TextInfoPrivacyCell extends ForegroundFrameLayout {
 
     private TextView textView;
 
@@ -28,7 +31,7 @@ public class TextInfoPrivacyCell extends FrameLayout {
         super(context);
 
         textView = new TextView(context);
-        textView.setTextColor(0xff808080);
+        textView.setTextColor(ContextCompat.getColor(context, R.color.disabled_text));
         textView.setLinkTextColor(Theme.MSG_LINK_TEXT_COLOR);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
         textView.setGravity(LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT);

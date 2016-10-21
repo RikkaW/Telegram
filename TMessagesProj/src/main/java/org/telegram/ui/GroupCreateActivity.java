@@ -15,6 +15,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.Spannable;
@@ -177,6 +178,8 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         listViewAdapter.setCheckedMap(selectedContacts);
 
         fragmentView = new LinearLayout(context);
+        fragmentView.setBackgroundColor(ContextCompat.getColor(context, R.color.chat_list_background));
+
         LinearLayout linearLayout = (LinearLayout) fragmentView;
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
@@ -185,8 +188,8 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
 
         userSelectEditText = new EditText(context);
         userSelectEditText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
-        userSelectEditText.setHintTextColor(0xff979797);
-        userSelectEditText.setTextColor(0xff212121);
+        //userSelectEditText.setHintTextColor(0xff979797);
+        userSelectEditText.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         userSelectEditText.setInputType(InputType.TYPE_TEXT_VARIATION_FILTER | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         userSelectEditText.setMinimumHeight(AndroidUtilities.dp(54));
         userSelectEditText.setSingleLine(false);

@@ -96,7 +96,7 @@ public class ChangePhoneHelpActivity extends BaseFragment {
         TextView textView = new TextView(context);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         textView.setGravity(Gravity.CENTER_HORIZONTAL);
-        textView.setTextColor(0xff212121);
+        //textView.setTextColor(0xff212121);
 
         try {
             textView.setText(AndroidUtilities.replaceTags(LocaleController.getString("PhoneNumberHelp", R.string.PhoneNumberHelp)));

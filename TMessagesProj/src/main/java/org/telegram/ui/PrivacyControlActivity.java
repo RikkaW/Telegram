@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.Spannable;
 import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
@@ -164,7 +165,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
 
         fragmentView = new FrameLayout(context);
         FrameLayout frameLayout = (FrameLayout) fragmentView;
-        frameLayout.setBackgroundColor(0xfff0f0f0);
+        frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
 
         ListView listView = new ListView(context);
         listView.setDivider(null);
@@ -471,7 +472,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             if (type == 0) {
                 if (view == null) {
                     view = new TextSettingsCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 TextSettingsCell textCell = (TextSettingsCell) view;
                 if (i == alwaysShareRow) {
@@ -502,7 +503,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             } else if (type == 1) {
                 if (view == null) {
                     view = new TextInfoPrivacyCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 if (i == detailRow) {
                     if (isGroup) {
@@ -510,19 +511,19 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                     } else {
                         ((TextInfoPrivacyCell) view).setText(LocaleController.getString("CustomHelp", R.string.CustomHelp));
                     }
-                    view.setBackgroundResource(R.drawable.greydivider);
+                    //view.setBackgroundResource(R.drawable.greydivider);
                 } else if (i == shareDetailRow) {
                     if (isGroup) {
                         ((TextInfoPrivacyCell) view).setText(LocaleController.getString("CustomShareInfo", R.string.CustomShareInfo));
                     } else {
                         ((TextInfoPrivacyCell) view).setText(LocaleController.getString("CustomShareSettingsHelp", R.string.CustomShareSettingsHelp));
                     }
-                    view.setBackgroundResource(R.drawable.greydivider_bottom);
+                    //view.setBackgroundResource(R.drawable.greydivider_bottom);
                 }
             } else if (type == 2) {
                 if (view == null) {
                     view = new HeaderCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 if (i == sectionRow) {
                     if (isGroup) {
@@ -536,7 +537,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             } else if (type == 3) {
                 if (view == null) {
                     view = new RadioCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 RadioCell textCell = (RadioCell) view;
                 int checkedType = 0;

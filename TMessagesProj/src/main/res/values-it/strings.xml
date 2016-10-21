@@ -3,8 +3,8 @@
 <!--https://www.transifex.com/projects/p/telegram/language/it/members/-->
 
 <resources>
-    <string name="AppName">Telegram</string>
-    <string name="AppNameBeta">Telegram Beta</string>
+    <string name="AppName">Rikkagram</string>
+    <string name="AppNameBeta">Rikkagram Beta</string>
     <string name="LanguageName">Italiano</string>
     <string name="LanguageNameInEnglish">Italian</string>
     <string name="LanguageCode">it</string>
@@ -1297,4 +1297,6 @@
 
     <!--Rikkagram-->
     <string name="UseGoogleEmoji">Google emoji</string>
-    <string name="UseGoogleEmojiInfo">Use Noto Color Emoji instead of iOS emoji</string></resources>
+    <string name="UseGoogleEmojiInfo">Use Noto Color Emoji instead of iOS emoji</string>
+    <string name="NightMode">Dark Theme (developing)</string>
+</resources>

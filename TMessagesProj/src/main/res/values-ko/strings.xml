@@ -1298,4 +1298,5 @@
     <!--Rikkagram-->
     <string name="UseGoogleEmoji">Google emoji</string>
     <string name="UseGoogleEmojiInfo">Use Noto Color Emoji instead of iOS emoji</string>
+    <string name="NightMode">Dark Theme (developing)</string>
 </resources>

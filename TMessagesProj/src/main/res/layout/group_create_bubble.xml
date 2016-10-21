@@ -11,7 +11,7 @@
         android:layout_height="26dp"
         android:textSize="16dp"
         android:gravity="center"
-        android:textColor="#ff000000"
+        android:textColor="@color/primary_text"
         android:id="@+id/bubble_text_view"/>
 
 </FrameLayout>

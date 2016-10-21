@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Vibrator;
+import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.util.TypedValue;
@@ -155,7 +156,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
 
         fragmentView = new FrameLayout(context);
         FrameLayout frameLayout = (FrameLayout) fragmentView;
-        frameLayout.setBackgroundColor(0xfff0f0f0);
+        frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
 
         ActionBarMenu menu = actionBar.createMenu();
         doneItem = menu.addItemWithWidth(done_button, R.drawable.ic_done, AndroidUtilities.dp(56));
@@ -177,7 +178,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         linearLayout.setLayoutParams(layoutParams2);
 
         titleTextView = new TextView(context);
-        titleTextView.setTextColor(0xff757575);
+        //titleTextView.setTextColor(0xff757575);
         titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
         titleTextView.setGravity(Gravity.CENTER_HORIZONTAL);
         linearLayout.addView(titleTextView);
@@ -190,7 +191,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
 
         passwordEditText = new EditText(context);
         passwordEditText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-        passwordEditText.setTextColor(0xff000000);
+        //passwordEditText.setTextColor(0xff000000);
         passwordEditText.setMaxLines(1);
         passwordEditText.setLines(1);
         passwordEditText.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -236,7 +237,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         });
 
         bottomTextView = new TextView(context);
-        bottomTextView.setTextColor(0xff757575);
+        //bottomTextView.setTextColor(0xff757575);
         bottomTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
         bottomTextView.setGravity((LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP);
         bottomTextView.setText(LocaleController.getString("YourEmailInfo", R.string.YourEmailInfo));
@@ -1009,10 +1010,10 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             if (viewType == 0) {
                 if (view == null) {
                     view = new TextSettingsCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 TextSettingsCell textCell = (TextSettingsCell) view;
-                textCell.setTextColor(0xff212121);
+                //textCell.setTextColor(0xff212121);
                 if (i == changePasswordRow) {
                     textCell.setText(LocaleController.getString("ChangePassword", R.string.ChangePassword), true);
                 } else if (i == setPasswordRow) {
@@ -1033,19 +1034,19 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
                 }
                 if (i == setPasswordDetailRow) {
                     ((TextInfoPrivacyCell) view).setText(LocaleController.getString("SetAdditionalPasswordInfo", R.string.SetAdditionalPasswordInfo));
-                    view.setBackgroundResource(R.drawable.greydivider_bottom);
+                    //view.setBackgroundResource(R.drawable.greydivider_bottom);
                 } else if (i == shadowRow) {
                     ((TextInfoPrivacyCell) view).setText("");
-                    view.setBackgroundResource(R.drawable.greydivider_bottom);
+                    //view.setBackgroundResource(R.drawable.greydivider_bottom);
                 } else if (i == passwordSetupDetailRow) {
                     ((TextInfoPrivacyCell) view).setText(LocaleController.formatString("EmailPasswordConfirmText", R.string.EmailPasswordConfirmText, currentPassword.email_unconfirmed_pattern));
-                    view.setBackgroundResource(R.drawable.greydivider_top);
+                    //view.setBackgroundResource(R.drawable.greydivider_top);
                 } else if (i == passwordEnabledDetailRow) {
                     ((TextInfoPrivacyCell) view).setText(LocaleController.getString("EnabledPasswordText", R.string.EnabledPasswordText));
-                    view.setBackgroundResource(R.drawable.greydivider_bottom);
+                    //view.setBackgroundResource(R.drawable.greydivider_bottom);
                 } else if (i == passwordEmailVerifyDetailRow) {
                     ((TextInfoPrivacyCell) view).setText(LocaleController.formatString("PendingEmailText", R.string.PendingEmailText, currentPassword.email_unconfirmed_pattern));
-                    view.setBackgroundResource(R.drawable.greydivider_bottom);
+                    //view.setBackgroundResource(R.drawable.greydivider_bottom);
                 }
             }
             return view;

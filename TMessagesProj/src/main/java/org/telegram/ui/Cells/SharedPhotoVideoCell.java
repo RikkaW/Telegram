@@ -13,6 +13,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -114,7 +115,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
             }
             if (animated) {
                 if (checked) {
-                    setBackgroundColor(0xfff5f5f5);
+                    setBackgroundColor(ContextCompat.getColor(getContext(), R.color.shared_photo_placeholder) /*0xfff5f5f5*/);
                 }
                 animator = new AnimatorSet();
                 animator.playTogether(ObjectAnimator.ofFloat(container, "scaleX", checked ? 0.85f : 1.0f),
@@ -140,7 +141,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
                 });
                 animator.start();
             } else {
-                setBackgroundColor(checked ? 0xfff5f5f5 : 0);
+                setBackgroundColor(checked ? ContextCompat.getColor(getContext(), R.color.shared_photo_placeholder) : 0);
                 container.setScaleX(checked ? 0.85f : 1.0f);
                 container.setScaleY(checked ? 0.85f : 1.0f);
             }

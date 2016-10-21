@@ -1,4 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="divider">#dcdcdc</color>
+    <color name="colorPrimary">#527da3</color>
+    <color name="colorPrimaryDark">#426482</color>
+    <color name="colorAccent">#4991cc</color>
+
+    <color name="divider">#1a000000</color>
+    <color name="chat_list_divider">#1a000000</color>
+
+    <color name="chat_list_divider_light">#1a000000</color>
+    <color name="chat_list_divider_dark">#1d2d3f</color>
+    <color name="divider_light">#1a000000</color>
+    <color name="divider_dark">#4a4a4a</color>
+
+    <color name="chat_drawable_tint">@color/material_white_1000</color>
+
+    <color name="background">@color/material_white_1000</color>
+    <color name="list_background">@color/material_grey_50</color>
+    <color name="card_background">@color/material_grey_50</color>
+    <color name="chat_list_background">@color/material_white_1000</color>
+
+    <color name="settings_background">@color/material_grey_200</color>
+
+    <color name="black_text">#FF000000</color>
+    <color name="primary_text">#DE000000</color>
+    <color name="secondary_text">#82000000</color>
+    <color name="disabled_text">#80000000</color>
+
+    <color name="primary_text_inverse">#FFFFFFFF</color>
+    <color name="secondary_text_inverse">#B3FFFFFF</color>
+    <color name="disabled_text_inverse">#7FFFFFFF</color>
+
+    <color name="switch_thumb_disabled_material_dark">#ff616161</color>
+    <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
+    <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
+    <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
+
+    <color name="message_forward_name">#ff55ab4f</color>
+
+    <color name="profile_color">#ff598fba</color>
+
+    <color name="sticker_select_background">#fff5f6f7</color>
+    <color name="sticker_indicator_background">#ffe2e5e7</color>
+    <color name="replay_panel_divider">#ffe8e8e8</color>
+    <color name="replay_panel_text">#ff222222</color>
+
+    <color name="search_type_background">#fff2f2f2</color>
+
+    <color name="attach_sheet_text">#ff757575</color>
+
+    <color name="shared_photo_placeholder">#fff5f5f5</color>
+
 </resources>

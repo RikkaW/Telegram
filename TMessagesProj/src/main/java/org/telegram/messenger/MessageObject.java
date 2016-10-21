@@ -93,6 +93,17 @@ public class MessageObject {
 
     private static final int LINES_PER_BLOCK = 10;
 
+    public static void resetPaint() {
+        if (textPaint != null) {
+            textPaint.setColor(Theme.MSG_TEXT_COLOR);
+            textPaint.linkColor = Theme.MSG_LINK_TEXT_COLOR;
+        }
+        if (gameTextPaint != null) {
+            gameTextPaint.setColor(Theme.MSG_TEXT_COLOR);
+            gameTextPaint.linkColor = Theme.MSG_LINK_TEXT_COLOR;
+        }
+    }
+
     public ArrayList<TextLayoutBlock> textLayoutBlocks;
 
     public MessageObject(TLRPC.Message message, AbstractMap<Integer, TLRPC.User> users, boolean generateLayout) {

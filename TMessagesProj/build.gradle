@@ -12,16 +12,16 @@ dependencies {
     compile 'com.google.android.gms:play-services-gcm:9.6.1'
     compile 'com.google.android.gms:play-services-maps:9.6.1'
     compile 'com.google.android.gms:play-services-vision:9.6.1'
-    compile 'com.android.support:support-core-ui:24.2.1'
-    compile 'com.android.support:support-compat:24.2.1'
-    compile 'com.android.support:support-core-utils:24.2.1'
+    compile 'com.android.support:support-core-ui:25.0.0'
+    compile 'com.android.support:support-compat:25.0.0'
+    compile 'com.android.support:support-core-utils:25.0.0'
     compile 'net.hockeyapp.android:HockeySDK:4.0.1'
     compile 'com.googlecode.mp4parser:isoparser:1.0.6'
 }
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '24.0.2'
+    compileSdkVersion 25
+    buildToolsVersion '25.0.0'
 
     useLibrary 'org.apache.http.legacy'
     defaultConfig.applicationId = "rikka.rikkagram"
@@ -80,7 +80,7 @@ android {
         }
     }
 
-    defaultConfig.versionCode = 851 + 1
+    defaultConfig.versionCode = 851 + 5
 
     sourceSets.debug {
         manifest.srcFile 'config/debug/AndroidManifest.xml'
@@ -118,14 +118,22 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 24
-        versionName "3.13.1.1"
+        minSdkVersion 21
+        targetSdkVersion 25
+        versionName "3.13.1.5"
 
         externalNativeBuild {
             ndkBuild {
-                arguments "NDK_APPLICATION_MK:=jni/Application.mk", "APP_PLATFORM:=android-19"
+                arguments "NDK_APPLICATION_MK:=jni/Application.mk", "APP_PLATFORM:=android-21"
                 abiFilters "armeabi-v7a", "x86"
+            }
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            if (output.outputFile != null && output.outputFile.name.endsWith('.apk')) {
+                output.outputFile = file("${output.outputFile.parent}/Rikkagram-${variant.versionCode}.apk")
             }
         }
     }

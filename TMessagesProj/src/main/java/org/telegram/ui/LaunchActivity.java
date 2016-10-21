@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.ActionMode;
 import android.view.KeyEvent;
@@ -72,6 +73,10 @@ import org.telegram.ui.Adapters.DrawerLayoutAdapter;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
+import org.telegram.ui.Cells.DialogCell;
+import org.telegram.ui.Cells.HashtagSearchCell;
+import org.telegram.ui.Cells.ProfileSearchCell;
+import org.telegram.ui.Components.DayNightActivity;
 import org.telegram.ui.Components.JoinGroupAlert;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.PasscodeView;
@@ -86,7 +91,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LaunchActivity extends Activity implements ActionBarLayout.ActionBarLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate {
+public class LaunchActivity extends DayNightActivity implements ActionBarLayout.ActionBarLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate {
 
     private boolean finished;
     private String videoPath;
@@ -158,6 +163,13 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
             AndroidUtilities.isInMultiwindow = isInMultiWindowMode();
         }
         Theme.loadRecources(this);
+        Theme.tintDrawable(this);
+        Theme.resetColor(this);
+        MessageObject.resetPaint();
+        ProfileSearchCell.resetPaint(this);
+        DialogCell.resetPaintColor(this);
+
+        ApplicationLoader.reloadWallpaperNightModeChanged();
 
         if (UserConfig.passcodeHash.length() != 0 && UserConfig.appLocked) {
             UserConfig.lastPauseTime = ConnectionsManager.getInstance().getCurrentTime();
@@ -316,7 +328,7 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
                 return false;
             }
         };
-        listView.setBackgroundColor(0xffffffff);
+        listView.setBackgroundColor(ContextCompat.getColor(this, R.color.list_background));
         listView.setAdapter(drawerLayoutAdapter = new DrawerLayoutAdapter(this));
         listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         listView.setDivider(null);

@@ -14,6 +14,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.FrameLayout;
@@ -22,9 +23,10 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.ui.Components.ForegroundFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class TextColorCell extends FrameLayout {
+public class TextColorCell extends ForegroundFrameLayout {
 
     private TextView textView;
     private boolean needDivider;
@@ -36,16 +38,19 @@ public class TextColorCell extends FrameLayout {
     public TextColorCell(Context context) {
         super(context);
 
+        setElevation(AndroidUtilities.dp(2));
+        setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
+
         if (paint == null) {
             paint = new Paint();
-            paint.setColor(0xffd9d9d9);
+            paint.setColor(ContextCompat.getColor(context, R.color.divider));
             paint.setStrokeWidth(1);
         }
 
         colorDrawable = getResources().getDrawable(R.drawable.switch_to_on2);
 
         textView = new TextView(context);
-        textView.setTextColor(0xff212121);
+        textView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         textView.setLines(1);
         textView.setMaxLines(1);
@@ -83,6 +88,12 @@ public class TextColorCell extends FrameLayout {
             }
             colorDrawable.setBounds(x, y, x + colorDrawable.getIntrinsicWidth(), y + colorDrawable.getIntrinsicHeight());
             colorDrawable.draw(canvas);
+        }
+    }
+
+    public static void setDividerColor(Context context, boolean night) {
+        if (paint != null) {
+                paint.setColor(ContextCompat.getColor(context, night ? R.color.divider_dark : R.color.divider_light));
         }
     }
 }

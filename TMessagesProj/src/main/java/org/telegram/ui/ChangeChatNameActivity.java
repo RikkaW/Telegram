@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -93,8 +94,8 @@ public class ChangeChatNameActivity extends BaseFragment {
         firstNameField = new EditText(context);
         firstNameField.setText(currentChat.title);
         firstNameField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
-        firstNameField.setHintTextColor(0xff979797);
-        firstNameField.setTextColor(0xff212121);
+        //firstNameField.setHintTextColor(0xff979797);
+        firstNameField.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         firstNameField.setMaxLines(3);
         firstNameField.setPadding(0, 0, 0, 0);
         firstNameField.setGravity(LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT);

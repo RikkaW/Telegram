@@ -3,8 +3,8 @@
 <!--Translation by Khalid Alaraifi-->
 
 <resources>
-    <string name="AppName">تيليجرام</string>
-    <string name="AppNameBeta">نسخة تيليجرام التجريبية</string>
+    <string name="AppName">Rikkagram</string>
+    <string name="AppNameBeta">Rikkagram</string>
     <string name="LanguageName">العربية</string>
     <string name="LanguageNameInEnglish">Arabic</string>
     <string name="LanguageCode">ar</string>
@@ -1298,4 +1298,5 @@
     <!--Rikkagram-->
     <string name="UseGoogleEmoji">Google emoji</string>
     <string name="UseGoogleEmojiInfo">Use Noto Color Emoji instead of iOS emoji</string>
+    <string name="NightMode">Dark Theme (developing)</string>
 </resources>

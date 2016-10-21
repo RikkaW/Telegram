@@ -13,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -94,7 +95,6 @@ public class ProfileSearchCell extends BaseCell {
 
         if (namePaint == null) {
             namePaint = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
-            namePaint.setColor(0xff212121);
             namePaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
 
             nameEncryptedPaint = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
@@ -108,7 +108,6 @@ public class ProfileSearchCell extends BaseCell {
             offlinePaint.setColor(0xff999999);
 
             linePaint = new Paint();
-            linePaint.setColor(0xffdcdcdc);
 
             countPaint = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
             countPaint.setColor(0xffffffff);
@@ -121,6 +120,8 @@ public class ProfileSearchCell extends BaseCell {
             countDrawableGrey = getResources().getDrawable(R.drawable.dialogs_badge2);
             checkDrawable = getResources().getDrawable(R.drawable.check_list);
             botDrawable = getResources().getDrawable(R.drawable.bot_list);
+
+            resetPaint(context);
         }
 
         namePaint.setTextSize(AndroidUtilities.dp(17));
@@ -132,6 +133,15 @@ public class ProfileSearchCell extends BaseCell {
         avatarImage = new ImageReceiver(this);
         avatarImage.setRoundRadius(AndroidUtilities.dp(26));
         avatarDrawable = new AvatarDrawable();
+    }
+
+    public static void resetPaint(Context context) {
+        if (namePaint == null) {
+            return;
+        }
+
+        namePaint.setColor(ContextCompat.getColor(context, R.color.primary_text));
+        linePaint.setColor(ContextCompat.getColor(context, R.color.chat_list_divider));
     }
 
     @Override

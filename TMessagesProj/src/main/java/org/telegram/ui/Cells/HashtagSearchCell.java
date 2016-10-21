@@ -12,6 +12,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -30,10 +31,10 @@ public class HashtagSearchCell extends TextView {
         setGravity(Gravity.CENTER_VERTICAL);
         setPadding(AndroidUtilities.dp(16), 0, AndroidUtilities.dp(16), 0);
         setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);
-        setTextColor(0xff000000);
+        setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         if (paint == null) {
             paint = new Paint();
-            paint.setColor(0xffdcdcdc);
+            paint.setColor(ContextCompat.getColor(context, R.color.chat_list_divider_dark));
         }
 
         setBackgroundResource(R.drawable.list_selector);
@@ -63,6 +64,12 @@ public class HashtagSearchCell extends TextView {
         super.onDraw(canvas);
         if (needDivider) {
             canvas.drawLine(0, getHeight() - 1, getWidth(), getHeight() - 1, paint);
+        }
+    }
+
+    public static void setDividerColor(Context context, boolean night) {
+        if (paint != null) {
+            paint.setColor(ContextCompat.getColor(context, night ? R.color.chat_list_divider_dark : R.color.chat_list_divider_light));
         }
     }
 }

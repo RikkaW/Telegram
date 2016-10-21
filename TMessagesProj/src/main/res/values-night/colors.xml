@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1f3145</color>
+    <color name="colorPrimaryDark">#1c2c3e</color>
+    <color name="colorAccent">#4991cc</color>
+
+    <color name="divider">#4a4a4a</color>
+    <color name="chat_list_divider">#1d2d3f</color>
+
+    <color name="background">@color/material_grey_900</color>
+    <color name="list_background">@color/material_grey_850</color>
+    <color name="card_background">@color/material_grey_850</color>
+    <color name="chat_list_background">#172433</color>
+
+    <color name="settings_background">@color/material_grey_900</color>
+
+    <color name="chat_drawable_tint">#283a4f</color>
+
+    <color name="black_text">#FFFFFFFF</color>
+    <color name="primary_text">#FFFFFFFF</color>
+    <color name="secondary_text">#B3FFFFFF</color>
+    <color name="disabled_text">#7FFFFFFF</color>
+
+    <color name="primary_text_inverse">#DE000000</color>
+    <color name="secondary_text_inverse">#82000000</color>
+    <color name="disabled_text_inverse">#80000000</color>
+
+    <color name="profile_color">#ff253b52</color>
+
+    <color name="sticker_select_background">#ff303132</color>
+    <color name="sticker_indicator_background">#ff353637</color>
+    <color name="replay_panel_divider">#333333</color>
+    <color name="replay_panel_text">#ffdddddd</color>
+
+    <color name="search_type_background">#1d2d3e</color>
+
+    <color name="attach_sheet_text">#B3FFFFFF</color>
+
+    <color name="shared_photo_placeholder">@color/material_grey_800</color>
+</resources>

@@ -22,6 +22,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -69,6 +70,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 public class EmojiView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+
+    public static int BACKGROUND_COLOR;
+    public static int INDICATOR_COLOR;
 
     public interface Listener {
         boolean onBackspace();
@@ -187,7 +191,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             setBackgroundResource(R.drawable.list_selector);
             setGravity(Gravity.CENTER);
             setTypeface(AndroidUtilities.getTypeface("fonts/NotoColorEmoji.ttf"));
-            setTextColor(0xff000000);
+            setTextColor(Color.BLACK);
             setForegroundGravity(Gravity.CENTER);
         }
 
@@ -603,6 +607,8 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
     public EmojiView(boolean needStickers, boolean needGif, final Context context) {
         super(context);
 
+        //setElevation(AndroidUtilities.dp(2));
+
         showGifs = needGif;
 
         dotDrawable = context.getResources().getDrawable(R.drawable.bluecircle);
@@ -626,7 +632,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             }
             gridView.setNumColumns(-1);
             EmojiGridAdapter emojiGridAdapter = new EmojiGridAdapter(i - 1);
-            AndroidUtilities.setListViewEdgeEffectColor(gridView, 0xfff5f6f7);
+            AndroidUtilities.setListViewEdgeEffectColor(gridView, BACKGROUND_COLOR);
             gridView.setAdapter(emojiGridAdapter);
             adapters.add(emojiGridAdapter);
             emojiGrids.add(gridView);
@@ -694,7 +700,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 }
             };
             stickersGridView.setOnItemClickListener(stickersOnItemClickListener);
-            stickersGridView.setGlowColor(0xfff5f6f7);
+            stickersGridView.setGlowColor(BACKGROUND_COLOR);
             stickersWrap.addView(stickersGridView);
 
             trendingGridView = new RecyclerListView(context);
@@ -734,7 +740,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 }
             });
             trendingGridAdapter.notifyDataSetChanged();
-            trendingGridView.setGlowColor(0xfff5f6f7);
+            trendingGridView.setGlowColor(BACKGROUND_COLOR);
             trendingGridView.setVisibility(GONE);
             stickersWrap.addView(trendingGridView);
 
@@ -899,9 +905,9 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 }
             };
             stickersTab.setUnderlineHeight(AndroidUtilities.dp(1));
-            stickersTab.setIndicatorColor(0xffe2e5e7);
-            stickersTab.setUnderlineColor(0xffe2e5e7);
-            stickersTab.setBackgroundColor(0xfff5f6f7);
+            stickersTab.setIndicatorColor(INDICATOR_COLOR);
+            stickersTab.setUnderlineColor(INDICATOR_COLOR);
+            stickersTab.setBackgroundColor(BACKGROUND_COLOR);
             stickersTab.setVisibility(INVISIBLE);
             addView(stickersTab, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 48, Gravity.LEFT | Gravity.TOP));
             stickersTab.setTranslationX(AndroidUtilities.displaySize.x);
@@ -1002,7 +1008,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         pagerSlidingTabStrip.setIndicatorHeight(AndroidUtilities.dp(2));
         pagerSlidingTabStrip.setUnderlineHeight(AndroidUtilities.dp(1));
         pagerSlidingTabStrip.setIndicatorColor(0xff2b96e2);
-        pagerSlidingTabStrip.setUnderlineColor(0xffe2e5e7);
+        pagerSlidingTabStrip.setUnderlineColor(INDICATOR_COLOR);
         emojiTab.addView(pagerSlidingTabStrip, LayoutHelper.createLinear(0, 48, 1.0f));
         pagerSlidingTabStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -1049,7 +1055,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         frameLayout.addView(backspaceButton, LayoutHelper.createFrame(52, 48));
 
         View view = new View(context);
-        view.setBackgroundColor(0xffe2e5e7);
+        view.setBackgroundColor(INDICATOR_COLOR);
         frameLayout.addView(view, LayoutHelper.createFrame(52, 1, Gravity.LEFT | Gravity.BOTTOM));
 
         TextView textView = new TextView(context);
@@ -1530,8 +1536,8 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     setClipToOutline(false);
                     setElevation(0);
                 }
-                setBackgroundColor(0xfff5f6f7);
-                emojiTab.setBackgroundColor(0xfff5f6f7);
+                setBackgroundColor(BACKGROUND_COLOR);
+                emojiTab.setBackgroundColor(BACKGROUND_COLOR);
                 currentBackgroundType = 0;
             }
         }

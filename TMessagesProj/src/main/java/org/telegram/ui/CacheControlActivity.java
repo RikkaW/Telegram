@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -321,7 +322,7 @@ public class CacheControlActivity extends BaseFragment {
 
         fragmentView = new FrameLayout(context);
         FrameLayout frameLayout = (FrameLayout) fragmentView;
-        frameLayout.setBackgroundColor(0xfff0f0f0);
+        frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
 
         ListView listView = new ListView(context);
         listView.setDivider(null);
@@ -595,7 +596,7 @@ public class CacheControlActivity extends BaseFragment {
             if (type == 0) {
                 if (view == null) {
                     view = new TextSettingsCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 TextSettingsCell textCell = (TextSettingsCell) view;
                 if (i == databaseRow) {
@@ -625,13 +626,13 @@ public class CacheControlActivity extends BaseFragment {
                 }
                 if (i == databaseInfoRow) {
                     ((TextInfoPrivacyCell) view).setText(LocaleController.getString("LocalDatabaseInfo", R.string.LocalDatabaseInfo));
-                    view.setBackgroundResource(R.drawable.greydivider_bottom);
+                    //view.setBackgroundResource(R.drawable.greydivider_bottom);
                 } else if (i == cacheInfoRow) {
                     ((TextInfoPrivacyCell) view).setText("");
-                    view.setBackgroundResource(R.drawable.greydivider);
+                    //view.setBackgroundResource(R.drawable.greydivider);
                 } else if (i == keepMediaInfoRow) {
                     ((TextInfoPrivacyCell) view).setText(AndroidUtilities.replaceTags(LocaleController.getString("KeepMediaInfo", R.string.KeepMediaInfo)));
-                    view.setBackgroundResource(R.drawable.greydivider);
+                    //view.setBackgroundResource(R.drawable.greydivider);
                 }
             }
             return view;

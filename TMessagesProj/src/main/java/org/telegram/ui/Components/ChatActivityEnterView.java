@@ -21,12 +21,14 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.SystemClock;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Layout;
@@ -43,6 +45,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.EditorInfo;
@@ -105,7 +108,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         public SeekBarWaveformView(Context context) {
             super(context);
             seekBarWaveform = new SeekBarWaveform(context);
-            seekBarWaveform.setColors(0xffa2cef8, 0xffffffff, 0xffa2cef8);
+            seekBarWaveform.setColors(0xffa2cef8, ContextCompat.getColor(context, R.color.background), 0xffa2cef8);
             seekBarWaveform.setDelegate(new SeekBar.SeekBarDelegate() {
                 @Override
                 public void onSeekBarDrag(float progress) {
@@ -511,7 +514,10 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
 
     public ChatActivityEnterView(Activity context, SizeNotifierFrameLayout parent, ChatActivity fragment, boolean isChat) {
         super(context);
-        backgroundDrawable = context.getResources().getDrawable(R.drawable.compose_panel);
+
+        //setElevation(AndroidUtilities.dp(2));
+
+        backgroundDrawable = /*new ColorDrawable(ContextCompat.getColor(context, R.color.background)); */context.getResources().getDrawable(R.drawable.compose_panel);
         dotDrawable = context.getResources().getDrawable(R.drawable.bluecircle);
         setFocusable(true);
         setFocusableInTouchMode(true);
@@ -536,13 +542,14 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         sendByEnter = preferences.getBoolean("send_by_enter", false);
 
         textFieldContainer = new LinearLayout(context);
-        //textFieldContainer.setBackgroundColor(0xffffffff);
+        //textFieldContainer.setBackgroundColor(ContextCompat.getColor(context, R.color.background));
         textFieldContainer.setOrientation(LinearLayout.HORIZONTAL);
         addView(textFieldContainer, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.LEFT | Gravity.TOP, 0, 2, 0, 0));
 
         FrameLayout frameLayout = new FrameLayout(context);
         textFieldContainer.addView(frameLayout, LayoutHelper.createLinear(0, LayoutHelper.WRAP_CONTENT, 1.0f));
 
+        // TODO tint
         emojiButton = new ImageView(context) {
             @Override
             protected void onDraw(Canvas canvas) {
@@ -585,8 +592,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         messageEditText.setGravity(Gravity.BOTTOM);
         messageEditText.setPadding(0, AndroidUtilities.dp(11), 0, AndroidUtilities.dp(12));
         messageEditText.setBackgroundDrawable(null);
-        messageEditText.setTextColor(0xff000000);
-        messageEditText.setHintTextColor(0xffb2b2b2);
+        //messageEditText.setTextColor(0xff000000);
+        //messageEditText.setHintTextColor(0xffb2b2b2);
         frameLayout.addView(messageEditText, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.BOTTOM, 52, 0, isChat ? 50 : 2, 0));
         messageEditText.setOnKeyListener(new OnKeyListener() {
 
@@ -778,7 +785,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
 
         recordedAudioPanel = new FrameLayout(context);
         recordedAudioPanel.setVisibility(audioToSend == null ? GONE : VISIBLE);
-        recordedAudioPanel.setBackgroundColor(0xffffffff);
+        //recordedAudioPanel.setBackgroundColor(ContextCompat.getColor(context, R.color.background));
         recordedAudioPanel.setFocusable(true);
         recordedAudioPanel.setFocusableInTouchMode(true);
         recordedAudioPanel.setClickable(true);
@@ -831,14 +838,14 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         });
 
         recordedAudioTimeTextView = new TextView(context);
-        recordedAudioTimeTextView.setTextColor(0xffffffff);
+        recordedAudioTimeTextView.setTextColor(ContextCompat.getColor(context, R.color.background));
         recordedAudioTimeTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
         recordedAudioTimeTextView.setText("0:13");
         recordedAudioPanel.addView(recordedAudioTimeTextView, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.RIGHT | Gravity.CENTER_VERTICAL, 0, 0, 13, 0));
 
         recordPanel = new FrameLayout(context);
         recordPanel.setVisibility(GONE);
-        recordPanel.setBackgroundColor(0xffffffff);
+        recordPanel.setBackgroundColor(ContextCompat.getColor(context, R.color.background));
         frameLayout.addView(recordPanel, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 48, Gravity.BOTTOM));
 
         slideText = new LinearLayout(context);
@@ -858,7 +865,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
         linearLayout.setPadding(AndroidUtilities.dp(13), 0, 0, 0);
-        linearLayout.setBackgroundColor(0xffffffff);
+        linearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.background));
         recordPanel.addView(linearLayout, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER_VERTICAL));
 
         recordDot = new RecordDot(context);
@@ -876,7 +883,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         audioSendButton = new ImageView(context);
         audioSendButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         audioSendButton.setImageResource(R.drawable.mic);
-        audioSendButton.setBackgroundColor(0xffffffff);
+        audioSendButton.setBackgroundColor(ContextCompat.getColor(context, R.color.background));
         audioSendButton.setSoundEffectsEnabled(false);
         audioSendButton.setPadding(0, 0, AndroidUtilities.dp(4), 0);
         sendButtonContainer.addView(audioSendButton, LayoutHelper.createFrame(48, 48));

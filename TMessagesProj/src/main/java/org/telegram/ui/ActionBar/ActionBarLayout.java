@@ -20,6 +20,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -35,6 +36,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.AnimatorListenerAdapterProxy;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.SettingsActivity;
 
 import java.util.ArrayList;
 
@@ -385,7 +387,7 @@ public class ActionBarLayout extends FrameLayout {
         layoutParams.height = LayoutHelper.MATCH_PARENT;
         fragmentView.setLayoutParams(layoutParams);
         if (!lastFragment.hasOwnBackground && fragmentView.getBackground() == null) {
-            fragmentView.setBackgroundColor(0xffffffff);
+            fragmentView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.background));
         }
         lastFragment.onResume();
     }
@@ -682,7 +684,7 @@ public class ActionBarLayout extends FrameLayout {
         fragment.onResume();
         currentActionBar = fragment.actionBar;
         if (!fragment.hasOwnBackground && fragmentView.getBackground() == null) {
-            fragmentView.setBackgroundColor(0xffffffff);
+            fragmentView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.background));
         }
 
         LinearLayoutContainer temp = containerView;
@@ -899,7 +901,7 @@ public class ActionBarLayout extends FrameLayout {
             previousFragment.onResume();
             currentActionBar = previousFragment.actionBar;
             if (!previousFragment.hasOwnBackground && fragmentView.getBackground() == null) {
-                fragmentView.setBackgroundColor(0xffffffff);
+                fragmentView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.background));
             }
 
             if (!needAnimation) {
@@ -1058,7 +1060,7 @@ public class ActionBarLayout extends FrameLayout {
         previousFragment.onResume();
         currentActionBar = previousFragment.actionBar;
         if (!previousFragment.hasOwnBackground && fragmentView.getBackground() == null) {
-            fragmentView.setBackgroundColor(0xffffffff);
+            fragmentView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.background));
         }
     }
 

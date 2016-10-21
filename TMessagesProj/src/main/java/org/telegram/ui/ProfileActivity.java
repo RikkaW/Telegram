@@ -29,6 +29,7 @@ import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -559,7 +560,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         };
         listView.setTag(6);
         listView.setPadding(0, AndroidUtilities.dp(88), 0, 0);
-        listView.setBackgroundColor(0xffffffff);
+        listView.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
         listView.setVerticalScrollBarEnabled(false);
         listView.setItemAnimator(null);
         listView.setLayoutAnimation(null);
@@ -2318,45 +2319,19 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 case 1:
                     view = new DividerCell(mContext);
                     view.setPadding(AndroidUtilities.dp(72), 0, 0, 0);
+                    view.setElevation(AndroidUtilities.dp(2));
+                    view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.card_background));
                     break;
                 case 2:
-                    view = new TextDetailCell(mContext) {
-                        @Override
-                        public boolean onTouchEvent(MotionEvent event) {
-                            if (Build.VERSION.SDK_INT >= 21 && getBackground() != null) {
-                                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-                                    getBackground().setHotspot(event.getX(), event.getY());
-                                }
-                            }
-                            return super.onTouchEvent(event);
-                        }
-                    };
+                    view = new TextDetailCell(mContext);
+                    view.setElevation(AndroidUtilities.dp(2));
+                    view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.card_background));
                     break;
                 case 3:
-                    view = new TextCell(mContext) {
-                        @Override
-                        public boolean onTouchEvent(MotionEvent event) {
-                            if (Build.VERSION.SDK_INT >= 21 && getBackground() != null) {
-                                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-                                    getBackground().setHotspot(event.getX(), event.getY());
-                                }
-                            }
-                            return super.onTouchEvent(event);
-                        }
-                    };
+                    view = new TextCell(mContext);
                     break;
                 case 4:
-                    view = new UserCell(mContext, 61, 0, true) {
-                        @Override
-                        public boolean onTouchEvent(MotionEvent event) {
-                            if (Build.VERSION.SDK_INT >= 21 && getBackground() != null) {
-                                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-                                    getBackground().setHotspot(event.getX(), event.getY());
-                                }
-                            }
-                            return super.onTouchEvent(event);
-                        }
-                    };
+                    view = new UserCell(mContext, 61, 0, true);
                     break;
                 case 5:
                     view = new ShadowSectionCell(mContext);
@@ -2398,6 +2373,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             return new Holder(view);
         }
 
+        @SuppressLint("NewApi")
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int i) {
             boolean checkBackground = true;
@@ -2405,8 +2381,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 case 0:
                     if (i == emptyRowChat || i == emptyRowChat2) {
                         ((EmptyCell) holder.itemView).setHeight(AndroidUtilities.dp(8));
+                        holder.itemView.setElevation(AndroidUtilities.dp(0));
+                        holder.itemView.setBackground(null);
                     } else {
                         ((EmptyCell) holder.itemView).setHeight(AndroidUtilities.dp(36));
+                        holder.itemView.setElevation(AndroidUtilities.dp(2));
+                        holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.card_background));
                     }
                     break;
                 case 2:
@@ -2441,7 +2421,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     break;
                 case 3:
                     TextCell textCell = (TextCell) holder.itemView;
-                    textCell.setTextColor(0xff212121);
+                    //textCell.setTextColor(0xff212121);
 
                     if (i == sharedMediaRow) {
                         String value;
@@ -2563,12 +2543,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             i == blockedUsersRow || i == channelInfoRow;
                 }
                 if (enabled) {
-                    if (holder.itemView.getBackground() == null) {
-                        holder.itemView.setBackgroundResource(R.drawable.list_selector);
+                    if (holder.itemView.getForeground() == null) {
+                        holder.itemView.setForeground(holder.itemView.getContext().getDrawable(R.drawable.list_selector));
                     }
                 } else {
-                    if (holder.itemView.getBackground() != null) {
-                        holder.itemView.setBackgroundDrawable(null);
+                    if (holder.itemView.getForeground() != null) {
+                        holder.itemView.setForeground(null);
                     }
                 }
             }

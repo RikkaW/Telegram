@@ -9,6 +9,9 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.FrameLayout;
@@ -16,6 +19,7 @@ import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
 import org.telegram.ui.Components.LayoutHelper;
 
 public class DrawerActionCell extends FrameLayout {
@@ -25,8 +29,8 @@ public class DrawerActionCell extends FrameLayout {
     public DrawerActionCell(Context context) {
         super(context);
 
-        textView = new TextView(context);
-        textView.setTextColor(0xff444444);
+        textView = new TextView(context, null, R.style.Theme_TMessages_TextView_Drawer);
+        //textView.setTextColor(0xff444444);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         textView.setLines(1);
@@ -45,7 +49,11 @@ public class DrawerActionCell extends FrameLayout {
     public void setTextAndIcon(String text, int resId) {
         try {
             textView.setText(text);
-            textView.setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0);
+            Drawable dr = getContext().getDrawable(resId);
+            if (dr != null) {
+                //DrawableCompat.setTintList(dr, textView.getTextColors());
+                textView.setCompoundDrawablesWithIntrinsicBounds(dr, null, null, null);
+            }
         } catch (Throwable e) {
             FileLog.e("tmessages", e);
         }

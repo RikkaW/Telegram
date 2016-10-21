@@ -35,6 +35,9 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.ProfileSearchCell;
+import org.telegram.ui.Components.DayNightActivity;
 import org.telegram.ui.Components.ForegroundDetector;
 
 import java.io.File;
@@ -63,6 +66,23 @@ public class ApplicationLoader extends Application {
 
     public static int getSelectedColor() {
         return selectedColor;
+    }
+
+    public static void reloadWallpaperNightModeChanged() {
+        cachedWallpaper = null;
+        serviceMessageColor = 0;
+        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE).edit().remove("serviceMessageColor").commit();
+
+        SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
+        int selectedBackground = preferences.getInt("selectedBackground", 1000001);
+        selectedColor = preferences.getInt("selectedColor", 0);
+        serviceMessageColor = preferences.getInt("serviceMessageColor", 0);
+        serviceSelectedMessageColor = preferences.getInt("serviceSelectedMessageColor", 0);
+        if (selectedColor == 0) {
+            if (selectedBackground == 1000001) {
+                loadWallpaper();
+            }
+        }
     }
 
     public static void reloadWallpaper() {
@@ -303,6 +323,10 @@ public class ApplicationLoader extends Application {
         applicationHandler = new Handler(applicationContext.getMainLooper());
 
         startPushService();
+
+        SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
+        DayNightActivity.setDefaultNightMode(preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_NO));
+        Theme.resetColor(this);
     }
 
     /*public static void sendRegIdToBackend(final String token) {
