@@ -25,6 +25,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -330,7 +331,7 @@ public class ChangePhoneActivity extends BaseFragment {
             countryButton = new TextView(context);
             countryButton.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
             countryButton.setPadding(AndroidUtilities.dp(12), AndroidUtilities.dp(10), AndroidUtilities.dp(12), 0);
-            countryButton.setTextColor(0xff212121);
+            countryButton.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
             countryButton.setMaxLines(1);
             countryButton.setSingleLine(true);
             countryButton.setEllipsize(TextUtils.TruncateAt.END);
@@ -370,13 +371,13 @@ public class ChangePhoneActivity extends BaseFragment {
 
             TextView textView = new TextView(context);
             textView.setText("+");
-            textView.setTextColor(0xff212121);
+            textView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
             textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
             linearLayout.addView(textView, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT));
 
             codeField = new EditText(context);
             codeField.setInputType(InputType.TYPE_CLASS_PHONE);
-            codeField.setTextColor(0xff212121);
+            codeField.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
             AndroidUtilities.clearCursorDrawable(codeField);
             codeField.setPadding(AndroidUtilities.dp(10), 0, 0, 0);
             codeField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
@@ -477,8 +478,8 @@ public class ChangePhoneActivity extends BaseFragment {
 
             phoneField = new HintEditText(context);
             phoneField.setInputType(InputType.TYPE_CLASS_PHONE);
-            phoneField.setTextColor(0xff212121);
-            phoneField.setHintTextColor(0xff979797);
+            phoneField.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
+            //phoneField.setHintTextColor(0xff979797);
             phoneField.setPadding(0, 0, 0, 0);
             AndroidUtilities.clearCursorDrawable(phoneField);
             phoneField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
@@ -573,7 +574,7 @@ public class ChangePhoneActivity extends BaseFragment {
 
             textView = new TextView(context);
             textView.setText(LocaleController.getString("ChangePhoneHelp", R.string.ChangePhoneHelp));
-            textView.setTextColor(0xff757575);
+            //textView.setTextColor(0xff757575);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
             textView.setGravity(LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT);
             textView.setLineSpacing(AndroidUtilities.dp(2), 1.0f);
@@ -868,7 +869,7 @@ public class ChangePhoneActivity extends BaseFragment {
             setOrientation(VERTICAL);
 
             confirmTextView = new TextView(context);
-            confirmTextView.setTextColor(0xff757575);
+            //confirmTextView.setTextColor(0xff757575);
             confirmTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
             confirmTextView.setGravity(LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT);
             confirmTextView.setLineSpacing(AndroidUtilities.dp(2), 1.0f);
@@ -891,10 +892,10 @@ public class ChangePhoneActivity extends BaseFragment {
             }
 
             codeField = new EditText(context);
-            codeField.setTextColor(0xff212121);
+            codeField.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
             codeField.setHint(LocaleController.getString("Code", R.string.Code));
             AndroidUtilities.clearCursorDrawable(codeField);
-            codeField.setHintTextColor(0xff979797);
+            //codeField.setHintTextColor(0xff979797);
             codeField.setImeOptions(EditorInfo.IME_ACTION_NEXT | EditorInfo.IME_FLAG_NO_EXTRACT_UI);
             codeField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
             codeField.setInputType(InputType.TYPE_CLASS_PHONE);
@@ -940,7 +941,7 @@ public class ChangePhoneActivity extends BaseFragment {
 
             timeText = new TextView(context);
             timeText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
-            timeText.setTextColor(0xff757575);
+            //timeText.setTextColor(0xff757575);
             timeText.setLineSpacing(AndroidUtilities.dp(2), 1.0f);
             timeText.setGravity(LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT);
             addView(timeText, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT, 0, 30, 0, 0));

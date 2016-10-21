@@ -2301,9 +2301,9 @@ public class LoginActivity extends BaseFragment {
             addView(confirmTextView, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT)));
 
             codeField = new EditText(context);
-            codeField.setTextColor(0xff212121);
+            codeField.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
             AndroidUtilities.clearCursorDrawable(codeField);
-            codeField.setHintTextColor(0xff979797);
+            //codeField.setHintTextColor(0xff979797);
             codeField.setHint(LocaleController.getString("PasswordCode", R.string.PasswordCode));
             codeField.setImeOptions(EditorInfo.IME_ACTION_NEXT | EditorInfo.IME_FLAG_NO_EXTRACT_UI);
             codeField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);

@@ -1051,7 +1051,7 @@
     <string name="PermissionOpenSettings">INSTELLINGEN</string>
     <!--Intro view-->
     <string name="IntroUnofficialMessage"><![CDATA[<b>Rikkagram</b>]]> is an unofficial <![CDATA[<b>Telegram</b>]]> client.</string>
-    <string name="Page1Title">Telegram</string>
+    <string name="Page1Title">Rikkagram</string>
     <string name="Page2Title">Snel</string>
     <string name="Page3Title">Gratis</string>
     <string name="Page4Title">Veilig</string>
@@ -1059,12 +1059,12 @@
     <string name="Page6Title">In de cloud</string>
     <string name="Page7Title">Privé</string>
     <string name="Page1Message">\'s Werelds <![CDATA[<b>snelste</b>]]> berichtendienst.<![CDATA[<br/>]]>Het is <![CDATA[<b>gratis</b>]]> en <![CDATA[<b>veilig</b>]]>.</string>
-    <string name="Page2Message"><![CDATA[<b>Telegram</b>]]> bezorgt berichten sneller dan<![CDATA[<br/>]]>elke andere applicatie.</string>
-    <string name="Page3Message"><![CDATA[<b>Telegram</b>]]> is altijd gratis. Geen advertenties.<![CDATA[<br/>]]>Geen abonnementskosten.</string>
-    <string name="Page4Message"><![CDATA[<b>Telegram</b>]]> beveiligd je berichten<![CDATA[<br/>]]>tegen aanvallen van hackers.</string>
-    <string name="Page5Message"><![CDATA[<b>Telegram</b>]]> beperkt je niet in de grootte van<![CDATA[<br/>]]>je media of chats.</string>
-    <string name="Page6Message"><![CDATA[<b>Telegram</b>]]> biedt toegang tot je berichten<![CDATA[<br/>]]>vanaf meerdere apparaten.</string>
-    <string name="Page7Message"><![CDATA[<b>Telegram</b>]]> berichten zijn sterk versleuteld<![CDATA[<br/>]]>en kunnen zichzelf vernietigen.</string>
+    <string name="Page2Message"><![CDATA[<b>Rikkagram</b>]]> bezorgt berichten sneller dan<![CDATA[<br/>]]>elke andere applicatie.</string>
+    <string name="Page3Message"><![CDATA[<b>Rikkagram</b>]]> is altijd gratis. Geen advertenties.<![CDATA[<br/>]]>Geen abonnementskosten.</string>
+    <string name="Page4Message"><![CDATA[<b>Rikkagram</b>]]> beveiligd je berichten<![CDATA[<br/>]]>tegen aanvallen van hackers.</string>
+    <string name="Page5Message"><![CDATA[<b>Rikkagram</b>]]> beperkt je niet in de grootte van<![CDATA[<br/>]]>je media of chats.</string>
+    <string name="Page6Message"><![CDATA[<b>Rikkagram</b>]]> biedt toegang tot je berichten<![CDATA[<br/>]]>vanaf meerdere apparaten.</string>
+    <string name="Page7Message"><![CDATA[<b>Rikkagram</b>]]> berichten zijn sterk versleuteld<![CDATA[<br/>]]>en kunnen zichzelf vernietigen.</string>
     <string name="StartMessaging">Begin met chatten</string>
     <!--plural-->
     <string name="Online_zero">%1$d online</string>

@@ -1051,7 +1051,7 @@
     <string name="PermissionOpenSettings">الإعدادات</string>
     <!--Intro view-->
     <string name="IntroUnofficialMessage"><![CDATA[<b>Rikkagram</b>]]> is an unofficial <![CDATA[<b>Telegram</b>]]> client.</string>
-    <string name="Page1Title">تيليجرام</string>
+    <string name="Page1Title">Rikkagram</string>
     <string name="Page2Title">سريع</string>
     <string name="Page3Title">مجاني</string>
     <string name="Page4Title">آمن</string>
@@ -1059,12 +1059,12 @@
     <string name="Page6Title">مرتبط بالسحاب</string>
     <string name="Page7Title">خصوصي</string>
     <string name="Page1Message">أسرع تطبيق مراسلة في العالم. <![CDATA[<br/>]]>كما أنه مجاني و آمن.</string>
-    <string name="Page2Message"><![CDATA[<b>تيليجرام</b>]]> يوصل الرسائل أسرع من أي تطبيق آخر.</string>
-    <string name="Page3Message"><![CDATA[<b>تيليجرام</b>]]> مجاني للأبد. بدون أية إعلانات. وبدون رسوم إشتراك.</string>
-    <string name="Page4Message"><![CDATA[<b>تيليجرام</b>]]>  يحمي الرسائل الخاصة بك من هجمات المخترقين.</string>
-    <string name="Page5Message"><![CDATA[<b>تيليجرام</b>]]>  لا يفرض عليك حدود لحجم الوسائط والمحادثات.</string>
-    <string name="Page6Message"><![CDATA[<b>تيليجرام</b>]]> يمكنك الوصول إلى الرسائل الخاصة بك من أجهزة متعددة.</string>
-    <string name="Page7Message"><![CDATA[<b>تيليجرام</b>]]> الرسائل مشفرة بشكل قوي وتستطيع تدمير ذاتها</string>
+    <string name="Page2Message"><![CDATA[<b>Rikkagram</b>]]> يوصل الرسائل أسرع من أي تطبيق آخر.</string>
+    <string name="Page3Message"><![CDATA[<b>Rikkagram</b>]]> مجاني للأبد. بدون أية إعلانات. وبدون رسوم إشتراك.</string>
+    <string name="Page4Message"><![CDATA[<b>Rikkagram</b>]]>  يحمي الرسائل الخاصة بك من هجمات المخترقين.</string>
+    <string name="Page5Message"><![CDATA[<b>Rikkagram</b>]]>  لا يفرض عليك حدود لحجم الوسائط والمحادثات.</string>
+    <string name="Page6Message"><![CDATA[<b>Rikkagram</b>]]> يمكنك الوصول إلى الرسائل الخاصة بك من أجهزة متعددة.</string>
+    <string name="Page7Message"><![CDATA[<b>Rikkagram</b>]]> الرسائل مشفرة بشكل قوي وتستطيع تدمير ذاتها</string>
     <string name="StartMessaging">إبدأ المراسلة</string>
     <!--plural-->
     <string name="Online_zero">%1$d متصل</string>

@@ -184,12 +184,14 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
                     .putInt("nightModeSunriseMinute", minute)
                     .apply();
             sunriseCell.setValue(getFormattedTime(view.getContext(), hourOfDay, minute));
+            TwilightManager.setSunrise(hourOfDay, minute);
         } else {
             preferences.edit()
                     .putInt("nightModeSunset", hourOfDay)
                     .putInt("nightModeSunsetMinute", minute)
                     .apply();
             sunsetCell.setValue(getFormattedTime(view.getContext(), hourOfDay, minute));
+            TwilightManager.setSunset(hourOfDay, minute);
         }
     }
 

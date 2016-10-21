@@ -1051,7 +1051,7 @@
     <string name="PermissionOpenSettings">EINSTELLUNGEN</string>
     <!--Intro view-->
     <string name="IntroUnofficialMessage"><![CDATA[<b>Rikkagram</b>]]> is an unofficial <![CDATA[<b>Telegram</b>]]> client.</string>
-    <string name="Page1Title">Telegram</string>
+    <string name="Page1Title">Rikkagram</string>
     <string name="Page2Title">Schnell</string>
     <string name="Page3Title">Kostenlos</string>
     <string name="Page4Title">Sicher</string>
@@ -1059,12 +1059,12 @@
     <string name="Page6Title">Cloud-Basiert</string>
     <string name="Page7Title">Vertraulich</string>
     <string name="Page1Message">Die <![CDATA[<b>schnellste</b>]]> Messaging App der Welt.<![CDATA[<br/><b>Kostenlos</b>]]> und <![CDATA[<b>sicher</b>]]>.</string>
-    <string name="Page2Message"><![CDATA[<b>Telegram</b>]]> stellt Nachrichten schneller<![CDATA[<br/>]]>zu als andere Anwendungen.</string>
-    <string name="Page3Message"><![CDATA[<b>Telegram</b>]]> ist für immer kostenlos.<![CDATA[<br/>]]>Keine Werbung. Keine Abo-Gebühr.</string>
-    <string name="Page4Message"><![CDATA[<b>Telegram</b>]]> schützt deine Nachrichten <![CDATA[<br/>]]>vor Hacker-Angriffen.</string>
-    <string name="Page5Message"><![CDATA[<b>Telegram</b>]]> unterstützt unbegrenzt große <![CDATA[<br/>]]>Chats und Mediendateien.</string>
-    <string name="Page6Message"><![CDATA[<b>Telegram</b>]]> lässt sich von verschiedenen Geräten<![CDATA[<br/>]]>gleichzeitig nutzen.</string>
-    <string name="Page7Message"><![CDATA[<b>Telegram</b>]]>-Nachrichten sind stark verschlüsselt<![CDATA[<br/>]]>und können sich selbst zerstören.</string>
+    <string name="Page2Message"><![CDATA[<b>Rikkagram</b>]]> stellt Nachrichten schneller<![CDATA[<br/>]]>zu als andere Anwendungen.</string>
+    <string name="Page3Message"><![CDATA[<b>Rikkagram</b>]]> ist für immer kostenlos.<![CDATA[<br/>]]>Keine Werbung. Keine Abo-Gebühr.</string>
+    <string name="Page4Message"><![CDATA[<b>Rikkagram</b>]]> schützt deine Nachrichten <![CDATA[<br/>]]>vor Hacker-Angriffen.</string>
+    <string name="Page5Message"><![CDATA[<b>Rikkagram</b>]]> unterstützt unbegrenzt große <![CDATA[<br/>]]>Chats und Mediendateien.</string>
+    <string name="Page6Message"><![CDATA[<b>Rikkagram</b>]]> lässt sich von verschiedenen Geräten<![CDATA[<br/>]]>gleichzeitig nutzen.</string>
+    <string name="Page7Message"><![CDATA[<b>Rikkagram</b>]]>-Nachrichten sind stark verschlüsselt<![CDATA[<br/>]]>und können sich selbst zerstören.</string>
     <string name="StartMessaging">Jetzt beginnen</string>
     <!--plural-->
     <string name="Online_zero">%1$d online</string>

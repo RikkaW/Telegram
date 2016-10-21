@@ -1054,20 +1054,20 @@
     <string name="PermissionOpenSettings">设置</string>
     <!--Intro view-->
     <string name="IntroUnofficialMessage"><![CDATA[<b>Rikkagram</b>]]> 是一个非官方的 <![CDATA[<b>Telegram</b>]]> 客户端。</string>
-    <string name="Page1Title">Telegram</string>
+    <string name="Page1Title">Rikkagram</string>
     <string name="Page2Title">快速</string>
     <string name="Page3Title">免费</string>
     <string name="Page4Title">安全</string>
     <string name="Page5Title">强大</string>
     <string name="Page6Title">云端</string>
     <string name="Page7Title">加密</string>
-    <string name="Page1Message"><![CDATA[世界上<b>最快</b>的聊天软件。<br/><b>免费</b>并且<b>安全</b>。]]></string>
-    <string name="Page2Message"><![CDATA[<b>Telegram</b> 收发信息<br/>快过其它任何软件。]]></string>
-    <string name="Page3Message"><![CDATA[<b>Telegram</b> 永久免费。无广告。<br/>无须收费订阅。]]></string>
-    <string name="Page4Message"><![CDATA[<b>Telegram</b> 保障您的消息安全<br/>免受黑客攻击。]]></string>
-    <string name="Page5Message"><![CDATA[<b>Telegram</b> 对消息与媒体文件 <br/> 没有任何限制。]]></string>
-    <string name="Page6Message"><![CDATA[<b>Telegram</b> 让您可以从多个设备中 <br/> 收发您的消息]]></string>
-    <string name="Page7Message"><![CDATA[<b>Telegram</b> 加密对话经过高强度加密<br/>并且支持阅后即焚]]></string>
+    <string name="Page1Message"><![CDATA[世界上<b>最快</b>的聊天软件。<br/><b>免费</b>并且<b>安全</b>。以及<b>更多</b>功能。]]></string>
+    <string name="Page2Message"><![CDATA[<b>Rikkagram</b> 收发信息<br/>快过其它任何软件。]]></string>
+    <string name="Page3Message"><![CDATA[<b>Rikkagram</b> 永久免费。无广告。<br/>无须收费订阅。]]></string>
+    <string name="Page4Message"><![CDATA[<b>Rikkagram</b> 保障您的消息安全<br/>免受黑客攻击。]]></string>
+    <string name="Page5Message"><![CDATA[<b>Rikkagram</b> 对消息与媒体文件 <br/> 没有任何限制。]]></string>
+    <string name="Page6Message"><![CDATA[<b>Rikkagram</b> 让您可以从多个设备中 <br/> 收发您的消息]]></string>
+    <string name="Page7Message"><![CDATA[<b>Rikkagram</b> 加密对话经过高强度加密<br/>并且支持阅后即焚]]></string>
     <string name="StartMessaging">开始聊天</string>
     <!--plural-->
     <string name="Online_zero">%1$d 人在线</string>
