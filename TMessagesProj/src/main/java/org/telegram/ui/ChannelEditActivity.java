@@ -15,6 +15,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -217,7 +218,7 @@ public class ChannelEditActivity extends BaseFragment implements AvatarUpdater.A
         LinearLayout linearLayout;
 
         fragmentView = new ScrollView(context);
-        fragmentView.setBackgroundColor(0xfff0f0f0);
+        fragmentView.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
         ScrollView scrollView = (ScrollView) fragmentView;
         scrollView.setFillViewport(true);
         linearLayout = new LinearLayout(context);
@@ -229,7 +230,8 @@ public class ChannelEditActivity extends BaseFragment implements AvatarUpdater.A
 
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(LinearLayout.VERTICAL);
-        linearLayout2.setBackgroundColor(0xffffffff);
+        linearLayout2.setElevation(AndroidUtilities.dp(2));
+        linearLayout2.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
         FrameLayout frameLayout = new FrameLayout(context);
@@ -283,7 +285,7 @@ public class ChannelEditActivity extends BaseFragment implements AvatarUpdater.A
         nameTextView.setMaxLines(4);
         nameTextView.setGravity(Gravity.CENTER_VERTICAL | (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT));
         nameTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
-        nameTextView.setHintTextColor(0xff979797);
+        //nameTextView.setHintTextColor(0xff979797);
         nameTextView.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
         nameTextView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         nameTextView.setPadding(0, 0, 0, AndroidUtilities.dp(8));
@@ -291,7 +293,7 @@ public class ChannelEditActivity extends BaseFragment implements AvatarUpdater.A
         inputFilters[0] = new InputFilter.LengthFilter(100);
         nameTextView.setFilters(inputFilters);
         AndroidUtilities.clearCursorDrawable(nameTextView);
-        nameTextView.setTextColor(0xff212121);
+        nameTextView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         frameLayout.addView(nameTextView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER_VERTICAL, LocaleController.isRTL ? 16 : 96, 0, LocaleController.isRTL ? 96 : 16, 0));
         nameTextView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -312,18 +314,19 @@ public class ChannelEditActivity extends BaseFragment implements AvatarUpdater.A
         });
 
         View lineView = new View(context);
-        lineView.setBackgroundColor(0xffcfcfcf);
+        lineView.setBackgroundColor(ContextCompat.getColor(context, R.color.card_divider));
         linearLayout.addView(lineView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
 
         linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(LinearLayout.VERTICAL);
-        linearLayout2.setBackgroundColor(0xffffffff);
+        linearLayout2.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
+        linearLayout2.setElevation(AndroidUtilities.dp(2));
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
         descriptionTextView = new EditText(context);
         descriptionTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
-        descriptionTextView.setHintTextColor(0xff979797);
-        descriptionTextView.setTextColor(0xff212121);
+        //descriptionTextView.setHintTextColor(0xff979797);
+        descriptionTextView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         descriptionTextView.setPadding(0, 0, 0, AndroidUtilities.dp(6));
         descriptionTextView.setBackgroundDrawable(null);
         descriptionTextView.setGravity(LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT);
@@ -368,25 +371,27 @@ public class ChannelEditActivity extends BaseFragment implements AvatarUpdater.A
 
         if (currentChat.megagroup || !currentChat.megagroup) {
             frameLayout = new FrameLayout(context);
-            frameLayout.setBackgroundColor(0xffffffff);
+            frameLayout.setElevation(AndroidUtilities.dp(2));
+            frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
             linearLayout.addView(frameLayout, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
             typeCell = new TextSettingsCell(context);
             updateTypeCell();
-            typeCell.setBackgroundResource(R.drawable.list_selector);
+            typeCell.setForeground(R.drawable.list_selector);
             frameLayout.addView(typeCell, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
             lineView = new View(context);
-            lineView.setBackgroundColor(0xffcfcfcf);
+            lineView.setBackgroundColor(ContextCompat.getColor(context, R.color.card_divider));
             linearLayout.addView(lineView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
 
             frameLayout = new FrameLayout(context);
-            frameLayout.setBackgroundColor(0xffffffff);
+            frameLayout.setElevation(AndroidUtilities.dp(2));
+            frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
             linearLayout.addView(frameLayout, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
             if (!currentChat.megagroup) {
                 TextCheckCell textCheckCell = new TextCheckCell(context);
-                textCheckCell.setBackgroundResource(R.drawable.list_selector);
+                textCheckCell.setForeground(R.drawable.list_selector);
                 textCheckCell.setTextAndCheck(LocaleController.getString("ChannelSignMessages", R.string.ChannelSignMessages), signMessages, false);
                 frameLayout.addView(textCheckCell, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
                 textCheckCell.setOnClickListener(new View.OnClickListener() {
@@ -398,13 +403,13 @@ public class ChannelEditActivity extends BaseFragment implements AvatarUpdater.A
                 });
 
                 TextInfoPrivacyCell infoCell = new TextInfoPrivacyCell(context);
-                infoCell.setBackgroundResource(R.drawable.greydivider);
+                //infoCell.setBackgroundResource(R.drawable.greydivider);
                 infoCell.setText(LocaleController.getString("ChannelSignMessagesInfo", R.string.ChannelSignMessagesInfo));
                 linearLayout.addView(infoCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
             } else {
                 adminCell = new TextSettingsCell(context);
                 updateAdminCell();
-                adminCell.setBackgroundResource(R.drawable.list_selector);
+                adminCell.setForeground(R.drawable.list_selector);
                 frameLayout.addView(adminCell, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
                 adminCell.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -419,15 +424,16 @@ public class ChannelEditActivity extends BaseFragment implements AvatarUpdater.A
                 sectionCell = new ShadowSectionCell(context);
                 sectionCell.setSize(20);
                 linearLayout.addView(sectionCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
-                if (!currentChat.creator) {
+                /*if (!currentChat.creator) {
                     sectionCell.setBackgroundResource(R.drawable.greydivider_bottom);
-                }
+                }*/
             }
         }
 
         if (currentChat.creator) {
             frameLayout = new FrameLayout(context);
-            frameLayout.setBackgroundColor(0xffffffff);
+            frameLayout.setElevation(AndroidUtilities.dp(2));
+            frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
             linearLayout.addView(frameLayout, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
             TextSettingsCell textCell = new TextSettingsCell(context);
@@ -468,7 +474,7 @@ public class ChannelEditActivity extends BaseFragment implements AvatarUpdater.A
             });
 
             TextInfoPrivacyCell infoCell = new TextInfoPrivacyCell(context);
-            infoCell.setBackgroundResource(R.drawable.greydivider_bottom);
+            //infoCell.setBackgroundResource(R.drawable.greydivider_bottom);
             if (currentChat.megagroup) {
                 infoCell.setText(LocaleController.getString("MegaDeleteInfo", R.string.MegaDeleteInfo));
             } else {
@@ -583,12 +589,13 @@ public class ChannelEditActivity extends BaseFragment implements AvatarUpdater.A
                     presentFragment(fragment);
                 }
             });
-            typeCell.setTextColor(0xff212121);
+            // TODO accent color
+            typeCell.setTextColor(ContextCompat.getColor(fragmentView.getContext(), R.color.primary_text));
             typeCell.setTextValueColor(0xff2f8cc9);
         } else {
             typeCell.setOnClickListener(null);
-            typeCell.setTextColor(0xffa8a8a8);
-            typeCell.setTextValueColor(0xffa8a8a8);
+            typeCell.setTextColor(ContextCompat.getColor(fragmentView.getContext(), R.color.disabled_text));
+            typeCell.setTextValueColor(ContextCompat.getColor(fragmentView.getContext(), R.color.disabled_text));
         }
     }
 

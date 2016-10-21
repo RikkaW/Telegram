@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
@@ -19,10 +20,12 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+import android.util.TypedValue;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -254,6 +257,8 @@ public class Theme {
 
     public static Drawable attachButtonDrawables[] = new Drawable[8];
 
+    public static Drawable floatingActionButton;
+
     private static Paint maskPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     public static void loadRecources(Context context) {
@@ -365,6 +370,9 @@ public class Theme {
             inlineLocationDrawable = context.getResources().getDrawable(R.drawable.bot_location);
         }
 
+        tintDrawable(context);
+        resetColor(context);
+
         int color = ApplicationLoader.getServiceMessageColor();
         if (currentColor != color) {
             colorFilter = new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY);
@@ -378,7 +386,7 @@ public class Theme {
         }
     }
 
-    public static void tintDrawable(Context context) {
+    private static void tintDrawable(Context context) {
         backgroundDrawableIn = context.getResources().getDrawable(R.drawable.msg_in);
         backgroundDrawableInSelected = context.getResources().getDrawable(R.drawable.msg_in_selected);
         backgroundDrawableOut = context.getResources().getDrawable(R.drawable.msg_out);
@@ -402,7 +410,7 @@ public class Theme {
         }
     }
 
-    public static void resetColor(Context context) {
+    private static void resetColor(Context context) {
         int white = ContextCompat.getColor(context, R.color.material_white_1000);
         int primary = ContextCompat.getColor(context, R.color.primary_text);
         int forward = ContextCompat.getColor(context, R.color.message_forward_name);

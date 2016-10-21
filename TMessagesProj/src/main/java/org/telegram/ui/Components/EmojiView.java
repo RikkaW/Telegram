@@ -192,7 +192,6 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             setGravity(Gravity.CENTER);
             setTypeface(AndroidUtilities.getTypeface("fonts/NotoColorEmoji.ttf"));
             setTextColor(Color.BLACK);
-            setForegroundGravity(Gravity.CENTER);
         }
 
         private void sendEmoji(String override) {

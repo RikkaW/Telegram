@@ -27,12 +27,13 @@ android {
     defaultConfig.applicationId = "rikka.rikkagram"
 
     sourceSets.main.jniLibs.srcDirs = ['./jni/']
+    sourceSets.main.jniLibs.srcDirs = ['./jniLibs/']
 
-    externalNativeBuild {
+    /*externalNativeBuild {
         ndkBuild {
             path "jni/Android.mk"
         }
-    }
+    }*/
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -122,12 +123,12 @@ android {
         targetSdkVersion 25
         versionName "3.13.1.5"
 
-        externalNativeBuild {
+        /*externalNativeBuild {
             ndkBuild {
                 arguments "NDK_APPLICATION_MK:=jni/Application.mk", "APP_PLATFORM:=android-21"
                 abiFilters "armeabi-v7a", "x86"
             }
-        }
+        }*/
     }
 
     applicationVariants.all { variant ->

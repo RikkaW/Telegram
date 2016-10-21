@@ -2,9 +2,12 @@
 <resources>
     <color name="colorPrimary">#1f3145</color>
     <color name="colorPrimaryDark">#1c2c3e</color>
-    <color name="colorAccent">#4991cc</color>
+    <color name="colorAccent">#233f5f</color>
+
+    <color name="fab">#a4000000</color>
 
     <color name="divider">#4a4a4a</color>
+    <color name="card_divider">#5b5b5b</color>
     <color name="chat_list_divider">#1d2d3f</color>
 
     <color name="background">@color/material_grey_900</color>
@@ -36,5 +39,7 @@
 
     <color name="attach_sheet_text">#B3FFFFFF</color>
 
-    <color name="shared_photo_placeholder">@color/material_grey_800</color>
+    <color name="shared_photo_placeholder">@color/material_grey_850</color>
+
+    <color name="dialog_count_color">@color/material_grey_850</color>
 </resources>

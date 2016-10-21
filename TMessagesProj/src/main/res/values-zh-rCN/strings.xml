@@ -1053,6 +1053,7 @@
     <string name="PermissionNoLocationPosition">Telegram 需要获取您的定位服务权限</string>
     <string name="PermissionOpenSettings">设置</string>
     <!--Intro view-->
+    <string name="IntroUnofficialMessage"><![CDATA[<b>Rikkagram</b>]]> 是一个非官方的 <![CDATA[<b>Telegram</b>]]> 客户端。</string>
     <string name="Page1Title">Telegram</string>
     <string name="Page2Title">快速</string>
     <string name="Page3Title">免费</string>

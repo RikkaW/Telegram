@@ -12,6 +12,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -123,7 +124,7 @@ public class ChannelUsersActivity extends BaseFragment implements NotificationCe
         ActionBarMenu menu = actionBar.createMenu();
 
         fragmentView = new FrameLayout(context);
-        fragmentView.setBackgroundColor(0xfff0f0f0);
+        fragmentView.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
         FrameLayout frameLayout = (FrameLayout) fragmentView;
 
         emptyView = new EmptyTextProgressView(context);
@@ -558,7 +559,8 @@ public class ChannelUsersActivity extends BaseFragment implements NotificationCe
             if (viewType == 0) {
                 if (view == null) {
                     view = new UserCell(mContext, 1, 0, false);
-                    view.setBackgroundColor(0xffffffff);
+                    ((UserCell) view).setForeground(R.drawable.list_selector);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 UserCell userCell = (UserCell) view;
                 TLRPC.ChannelParticipant participant = participants.get(i - participantsStartRow);
@@ -586,19 +588,19 @@ public class ChannelUsersActivity extends BaseFragment implements NotificationCe
                 }
                 if (type == 0) {
                     ((TextInfoPrivacyCell) view).setText(String.format("%1$s\n\n%2$s", LocaleController.getString("NoBlockedGroup", R.string.NoBlockedGroup), LocaleController.getString("UnblockText", R.string.UnblockText)));
-                    view.setBackgroundResource(R.drawable.greydivider_bottom);
+                    //view.setBackgroundResource(R.drawable.greydivider_bottom);
                 } else if (type == 1) {
                     if (isAdmin) {
                         if (isMegagroup) {
                             ((TextInfoPrivacyCell) view).setText(LocaleController.getString("MegaAdminsInfo", R.string.MegaAdminsInfo));
-                            view.setBackgroundResource(R.drawable.greydivider_bottom);
+                            //view.setBackgroundResource(R.drawable.greydivider_bottom);
                         } else {
                             ((TextInfoPrivacyCell) view).setText(LocaleController.getString("ChannelAdminsInfo", R.string.ChannelAdminsInfo));
-                            view.setBackgroundResource(R.drawable.greydivider_bottom);
+                            //view.setBackgroundResource(R.drawable.greydivider_bottom);
                         }
                     } else {
                         ((TextInfoPrivacyCell) view).setText("");
-                        view.setBackgroundResource(R.drawable.greydivider_bottom);
+                        //view.setBackgroundResource(R.drawable.greydivider_bottom);
                     }
                 } else if (type == 2) {
                     if ((!isPublic && i == 2 || i == 1) && isAdmin) {
@@ -607,16 +609,16 @@ public class ChannelUsersActivity extends BaseFragment implements NotificationCe
                         } else {
                             ((TextInfoPrivacyCell) view).setText(LocaleController.getString("ChannelMembersInfo", R.string.ChannelMembersInfo));
                         }
-                        view.setBackgroundResource(R.drawable.greydivider);
+                        //view.setBackgroundResource(R.drawable.greydivider);
                     } else {
                         ((TextInfoPrivacyCell) view).setText("");
-                        view.setBackgroundResource(R.drawable.greydivider_bottom);
+                        //view.setBackgroundResource(R.drawable.greydivider_bottom);
                     }
                 }
             } else if (viewType == 2) {
                 if (view == null) {
                     view = new TextSettingsCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 TextSettingsCell actionCell = (TextSettingsCell) view;
                 if (type == 2) {
@@ -635,19 +637,19 @@ public class ChannelUsersActivity extends BaseFragment implements NotificationCe
             } else if (viewType == 4) {
                 if (view == null) {
                     view = new TextCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 ((TextCell) view).setTextAndIcon(LocaleController.getString("ChannelAddAdmin", R.string.ChannelAddAdmin), R.drawable.managers);
             } else if (viewType == 5) {
                 if (view == null) {
                     view = new HeaderCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 ((HeaderCell) view).setText(LocaleController.getString("WhoCanAddMembers", R.string.WhoCanAddMembers));
             } else if (viewType == 6) {
                 if (view == null) {
                     view = new RadioCell(mContext);
-                    view.setBackgroundColor(0xffffffff);
+                    //view.setBackgroundColor(0xffffffff);
                 }
                 RadioCell radioCell = (RadioCell) view;
                 TLRPC.Chat chat = MessagesController.getInstance().getChat(chatId);

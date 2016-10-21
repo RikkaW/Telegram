@@ -147,9 +147,7 @@ public class StickerSetCell extends FrameLayout {
         }
     }
 
-    public static void setDividerColor(Context context, boolean night) {
-        if (paint != null) {
-            paint.setColor(ContextCompat.getColor(context, night ? R.color.chat_list_divider : R.color.divider_light));
-        }
+    public static void resetDivider() {
+        paint = null;
     }
 }

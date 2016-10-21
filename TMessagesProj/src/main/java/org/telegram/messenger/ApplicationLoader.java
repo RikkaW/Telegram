@@ -326,7 +326,6 @@ public class ApplicationLoader extends Application {
 
         SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
         DayNightActivity.setDefaultNightMode(preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_NO));
-        Theme.resetColor(this);
     }
 
     /*public static void sendRegIdToBackend(final String token) {

@@ -9,6 +9,7 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
@@ -110,6 +111,8 @@ public class TextCell extends ForegroundFrameLayout {
         valueTextView.setVisibility(INVISIBLE);
         valueImageView.setVisibility(INVISIBLE);
         imageView.setPadding(0, AndroidUtilities.dp(7), 0, 0);
+
+        imageView.getDrawable().setTint(ContextCompat.getColor(getContext(), R.color.secondary_text));
     }
 
     public void setTextAndValue(String text, String value) {
@@ -128,6 +131,8 @@ public class TextCell extends ForegroundFrameLayout {
         imageView.setVisibility(VISIBLE);
         imageView.setPadding(0, AndroidUtilities.dp(7), 0, 0);
         imageView.setImageResource(resId);
+
+        imageView.getDrawable().setTint(ContextCompat.getColor(getContext(), R.color.secondary_text));
     }
 
     public void setTextAndValueDrawable(String text, Drawable drawable) {

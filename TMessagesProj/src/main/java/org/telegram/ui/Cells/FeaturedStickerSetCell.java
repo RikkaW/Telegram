@@ -19,6 +19,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -67,18 +68,18 @@ public class FeaturedStickerSetCell extends FrameLayout {
 
         if (paint == null) {
             paint = new Paint();
-            paint.setColor(0xffd9d9d9);
+            paint.setColor(ContextCompat.getColor(context, R.color.divider));
         }
         if (botProgressPaint == null) {
             botProgressPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            botProgressPaint.setColor(0xffffffff);
+            botProgressPaint.setColor(ContextCompat.getColor(context, R.color.primary_text_inverse));
             botProgressPaint.setStrokeCap(Paint.Cap.ROUND);
             botProgressPaint.setStyle(Paint.Style.STROKE);
         }
         botProgressPaint.setStrokeWidth(AndroidUtilities.dp(2));
 
         textView = new TextView(context);
-        textView.setTextColor(0xff212121);
+        textView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         textView.setLines(1);
         textView.setMaxLines(1);
@@ -88,7 +89,7 @@ public class FeaturedStickerSetCell extends FrameLayout {
         addView(textView, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT, LocaleController.isRTL ? 100 : 71, 10, LocaleController.isRTL ? 71 : 100, 0));
 
         valueTextView = new TextView(context);
-        valueTextView.setTextColor(0xff8a8a8a);
+        //valueTextView.setTextColor(0xff8a8a8a);
         valueTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
         valueTextView.setLines(1);
         valueTextView.setMaxLines(1);
@@ -140,6 +141,7 @@ public class FeaturedStickerSetCell extends FrameLayout {
         };
         addButton.setPadding(AndroidUtilities.dp(17), 0, AndroidUtilities.dp(17), 0);
         addButton.setGravity(Gravity.CENTER);
+        // TODO
         addButton.setTextColor(0xffffffff);
         addButton.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
         addButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
@@ -345,5 +347,10 @@ public class FeaturedStickerSetCell extends FrameLayout {
         if (needDivider) {
             canvas.drawLine(0, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, paint);
         }
+    }
+
+    public static void resetDivider() {
+        paint = null;
+        botProgressPaint = null;
     }
 }

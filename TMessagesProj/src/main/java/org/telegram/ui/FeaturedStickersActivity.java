@@ -9,6 +9,7 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -83,7 +84,7 @@ public class FeaturedStickersActivity extends BaseFragment implements Notificati
 
         fragmentView = new FrameLayout(context);
         FrameLayout frameLayout = (FrameLayout) fragmentView;
-        frameLayout.setBackgroundColor(0xfff0f0f0);
+        frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
 
         RecyclerListView listView = new RecyclerListView(context);
         listView.setItemAnimator(null);
@@ -250,7 +251,7 @@ public class FeaturedStickersActivity extends BaseFragment implements Notificati
                     break;
                 case 1:
                     view = new TextInfoPrivacyCell(mContext);
-                    view.setBackgroundResource(R.drawable.greydivider_bottom);
+                    //view.setBackgroundResource(R.drawable.greydivider_bottom);
                     break;
             }
             view.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));

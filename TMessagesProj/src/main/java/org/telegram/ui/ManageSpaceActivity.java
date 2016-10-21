@@ -33,12 +33,13 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
+import org.telegram.ui.Components.DayNightActivity;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.ActionBar.Theme;
 
 import java.util.ArrayList;
 
-public class ManageSpaceActivity extends Activity implements ActionBarLayout.ActionBarLayoutDelegate {
+public class ManageSpaceActivity extends DayNightActivity implements ActionBarLayout.ActionBarLayoutDelegate {
 
     private boolean finished;
     private int currentConnectionState;

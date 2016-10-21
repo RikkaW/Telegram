@@ -160,7 +160,6 @@ public class DialogCell extends BaseCell {
             timePaint.setColor(0xff999999);
 
             countPaint = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
-            countPaint.setColor(0xffffffff);
             countPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
 
             lockDrawable = getResources().getDrawable(R.drawable.list_secret);
@@ -202,6 +201,7 @@ public class DialogCell extends BaseCell {
         messagePaint.setColor(ContextCompat.getColor(context, R.color.secondary_text)/*Theme.DIALOGS_MESSAGE_TEXT_COLOR*/);
         messagePaint.linkColor = ContextCompat.getColor(context, R.color.secondary_text)/*Theme.DIALOGS_MESSAGE_TEXT_COLOR*/;
         linePaint.setColor(ContextCompat.getColor(context, R.color.chat_list_divider));
+        countPaint.setColor(ContextCompat.getColor(context, R.color.dialog_count_color));
 
         DrawableCompat.setTint(groupDrawable, ContextCompat.getColor(context, R.color.primary_text));
         DrawableCompat.setTint(broadcastDrawable, ContextCompat.getColor(context, R.color.primary_text));

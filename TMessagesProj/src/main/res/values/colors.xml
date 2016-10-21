@@ -4,7 +4,10 @@
     <color name="colorPrimaryDark">#426482</color>
     <color name="colorAccent">#4991cc</color>
 
+    <color name="fab">#ffffffff</color>
+
     <color name="divider">#1a000000</color>
+    <color name="card_divider">#1a000000</color>
     <color name="chat_list_divider">#1a000000</color>
 
     <color name="chat_list_divider_light">#1a000000</color>
@@ -50,4 +53,5 @@
 
     <color name="shared_photo_placeholder">#fff5f5f5</color>
 
+    <color name="dialog_count_color">#ffffffff</color>
 </resources>

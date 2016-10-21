@@ -18,6 +18,7 @@ import android.graphics.*;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -281,7 +282,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         titleTextView = new TextView(context);
         titleTextView.setLines(1);
         titleTextView.setSingleLine(true);
-        titleTextView.setTextColor(Theme.STICKERS_SHEET_TITLE_TEXT_COLOR);
+        titleTextView.setTextColor(ContextCompat.getColor(context, R.color.primary_text) /*Theme.STICKERS_SHEET_TITLE_TEXT_COLOR*/);
         titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
         titleTextView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         titleTextView.setPadding(AndroidUtilities.dp(18), 0, AndroidUtilities.dp(18), 0);

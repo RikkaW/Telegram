@@ -346,7 +346,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
 
         if (currentStep == 0) {
             actionBar.setTitle(LocaleController.getString("NewChannel", R.string.NewChannel));
-            fragmentView.setBackgroundColor(ContextCompat.getColor(context, R.color.background));
+            fragmentView.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
             FrameLayout frameLayout = new FrameLayout(context);
             linearLayout.addView(frameLayout, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
@@ -481,9 +481,11 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             LinearLayout linearLayout2 = new LinearLayout(context);
             linearLayout2.setOrientation(LinearLayout.VERTICAL);
             linearLayout2.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
+            linearLayout2.setElevation(AndroidUtilities.dp(2));
             linearLayout.addView(linearLayout2, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
             radioButtonCell1 = new RadioButtonCell(context);
+            radioButtonCell1.setElevation(0);
             radioButtonCell1.setForeground(R.drawable.list_selector);
             radioButtonCell1.setTextAndValue(LocaleController.getString("ChannelPublic", R.string.ChannelPublic), LocaleController.getString("ChannelPublicInfo", R.string.ChannelPublicInfo), !isPrivate, false);
             linearLayout2.addView(radioButtonCell1, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
@@ -499,6 +501,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             });
 
             radioButtonCell2 = new RadioButtonCell(context);
+            radioButtonCell2.setElevation(0);
             radioButtonCell2.setForeground(R.drawable.list_selector);
             radioButtonCell2.setTextAndValue(LocaleController.getString("ChannelPrivate", R.string.ChannelPrivate), LocaleController.getString("ChannelPrivateInfo", R.string.ChannelPrivateInfo), isPrivate, false);
             linearLayout2.addView(radioButtonCell2, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
@@ -577,6 +580,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
 
             privateContainer = new TextBlockCell(context);
             privateContainer.setForeground(R.drawable.list_selector);
+            privateContainer.setElevation(0);
             linkContainer.addView(privateContainer);
             privateContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -624,6 +628,8 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             listViewAdapter.setCheckedMap(selectedContacts);
 
             FrameLayout frameLayout = new FrameLayout(context);
+            frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.chat_list_background));
+
             linearLayout.addView(frameLayout, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
             nameTextView = new EditText(context);

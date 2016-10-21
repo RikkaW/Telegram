@@ -9,6 +9,7 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
@@ -51,7 +52,7 @@ public class DrawerActionCell extends FrameLayout {
             textView.setText(text);
             Drawable dr = getContext().getDrawable(resId);
             if (dr != null) {
-                //DrawableCompat.setTintList(dr, textView.getTextColors());
+                DrawableCompat.setTintList(dr, ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.secondary_text)) /*textView.getTextColors()*/);
                 textView.setCompoundDrawablesWithIntrinsicBounds(dr, null, null, null);
             }
         } catch (Throwable e) {

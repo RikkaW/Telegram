@@ -11,6 +11,7 @@ package org.telegram.ui.ActionBar;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.TypedValue;
@@ -215,7 +216,7 @@ public class ActionBarMenuItem extends FrameLayout {
             });
         }
         TextView textView = new TextView(getContext());
-        textView.setTextColor(0xff212121);
+        textView.setTextColor(ContextCompat.getColor(getContext(), R.color.primary_text));
         textView.setBackgroundResource(R.drawable.list_selector);
         if (!LocaleController.isRTL) {
             textView.setGravity(Gravity.CENTER_VERTICAL);

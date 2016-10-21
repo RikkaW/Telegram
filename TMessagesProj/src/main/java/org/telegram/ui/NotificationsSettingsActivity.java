@@ -49,6 +49,7 @@ import org.telegram.ui.Cells.TextDetailSettingsCell;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.ColorPickerView;
+import org.telegram.ui.Components.ForegroundFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
 
 public class NotificationsSettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
@@ -712,6 +713,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             } if (type == 1) {
                 if (view == null) {
                     view = new TextCheckCell(mContext);
+                    ((ForegroundFrameLayout) view).setForeground(R.drawable.list_selector);
                 }
                 TextCheckCell checkCell = (TextCheckCell) view;
 
@@ -750,6 +752,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             } else if (type == 2) {
                 if (view == null) {
                     view = new TextDetailSettingsCell(mContext);
+                    ((ForegroundFrameLayout) view).setForeground(R.drawable.list_selector);
                 }
 
                 TextDetailSettingsCell textCell = (TextDetailSettingsCell) view;
@@ -840,6 +843,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             } else if (type == 3) {
                 if (view == null) {
                     view = new TextColorCell(mContext);
+                    ((ForegroundFrameLayout) view).setForeground(R.drawable.list_selector);
                 }
 
                 TextColorCell textCell = (TextColorCell) view;

@@ -34,7 +34,7 @@ public class HashtagSearchCell extends TextView {
         setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         if (paint == null) {
             paint = new Paint();
-            paint.setColor(ContextCompat.getColor(context, R.color.chat_list_divider_dark));
+            paint.setColor(ContextCompat.getColor(context, R.color.chat_list_divider));
         }
 
         setBackgroundResource(R.drawable.list_selector);
@@ -67,9 +67,7 @@ public class HashtagSearchCell extends TextView {
         }
     }
 
-    public static void setDividerColor(Context context, boolean night) {
-        if (paint != null) {
-            paint.setColor(ContextCompat.getColor(context, night ? R.color.chat_list_divider_dark : R.color.chat_list_divider_light));
-        }
+    public static void resetDivider() {
+        paint = null;
     }
 }

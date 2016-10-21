@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.DayNight" parent="@style/Theme"/>
+    <style name="Theme.DayNight.Dialog" parent="@android:style/Theme.Material.Dialog"/>
     <style name="Theme.DayNight.Dialog.Alert" parent="@android:style/Theme.Material.Dialog.Alert"/>
 
     <!--EDIT TEXT-->

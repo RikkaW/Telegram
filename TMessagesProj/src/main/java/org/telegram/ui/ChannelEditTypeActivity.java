@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -195,7 +196,7 @@ public class ChannelEditTypeActivity extends BaseFragment implements Notificatio
         menu.addItemWithWidth(done_button, R.drawable.ic_done, AndroidUtilities.dp(56));
 
         fragmentView = new ScrollView(context);
-        fragmentView.setBackgroundColor(0xfff0f0f0);
+        fragmentView.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
         ScrollView scrollView = (ScrollView) fragmentView;
         scrollView.setFillViewport(true);
         linearLayout = new LinearLayout(context);
@@ -211,10 +212,12 @@ public class ChannelEditTypeActivity extends BaseFragment implements Notificatio
 
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(LinearLayout.VERTICAL);
-        linearLayout2.setBackgroundColor(0xffffffff);
+        linearLayout2.setElevation(AndroidUtilities.dp(2));
+        linearLayout2.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
         radioButtonCell1 = new RadioButtonCell(context);
+        radioButtonCell1.setElevation(0);
         radioButtonCell1.setBackgroundResource(R.drawable.list_selector);
         if (currentChat.megagroup) {
             radioButtonCell1.setTextAndValue(LocaleController.getString("MegaPublic", R.string.MegaPublic), LocaleController.getString("MegaPublicInfo", R.string.MegaPublicInfo), !isPrivate, false);
@@ -234,7 +237,8 @@ public class ChannelEditTypeActivity extends BaseFragment implements Notificatio
         });
 
         radioButtonCell2 = new RadioButtonCell(context);
-        radioButtonCell2.setBackgroundResource(R.drawable.list_selector);
+        radioButtonCell2.setElevation(0);
+        radioButtonCell2.setForeground(R.drawable.list_selector);
         if (currentChat.megagroup) {
             radioButtonCell2.setTextAndValue(LocaleController.getString("MegaPrivate", R.string.MegaPrivate), LocaleController.getString("MegaPrivateInfo", R.string.MegaPrivateInfo), isPrivate, false);
         } else {
@@ -257,10 +261,13 @@ public class ChannelEditTypeActivity extends BaseFragment implements Notificatio
 
         linkContainer = new LinearLayout(context);
         linkContainer.setOrientation(LinearLayout.VERTICAL);
-        linkContainer.setBackgroundColor(0xffffffff);
+        linkContainer.setElevation(AndroidUtilities.dp(2));
+        linkContainer.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
         linearLayout.addView(linkContainer, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
         headerCell = new HeaderCell(context);
+        headerCell.setElevation(0);
+        headerCell.setBackground(null);
         linkContainer.addView(headerCell);
 
         publicContainer = new LinearLayout(context);
@@ -270,8 +277,8 @@ public class ChannelEditTypeActivity extends BaseFragment implements Notificatio
         EditText editText = new EditText(context);
         editText.setText("telegram.me/");
         editText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
-        editText.setHintTextColor(0xff979797);
-        editText.setTextColor(0xff212121);
+        //editText.setHintTextColor(0xff979797);
+        editText.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         editText.setMaxLines(1);
         editText.setLines(1);
         editText.setEnabled(false);
@@ -287,8 +294,8 @@ public class ChannelEditTypeActivity extends BaseFragment implements Notificatio
         if (!isPrivate) {
             nameTextView.setText(currentChat.username);
         }
-        nameTextView.setHintTextColor(0xff979797);
-        nameTextView.setTextColor(0xff212121);
+        //nameTextView.setHintTextColor(0xff979797);
+        nameTextView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         nameTextView.setMaxLines(1);
         nameTextView.setLines(1);
         nameTextView.setBackgroundDrawable(null);
@@ -317,7 +324,7 @@ public class ChannelEditTypeActivity extends BaseFragment implements Notificatio
         });
 
         privateContainer = new TextBlockCell(context);
-        privateContainer.setBackgroundResource(R.drawable.list_selector);
+        privateContainer.setForeground(R.drawable.list_selector);
         linkContainer.addView(privateContainer);
         privateContainer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -343,14 +350,14 @@ public class ChannelEditTypeActivity extends BaseFragment implements Notificatio
         linkContainer.addView(checkTextView, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT, 17, 3, 17, 7));
 
         typeInfoCell = new TextInfoPrivacyCell(context);
-        typeInfoCell.setBackgroundResource(R.drawable.greydivider_bottom);
+        //typeInfoCell.setBackgroundResource(R.drawable.greydivider_bottom);
         linearLayout.addView(typeInfoCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
         loadingAdminedCell = new LoadingCell(context);
         linearLayout.addView(loadingAdminedCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
         adminedInfoCell = new TextInfoPrivacyCell(context);
-        adminedInfoCell.setBackgroundResource(R.drawable.greydivider_bottom);
+        //adminedInfoCell.setBackgroundResource(R.drawable.greydivider_bottom);
         linearLayout.addView(adminedInfoCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
         updatePrivatePublic();
@@ -471,10 +478,10 @@ public class ChannelEditTypeActivity extends BaseFragment implements Notificatio
                 for (int a = 0; a < adminedChannelCells.size(); a++) {
                     adminedChannelCells.get(a).setVisibility(View.GONE);
                 }
-                typeInfoCell.setBackgroundResource(R.drawable.greydivider_bottom);
+                //typeInfoCell.setBackgroundResource(R.drawable.greydivider_bottom);
                 adminedInfoCell.setVisibility(View.GONE);
             } else {
-                typeInfoCell.setBackgroundResource(R.drawable.greydivider);
+                //typeInfoCell.setBackgroundResource(R.drawable.greydivider);
                 loadingAdminedCell.setVisibility(View.GONE);
                 for (int a = 0; a < adminedChannelCells.size(); a++) {
                     adminedChannelCells.get(a).setVisibility(View.VISIBLE);
@@ -485,7 +492,7 @@ public class ChannelEditTypeActivity extends BaseFragment implements Notificatio
             typeInfoCell.setTextColor(0xff808080);
             sectionCell.setVisibility(View.VISIBLE);
             adminedInfoCell.setVisibility(View.GONE);
-            typeInfoCell.setBackgroundResource(R.drawable.greydivider_bottom);
+            //typeInfoCell.setBackgroundResource(R.drawable.greydivider_bottom);
             for (int a = 0; a < adminedChannelCells.size(); a++) {
                 adminedChannelCells.get(a).setVisibility(View.GONE);
             }

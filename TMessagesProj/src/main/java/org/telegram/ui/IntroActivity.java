@@ -35,8 +35,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.DayNightActivity;
 
-public class IntroActivity extends Activity {
+public class IntroActivity extends DayNightActivity {
 
     private ViewPager viewPager;
     private ImageView topImage1;
@@ -133,6 +134,9 @@ public class IntroActivity extends Activity {
             animator.addState(new int[]{}, ObjectAnimator.ofFloat(startMessagingButton, "translationZ", AndroidUtilities.dp(4), AndroidUtilities.dp(2)).setDuration(200));
             startMessagingButton.setStateListAnimator(animator);
         }
+        TextView unofficialMessageTextView = (TextView) findViewById(R.id.start_messaging_unofficial);
+        unofficialMessageTextView.setText(AndroidUtilities.replaceTags(getString(R.string.IntroUnofficialMessage)));
+
         topImage1 = (ImageView) findViewById(R.id.icon_image1);
         topImage2 = (ImageView) findViewById(R.id.icon_image2);
         bottomPages = (ViewGroup) findViewById(R.id.bottom_pages);

@@ -6635,6 +6635,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 pinnedMessageNameTextView.setLayoutParams(layoutParams1);
                 pinnedMessageTextView.setLayoutParams(layoutParams2);
 
+                // TODO
                 pinnedMessageNameTextView.setText(LocaleController.getString("PinnedMessage", R.string.PinnedMessage));
                 if (pinnedMessageObject.type == 14) {
                     pinnedMessageTextView.setText(String.format("%s - %s", pinnedMessageObject.getMusicAuthor(), pinnedMessageObject.getMusicTitle()));

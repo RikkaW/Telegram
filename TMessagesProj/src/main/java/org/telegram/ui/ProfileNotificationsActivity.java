@@ -48,6 +48,7 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.ColorPickerView;
+import org.telegram.ui.Components.ForegroundFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.NumberPicker;
 
@@ -514,6 +515,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
             if (type == 0) {
                 if (view == null) {
                     view = new TextDetailSettingsCell(mContext);
+                    ((ForegroundFrameLayout) view).setForeground(R.drawable.list_selector);
                 }
 
                 TextDetailSettingsCell textCell = (TextDetailSettingsCell) view;
@@ -592,6 +594,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
             } else if (type == 1) {
                 if (view == null) {
                     view = new TextColorCell(mContext);
+                    ((ForegroundFrameLayout) view).setForeground(R.drawable.list_selector);
                 }
 
                 TextColorCell textCell = (TextColorCell) view;

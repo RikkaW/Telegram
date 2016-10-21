@@ -140,9 +140,7 @@ public class TextSettingsCell extends ForegroundFrameLayout {
         }
     }
 
-    public static void setDividerColor(Context context, boolean night) {
-        if (paint != null) {
-            paint.setColor(ContextCompat.getColor(context, night ? R.color.divider_dark : R.color.divider_light));
-        }
+    public static void resetDivider() {
+        paint = null;
     }
 }

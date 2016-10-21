@@ -1052,6 +1052,7 @@
     <string name="PermissionNoLocationPosition">Telegram needs access to your location.</string>
     <string name="PermissionOpenSettings">SETTINGS</string>
     <!--Intro view-->
+    <string name="IntroUnofficialMessage"><![CDATA[<b>Rikkagram</b>]]> is an unofficial <![CDATA[<b>Telegram</b>]]> client.</string>
     <string name="Page1Title">Telegram</string>
     <string name="Page2Title">Fast</string>
     <string name="Page3Title">Free</string>

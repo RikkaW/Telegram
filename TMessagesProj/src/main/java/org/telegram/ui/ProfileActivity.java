@@ -2381,8 +2381,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 case 0:
                     if (i == emptyRowChat || i == emptyRowChat2) {
                         ((EmptyCell) holder.itemView).setHeight(AndroidUtilities.dp(8));
-                        holder.itemView.setElevation(AndroidUtilities.dp(0));
-                        holder.itemView.setBackground(null);
+                        holder.itemView.setElevation(AndroidUtilities.dp(2));
+                        holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.card_background));
                     } else {
                         ((EmptyCell) holder.itemView).setHeight(AndroidUtilities.dp(36));
                         holder.itemView.setElevation(AndroidUtilities.dp(2));

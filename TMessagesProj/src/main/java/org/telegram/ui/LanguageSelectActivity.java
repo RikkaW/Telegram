@@ -11,6 +11,7 @@ package org.telegram.ui;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -34,6 +35,7 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.Components.ForegroundFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
 
 import java.util.ArrayList;
@@ -105,6 +107,7 @@ public class LanguageSelectActivity extends BaseFragment {
         searchListViewAdapter = new SearchAdapter(context);
 
         fragmentView = new FrameLayout(context);
+        fragmentView.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
 
         LinearLayout emptyTextLayout = new LinearLayout(context);
         emptyTextLayout.setVisibility(View.INVISIBLE);
@@ -346,6 +349,9 @@ public class LanguageSelectActivity extends BaseFragment {
         public View getView(int i, View view, ViewGroup viewGroup) {
             if (view == null) {
                 view = new TextSettingsCell(mContext);
+                view.setElevation(0);
+                view.setBackground(null);
+                ((ForegroundFrameLayout) view).setForeground(R.drawable.list_selector);
             }
 
             LocaleController.LocaleInfo c = searchResult.get(i);
@@ -414,6 +420,9 @@ public class LanguageSelectActivity extends BaseFragment {
         public View getView(int i, View view, ViewGroup viewGroup) {
             if (view == null) {
                 view = new TextSettingsCell(mContext);
+                view.setElevation(0);
+                view.setBackground(null);
+                ((ForegroundFrameLayout) view).setForeground(R.drawable.list_selector);
             }
 
             LocaleController.LocaleInfo localeInfo = LocaleController.getInstance().sortedLanguages.get(i);

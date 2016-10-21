@@ -10,6 +10,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -101,7 +102,7 @@ public class ChannelIntroActivity extends BaseFragment {
                 }
             }
         };
-        fragmentView.setBackgroundColor(0xffffffff);
+        fragmentView.setBackgroundColor(ContextCompat.getColor(context, R.color.background));
         ViewGroup viewGroup = (ViewGroup) fragmentView;
         viewGroup.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -116,14 +117,14 @@ public class ChannelIntroActivity extends BaseFragment {
         viewGroup.addView(imageView);
 
         whatIsChannelText = new TextView(context);
-        whatIsChannelText.setTextColor(0xff212121);
+        whatIsChannelText.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         whatIsChannelText.setGravity(Gravity.CENTER_HORIZONTAL);
         whatIsChannelText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
         whatIsChannelText.setText(LocaleController.getString("ChannelAlertTitle", R.string.ChannelAlertTitle));
         viewGroup.addView(whatIsChannelText);
 
         descriptionText = new TextView(context);
-        descriptionText.setTextColor(0xff787878);
+        descriptionText.setTextColor(ContextCompat.getColor(context, R.color.secondary_text));
         descriptionText.setGravity(Gravity.CENTER_HORIZONTAL);
         descriptionText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         descriptionText.setText(LocaleController.getString("ChannelAlertText", R.string.ChannelAlertText));

@@ -12,14 +12,16 @@
     <!--THEMES-->
     <style name="Theme" parent="@android:style/Theme.Material">
         <item name="colorSwitchThumbNormal">@color/switch_thumb_material_dark</item>
-        <item name="android:actionMenuTextColor">@android:color/white</item>
+        <item name="android:actionBarStyle">@style/ActionBar</item>
     </style>
 
     <style name="Theme.Light" parent="@android:style/Theme.Material.Light">
         <item name="colorSwitchThumbNormal">@color/switch_thumb_material_light</item>
+        <item name="android:actionBarStyle">@style/ActionBar</item>
     </style>
 
     <style name="Theme.DayNight" parent="@style/Theme.Light"/>
+    <style name="Theme.DayNight.Dialog" parent="@android:style/Theme.Material.Light.Dialog"/>
     <style name="Theme.DayNight.Dialog.Alert" parent="@android:style/Theme.Material.Light.Dialog.Alert"/>
 
     <style name="Theme.TMessages.Start" parent="@style/Theme.DayNight">
@@ -79,8 +81,10 @@
 
     <!--ACTION BAR-->
 
+    <style name="ActionBar" parent="android:style/Widget.Material.Light.ActionBar"/>
+
     <style name="ActionBar.Transparent.TMessages.Start" parent="android:style/Widget.Material.Light.ActionBar">
-        <item name="android:background">#ff527da3</item>
+        <item name="android:background">@color/colorPrimary</item>
         <item name="android:textColor">#ffffffff</item>
         <item name="android:logo">@drawable/transparent</item>
         <item name="android:title">""</item>
@@ -122,7 +126,7 @@
         <item name="android:windowExitAnimation">@null</item>
     </style>
 
-    <style name="TransparentDialog" parent="@android:style/Theme.Dialog">
+    <style name="TransparentDialog" parent="@style/Theme.DayNight.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:background">@null</item>
         <item name="android:windowContentOverlay">@null</item>

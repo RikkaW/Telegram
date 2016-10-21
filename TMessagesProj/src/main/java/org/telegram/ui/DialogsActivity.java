@@ -21,6 +21,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Outline;
+import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -658,6 +659,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         floatingButton.setScaleType(ImageView.ScaleType.CENTER);
         floatingButton.setBackgroundResource(R.drawable.floating_states);
         floatingButton.setImageResource(R.drawable.floating_pencil);
+        floatingButton.getDrawable().setTint(ContextCompat.getColor(context, R.color.fab));
         if (Build.VERSION.SDK_INT >= 21) {
             StateListAnimator animator = new StateListAnimator();
             animator.addState(new int[]{android.R.attr.state_pressed}, ObjectAnimator.ofFloat(floatingButton, "translationZ", AndroidUtilities.dp(2), AndroidUtilities.dp(4)).setDuration(200));

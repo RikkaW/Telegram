@@ -161,7 +161,7 @@ public class LocaleController {
         sortedLanguages.add(localeInfo);
         languagesDict.put(localeInfo.shortName, localeInfo);
 
-        localeInfo = new LocaleInfo();
+        /*localeInfo = new LocaleInfo();
         localeInfo.name = "Italiano";
         localeInfo.nameEnglish = "Italian";
         localeInfo.shortName = "it";
@@ -222,7 +222,7 @@ public class LocaleController {
         localeInfo.shortName = "ko";
         localeInfo.pathToFile = null;
         sortedLanguages.add(localeInfo);
-        languagesDict.put(localeInfo.shortName, localeInfo);
+        languagesDict.put(localeInfo.shortName, localeInfo);*/
 
         localeInfo = new LocaleInfo();
         localeInfo.name = "简体中文";

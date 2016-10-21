@@ -762,24 +762,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         ((TextCheckCell) view).setChecked(nightMode == DayNightActivity.MODE_NIGHT_YES);
                     }
 
-                    boolean night = nightMode == DayNightActivity.MODE_NIGHT_YES;
-                    DividerCell.setDividerColor(ApplicationLoader.applicationContext, night);
-                    RadioCell.setDividerColor(ApplicationLoader.applicationContext, night);
-                    TextDetailSettingsCell.setDividerColor(ApplicationLoader.applicationContext, night);
-                    TextCheckCell.setDividerColor(ApplicationLoader.applicationContext, night);
-                    TextSettingsCell.setDividerColor(ApplicationLoader.applicationContext, night);
-                    SessionCell.setDividerColor(ApplicationLoader.applicationContext, night);
-                    StickerSetCell.setDividerColor(ApplicationLoader.applicationContext, night);
-                    HashtagSearchCell.setDividerColor(ApplicationLoader.applicationContext, night);
-                    CheckBoxCell.setDividerColor(ApplicationLoader.applicationContext, night);
-                    SharedDocumentCell.resetDivider();
-                    SharedLinkCell.resetDivider();
-                    RadioButtonCell.resetDivider();
-                    TextBlockCell.resetDivider();
-
                     getParentActivity().recreate();
-
-                    Log.d("tmessage", "night mode " + nightMode);
                 }
             }
         });
@@ -1168,14 +1151,6 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
         updateUserData();
         fixLayout();
-
-        actionBar.post(new Runnable() {
-            @Override
-            public void run() {
-                actionBar.setBackgroundColor(AvatarDrawable.getProfileBackColorForId(5));
-                actionBar.setItemsBackgroundColor(AvatarDrawable.getButtonColorForId(5));
-            }
-        });
     }
 
     @Override
@@ -1592,7 +1567,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                                 abi = "universal";
                                 break;
                         }
-                        ((TextInfoCell) view).setText(String.format(Locale.US, "Telegram for Android v%s (%d) %s", pInfo.versionName, code, abi));
+                        ((TextInfoCell) view).setText(String.format(Locale.US, "Rikkagram for Android v%s (%d) %s", pInfo.versionName, code, abi));
                     } catch (Exception e) {
                         FileLog.e("tmessages", e);
                     }
