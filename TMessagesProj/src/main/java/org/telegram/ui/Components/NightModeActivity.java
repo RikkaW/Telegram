@@ -105,6 +105,7 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
         ((LinearLayout) fragmentView).addView(sunsetCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
         sunriseCell = new TextSettingsCell(context);
+        sunriseCell.setForeground(R.drawable.list_selector);
         sunriseCell.setTextAndValue(LocaleController.getString("NightModeEndTime", R.string.NightModeEndTime), sunrise.toString(), false);
         ((LinearLayout) fragmentView).addView(sunriseCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 

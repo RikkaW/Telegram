@@ -81,7 +81,7 @@ android {
         }
     }
 
-    defaultConfig.versionCode = 851 + 5
+    defaultConfig.versionCode = 851 + 6
 
     sourceSets.debug {
         manifest.srcFile 'config/debug/AndroidManifest.xml'
@@ -121,7 +121,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 25
-        versionName "3.13.1.5"
+        versionName "3.13.1.6"
 
         /*externalNativeBuild {
             ndkBuild {
@@ -134,7 +134,9 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
             if (output.outputFile != null && output.outputFile.name.endsWith('.apk')) {
-                output.outputFile = file("${output.outputFile.parent}/Rikkagram-${variant.versionCode}.apk")
+                output.outputFile = file("${output.outputFile.parent}/Rikkagram"
+                        + "-${(int)(variant.versionCode/10)}"
+                        + "-${variant.flavorName}.apk")
             }
         }
     }
