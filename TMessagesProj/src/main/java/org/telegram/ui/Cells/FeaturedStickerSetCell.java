@@ -35,10 +35,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.query.StickersQuery;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.ForegroundFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Switch;
 
-public class FeaturedStickerSetCell extends FrameLayout {
+public class FeaturedStickerSetCell extends ForegroundFrameLayout {
 
     private TextView textView;
     private TextView valueTextView;
@@ -65,6 +66,9 @@ public class FeaturedStickerSetCell extends FrameLayout {
 
     public FeaturedStickerSetCell(Context context) {
         super(context);
+
+        setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
+        setElevation(AndroidUtilities.dp(2));
 
         if (paint == null) {
             paint = new Paint();

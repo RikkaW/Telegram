@@ -30,10 +30,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.ForegroundFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Switch;
 
-public class ArchivedStickerSetCell extends FrameLayout {
+public class ArchivedStickerSetCell extends ForegroundFrameLayout {
 
     private TextView textView;
     private TextView valueTextView;
@@ -48,6 +49,9 @@ public class ArchivedStickerSetCell extends FrameLayout {
 
     public ArchivedStickerSetCell(Context context, boolean needCheckBox) {
         super(context);
+
+        setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
+        setElevation(AndroidUtilities.dp(2));
 
         if (paint == null) {
             paint = new Paint();

@@ -100,7 +100,7 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
 
         fragmentView = new FrameLayout(context);
         FrameLayout frameLayout = (FrameLayout) fragmentView;
-        frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
+        frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
 
         emptyView = new EmptyTextProgressView(context);
         if (currentType == StickersQuery.TYPE_IMAGE) {
@@ -287,7 +287,7 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
             switch (viewType) {
                 case 0:
                     view = new ArchivedStickerSetCell(mContext, true);
-                    view.setBackgroundResource(R.drawable.list_selector_white);
+                    ((ArchivedStickerSetCell) view).setForeground(R.drawable.list_selector);
                     ((ArchivedStickerSetCell) view).setOnCheckClick(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

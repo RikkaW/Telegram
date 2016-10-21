@@ -89,12 +89,12 @@ public class Theme {
     public static int REPLY_PANEL_MESSAGE_TEXT_COLOR = 0xff222222;
 
     public static final int ALERT_PANEL_NAME_TEXT_COLOR = 0xff3a8ccf;
-    public static final int ALERT_PANEL_MESSAGE_TEXT_COLOR = 0xff999999;
+    public static int ALERT_PANEL_MESSAGE_TEXT_COLOR = 0xff999999;
 
     public static final int AUTODOWNLOAD_SHEET_SAVE_TEXT_COLOR = 0xff3a8ccf;
 
-    public static final int JOIN_SHEET_NAME_TEXT_COLOR = 0xff212121;
-    public static final int JOIN_SHEET_COUNT_TEXT_COLOR = 0xff999999;
+    public static int JOIN_SHEET_NAME_TEXT_COLOR = 0xff212121;
+    public static int JOIN_SHEET_COUNT_TEXT_COLOR = 0xff999999;
 
     public static final int SHARE_SHEET_COPY_TEXT_COLOR = 0xff3a8ccf;
     public static final int SHARE_SHEET_SEND_TEXT_COLOR = 0xff3ec1f9;
@@ -110,7 +110,7 @@ public class Theme {
     public static final int STICKERS_SHEET_REMOVE_TEXT_COLOR = 0xffcd5a5a;
 
     public static final int PINNED_PANEL_NAME_TEXT_COLOR = 0xff3a8ccf;
-    public static final int PINNED_PANEL_MESSAGE_TEXT_COLOR = 0xff999999;
+    public static int PINNED_PANEL_MESSAGE_TEXT_COLOR = 0xff999999;
 
     public static final int SECRET_CHAT_INFO_TEXT_COLOR = 0xffffffff;
 
@@ -413,10 +413,17 @@ public class Theme {
     private static void resetColor(Context context) {
         int white = ContextCompat.getColor(context, R.color.material_white_1000);
         int primary = ContextCompat.getColor(context, R.color.primary_text);
+        int secondary = ContextCompat.getColor(context, R.color.secondary_text);
         int forward = ContextCompat.getColor(context, R.color.message_forward_name);
 
         EmojiView.BACKGROUND_COLOR = ContextCompat.getColor(context, R.color.sticker_select_background);
         EmojiView.INDICATOR_COLOR = ContextCompat.getColor(context, R.color.sticker_indicator_background);
+
+        JOIN_SHEET_NAME_TEXT_COLOR = primary;
+
+        ALERT_PANEL_MESSAGE_TEXT_COLOR = secondary;
+        PINNED_PANEL_MESSAGE_TEXT_COLOR = secondary;
+        JOIN_SHEET_COUNT_TEXT_COLOR = secondary;
 
         ACTION_BAR_COLOR = ContextCompat.getColor(context, R.color.colorPrimary);
         ACTION_BAR_PROFILE_COLOR = ContextCompat.getColor(context, R.color.profile_color);
@@ -424,7 +431,7 @@ public class Theme {
         REPLY_PANEL_NAME_TEXT_COLOR = 0xff3a8ccf;
         REPLY_PANEL_MESSAGE_TEXT_COLOR = ContextCompat.getColor(context, R.color.replay_panel_text);
 
-        ATTACH_SHEET_TEXT_COLOR = ContextCompat.getColor(context, R.color.secondary_text);
+        ATTACH_SHEET_TEXT_COLOR = secondary;
 
         MSG_SELECTED_BACKGROUND_COLOR = 0x6633b5e5;
         MSG_WEB_PREVIEW_DURATION_TEXT_COLOR = white;

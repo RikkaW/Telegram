@@ -106,6 +106,16 @@ public class TextSettingsCell extends ForegroundFrameLayout {
         setWillNotDraw(!divider);
     }
 
+    public void setValue(String value) {
+        valueImageView.setVisibility(INVISIBLE);
+        if (value != null) {
+            valueTextView.setText(value);
+            valueTextView.setVisibility(VISIBLE);
+        } else {
+            valueTextView.setVisibility(INVISIBLE);
+        }
+    }
+
     public void setTextAndValue(String text, String value, boolean divider) {
         textView.setText(text);
         valueImageView.setVisibility(INVISIBLE);

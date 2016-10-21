@@ -8,6 +8,7 @@
 
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
@@ -15,6 +16,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -39,10 +41,21 @@ public class AvatarDrawable extends Drawable {
     private static int[] arrColorsButtons = {Theme.ACTION_BAR_RED_SELECTOR_COLOR, Theme.ACTION_BAR_ORANGE_SELECTOR_COLOR, Theme.ACTION_BAR_VIOLET_SELECTOR_COLOR,
             Theme.ACTION_BAR_GREEN_SELECTOR_COLOR, Theme.ACTION_BAR_CYAN_SELECTOR_COLOR, Theme.ACTION_BAR_BLUE_SELECTOR_COLOR, Theme.ACTION_BAR_VIOLET_SELECTOR_COLOR, Theme.ACTION_BAR_BLUE_SELECTOR_COLOR};
 
-    public static void resetColor() {
+    public static void resetColor(Context context) {
+        // red, origin, purple, green, cyan, [ACTION BAR], purple, blue
         arrColors = new int[]{0xffe56555, 0xfff28c48, 0xff8e85ee, 0xff76c84d, 0xff5fbed5, 0xff549cdd, 0xff8e85ee, 0xfff2749a};
         arrColorsProfiles = new int[]{0xffd86f65, 0xfff69d61, 0xff8c79d2, 0xff67b35d, 0xff56a2bb, Theme.ACTION_BAR_MAIN_AVATAR_COLOR, 0xff8c79d2, 0xfff37fa6};
-        arrColorsProfilesBack = new int[]{0xffca6056, 0xfff18944, 0xff7d6ac4, 0xff56a14c, 0xff4492ac, Theme.ACTION_BAR_PROFILE_COLOR, 0xff7d6ac4, 0xff4c84b6};
+
+        arrColorsProfilesBack = new int[]{
+                ContextCompat.getColor(context, R.color.avatar_profile_back_red),
+                ContextCompat.getColor(context, R.color.avatar_profile_back_origin),
+                ContextCompat.getColor(context, R.color.avatar_profile_back_purple),
+                ContextCompat.getColor(context, R.color.avatar_profile_back_green),
+                ContextCompat.getColor(context, R.color.avatar_profile_back_cyan),
+                Theme.ACTION_BAR_PROFILE_COLOR,
+                ContextCompat.getColor(context, R.color.avatar_profile_back_purple),
+                ContextCompat.getColor(context, R.color.avatar_profile_back_blue)};
+
         arrColorsProfilesText = new int[]{0xfff9cbc5, 0xfffdddc8, 0xffcdc4ed, 0xffc0edba, 0xffb8e2f0, Theme.ACTION_BAR_PROFILE_SUBTITLE_COLOR, 0xffcdc4ed, 0xffb3d7f7};
         arrColorsNames = new int[]{0xffca5650, 0xffd87b29, 0xff4e92cc, 0xff50b232, 0xff42b1a8, 0xff4e92cc, 0xff4e92cc, 0xff4e92cc};
         arrColorsButtons = new int[]{Theme.ACTION_BAR_RED_SELECTOR_COLOR, Theme.ACTION_BAR_ORANGE_SELECTOR_COLOR, Theme.ACTION_BAR_VIOLET_SELECTOR_COLOR,

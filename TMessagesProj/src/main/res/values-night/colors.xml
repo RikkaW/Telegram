@@ -42,4 +42,11 @@
     <color name="shared_photo_placeholder">@color/material_grey_850</color>
 
     <color name="dialog_count_color">@color/material_grey_850</color>
+
+    <color name="avatar_profile_back_red">#8f2e24</color>
+    <color name="avatar_profile_back_origin">#a55927</color>
+    <color name="avatar_profile_back_purple">#473070</color>
+    <color name="avatar_profile_back_green">#3c6c36</color>
+    <color name="avatar_profile_back_cyan">#1a7579</color>
+    <color name="avatar_profile_back_blue">#3a5c7a</color>
 </resources>

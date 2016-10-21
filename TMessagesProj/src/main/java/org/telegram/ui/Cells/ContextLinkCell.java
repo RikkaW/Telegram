@@ -14,6 +14,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -100,19 +101,23 @@ public class ContextLinkCell extends View implements MediaController.FileDownloa
 
     private ContextLinkCellDelegate delegate;
 
+    private static int DESCRIPTION_TEXT_COLOR;
+
     public ContextLinkCell(Context context) {
         super(context);
 
         if (titleTextPaint == null) {
             titleTextPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
             titleTextPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-            titleTextPaint.setColor(0xff212121);
+            titleTextPaint.setColor(ContextCompat.getColor(context, R.color.primary_text));
 
             descriptionTextPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
 
             paint = new Paint();
-            paint.setColor(0xffd9d9d9);
+            paint.setColor(ContextCompat.getColor(context, R.color.divider));
             paint.setStrokeWidth(1);
+
+            DESCRIPTION_TEXT_COLOR = ContextCompat.getColor(context, R.color.secondary_text);
         }
 
         titleTextPaint.setTextSize(AndroidUtilities.dp(15));
@@ -122,6 +127,10 @@ public class ContextLinkCell extends View implements MediaController.FileDownloa
         letterDrawable = new LetterDrawable();
         radialProgress = new RadialProgress(this);
         TAG = MediaController.getInstance().generateObserverTag();
+    }
+
+    public static void resetPaint() {
+        titleTextPaint = null;
     }
 
     @SuppressLint("DrawAllocation")
@@ -597,7 +606,7 @@ public class ContextLinkCell extends View implements MediaController.FileDownloa
         }
 
         if (descriptionLayout != null) {
-            descriptionTextPaint.setColor(0xff8a8a8a);
+            descriptionTextPaint.setColor(DESCRIPTION_TEXT_COLOR/*0xff8a8a8a*/);
             canvas.save();
             canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8 : AndroidUtilities.leftBaseline), descriptionY);
             descriptionLayout.draw(canvas);

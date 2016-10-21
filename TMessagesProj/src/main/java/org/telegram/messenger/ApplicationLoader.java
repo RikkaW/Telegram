@@ -39,6 +39,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Components.DayNightActivity;
 import org.telegram.ui.Components.ForegroundDetector;
+import org.telegram.ui.Components.TwilightManager;
 
 import java.io.File;
 import java.io.RandomAccessFile;
@@ -325,7 +326,10 @@ public class ApplicationLoader extends Application {
         startPushService();
 
         SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
-        DayNightActivity.setDefaultNightMode(preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_NO));
+        TwilightManager.setSunset(preferences.getInt("nightModeSunset", 22), preferences.getInt("nightModeSunsetMinute", 0));
+        TwilightManager.setSunrise(preferences.getInt("nightModeSunrise", 6), preferences.getInt("nightModeSunriseMinute", 0));
+        TwilightManager.setUseLocation(preferences.getBoolean("nightModeUseLocation", false));
+        DayNightActivity.setDefaultNightMode(preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM));
     }
 
     /*public static void sendRegIdToBackend(final String token) {

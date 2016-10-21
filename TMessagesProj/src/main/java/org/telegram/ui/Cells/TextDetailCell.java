@@ -75,5 +75,7 @@ public class TextDetailCell extends ForegroundFrameLayout {
         valueTextView.setText(value);
         imageView.setVisibility(VISIBLE);
         imageView.setImageResource(resId);
+
+        imageView.getDrawable().setTint(ContextCompat.getColor(getContext(), R.color.secondary_text));
     }
 }

@@ -69,12 +69,14 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.messenger.UserConfig;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.Adapters.DrawerLayoutAdapter;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
 import org.telegram.ui.Cells.ArchivedStickerSetCell;
 import org.telegram.ui.Cells.CheckBoxCell;
+import org.telegram.ui.Cells.ContextLinkCell;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.DividerCell;
 import org.telegram.ui.Cells.FeaturedStickerSetCell;
@@ -179,7 +181,7 @@ public class LaunchActivity extends DayNightActivity implements ActionBarLayout.
             AndroidUtilities.isInMultiwindow = isInMultiWindowMode();
         }
         Theme.loadRecources(this);
-        AvatarDrawable.resetColor();
+        AvatarDrawable.resetColor(this);
         MessageObject.resetPaint();
         ProfileSearchCell.resetPaint(this);
         DialogCell.resetPaintColor(this);
@@ -198,6 +200,8 @@ public class LaunchActivity extends DayNightActivity implements ActionBarLayout.
         TextBlockCell.resetDivider();
         FeaturedStickerSetCell.resetDivider();
         ArchivedStickerSetCell.resetDivider();
+        ActionBarPopupWindow.ActionBarPopupWindowLayout.resetDrawable();
+        ContextLinkCell.resetPaint();
 
         ApplicationLoader.reloadWallpaperNightModeChanged();
 

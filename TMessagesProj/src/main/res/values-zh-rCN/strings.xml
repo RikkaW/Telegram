@@ -1302,5 +1302,15 @@
     <!--Rikkagram-->
     <string name="UseGoogleEmoji">Google emoji</string>
     <string name="UseGoogleEmojiInfo">使用 Noto Color Emoji 而不是 iOS emoji</string>
-    <string name="NightMode">暗色主题（开发中）</string>
+    <string name="NightMode">夜间模式</string>
+    <string name="NightModeStatus">状态</string>
+    <string name="NightModeEnable">开启</string>
+    <string name="NightModeDisable">关闭</string>
+    <string name="NightModeAuto">自动</string>
+    <string name="NightModeFollowSystem">跟随系统</string>
+    <string name="NightModeAutoSwitch">自动切换时间</string>
+    <string name="NightModeStartTime">夜间模式开始时间</string>
+    <string name="NightModeEndTime">夜间模式结束时间</string>
+    <string name="NightModeAutoSwitchInfo">该设置只在您选择自动时生效。</string>
+    <string name="NightModeInfo">跟随系统可能需要您强制停止并重启应用才能生效。</string>
 </resources>

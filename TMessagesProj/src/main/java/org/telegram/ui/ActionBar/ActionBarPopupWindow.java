@@ -82,6 +82,10 @@ public class ActionBarPopupWindow extends PopupWindow {
         private ScrollView scrollView;
         private LinearLayout linearLayout;
 
+        public static void resetDrawable() {
+            backgroundDrawable = null;
+        }
+
         public ActionBarPopupWindowLayout(Context context) {
             super(context);
 

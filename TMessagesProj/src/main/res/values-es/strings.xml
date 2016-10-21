@@ -1296,8 +1296,17 @@
     <string name="formatterDay12H">h:mm a</string>
     <string name="formatDateAtTime">%1$s a las %2$s</string>
 
-    <!--Rikkagram-->
     <string name="UseGoogleEmoji">Google emoji</string>
     <string name="UseGoogleEmojiInfo">Use Noto Color Emoji instead of iOS emoji</string>
-    <string name="NightMode">Dark Theme (developing)</string>
+    <string name="NightMode">Night Mode</string>
+    <string name="NightModeStatus">Status</string>
+    <string name="NightModeEnable">Enable</string>
+    <string name="NightModeDisable">Disable</string>
+    <string name="NightModeAuto">Auto</string>
+    <string name="NightModeFollowSystem">Follow System</string>
+    <string name="NightModeAutoSwitch">Auto switch time</string>
+    <string name="NightModeStartTime">Start time</string>
+    <string name="NightModeEndTime">End time</string>
+    <string name="NightModeAutoSwitchInfo">This setting only take effect when you select auto.</string>
+    <string name="NightModeInfo">Follow System may need you to force stop and restart app to take effect.</string>
 </resources>

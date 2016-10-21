@@ -54,4 +54,13 @@
     <color name="shared_photo_placeholder">#fff5f5f5</color>
 
     <color name="dialog_count_color">#ffffffff</color>
+
+    <!--<color name="avatar_red"></color>
+    <color name="avatar_profile_red"></color>-->
+    <color name="avatar_profile_back_red">#ffca6056</color>
+    <color name="avatar_profile_back_origin">#fff18944</color>
+    <color name="avatar_profile_back_purple">#ff7d6ac4</color>
+    <color name="avatar_profile_back_green">#ff56a14c</color>
+    <color name="avatar_profile_back_cyan">#ff4492ac</color>
+    <color name="avatar_profile_back_blue">#4c84b6</color>
 </resources>

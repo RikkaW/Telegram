@@ -14,6 +14,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -91,7 +92,8 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
         botProgressPaint.setStrokeWidth(AndroidUtilities.dp(2));
 
         nameTextView = new TextView(context);
-        nameTextView.setTextColor(0xff333333);
+        // TODO
+        nameTextView.setTextColor(ContextCompat.getColor(context, R.color.primary_text) /*0xff333333*/);
         nameTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);
         nameTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         nameTextView.setEllipsize(TextUtils.TruncateAt.END);

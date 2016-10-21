@@ -11,6 +11,7 @@ package org.telegram.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -88,8 +89,8 @@ public class ChangeNameActivity extends BaseFragment {
 
         firstNameField = new EditText(context);
         firstNameField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
-        firstNameField.setHintTextColor(0xff979797);
-        firstNameField.setTextColor(0xff212121);
+        //firstNameField.setHintTextColor(0xff979797);
+        firstNameField.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         firstNameField.setMaxLines(1);
         firstNameField.setLines(1);
         firstNameField.setSingleLine(true);
@@ -113,8 +114,8 @@ public class ChangeNameActivity extends BaseFragment {
 
         lastNameField = new EditText(context);
         lastNameField.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
-        lastNameField.setHintTextColor(0xff979797);
-        lastNameField.setTextColor(0xff212121);
+        //lastNameField.setHintTextColor(0xff979797);
+        lastNameField.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         lastNameField.setMaxLines(1);
         lastNameField.setLines(1);
         lastNameField.setSingleLine(true);

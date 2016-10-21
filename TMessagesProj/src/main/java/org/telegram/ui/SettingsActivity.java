@@ -36,7 +36,6 @@ import android.text.Spannable;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Base64;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -52,16 +51,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimatorListenerAdapterProxy;
-import org.telegram.PhoneFormat.PhoneFormat;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.UserObject;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.query.StickersQuery;
 import org.telegram.messenger.support.widget.LinearLayoutManager;
@@ -71,44 +77,28 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.MessageObject;
+import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarMenu;
+import org.telegram.ui.ActionBar.ActionBarMenuItem;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CheckBoxCell;
-import org.telegram.ui.Cells.DialogCell;
-import org.telegram.ui.Cells.DividerCell;
-import org.telegram.ui.Cells.HashtagSearchCell;
-import org.telegram.ui.Cells.RadioButtonCell;
-import org.telegram.ui.Cells.RadioCell;
-import org.telegram.ui.Cells.SessionCell;
-import org.telegram.ui.Cells.SharedDocumentCell;
-import org.telegram.ui.Cells.SharedLinkCell;
-import org.telegram.ui.Cells.StickerSetCell;
-import org.telegram.ui.Cells.TextBlockCell;
-import org.telegram.ui.Cells.TextInfoCell;
 import org.telegram.ui.Cells.EmptyCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextDetailSettingsCell;
+import org.telegram.ui.Cells.TextInfoCell;
 import org.telegram.ui.Cells.TextSettingsCell;
-import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.ActionBarMenu;
-import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.AvatarUpdater;
 import org.telegram.ui.Components.BackupImageView;
-import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.DayNightActivity;
 import org.telegram.ui.Components.ForegroundFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.NightModeActivity;
 import org.telegram.ui.Components.NumberPicker;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RecyclerListView;
 
 import java.io.File;
@@ -182,6 +172,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
     private final static int edit_name = 1;
     private final static int logout = 2;
+
+    public SettingsActivity() {
+    }
 
     private static class LinkMovementMethodMy extends LinkMovementMethod {
         @Override
@@ -264,12 +257,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         privacyRow = rowCount++;
         backgroundRow = rowCount++;
         languageRow = rowCount++;
-        enableAnimationsRow = rowCount++;
-
-        // Rikkagram
-        //fakeBoldRow = rowCount++;
         nightModeRow = rowCount++;
-
+        enableAnimationsRow = rowCount++;
         mediaDownloadSection = rowCount++;
         mediaDownloadSection2 = rowCount++;
         mobileDownloadRow = rowCount++;
@@ -751,18 +740,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         ((TextCheckCell) view).setChecked(!fakeBold);
                     }
                 } else if (position == nightModeRow) {
-                    SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
-                    int nightMode = preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_NO);
-                    nightMode = nightMode != DayNightActivity.MODE_NIGHT_YES ? DayNightActivity.MODE_NIGHT_YES : DayNightActivity.MODE_NIGHT_NO;
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putInt("nightMode", nightMode);
-                    editor.commit();
-                    DayNightActivity.setDefaultNightMode(nightMode);
-                    if (view instanceof TextCheckCell) {
-                        ((TextCheckCell) view).setChecked(nightMode == DayNightActivity.MODE_NIGHT_YES);
-                    }
-
-                    getParentActivity().recreate();
+                    presentFragment(new NightModeActivity());
                 }
             }
         });
@@ -1382,6 +1360,10 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         textCell.setText(LocaleController.getString("PrivacyPolicy", R.string.PrivacyPolicy), true);
                     } else if (position == emojiRow) {
                         textCell.setText(LocaleController.getString("Emoji", R.string.Emoji), true);
+                    } else if (position == nightModeRow) {
+                        SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
+                        int nightMode = preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM);
+                        textCell.setTextAndValue(LocaleController.getString("NightMode", R.string.NightMode), NightModeActivity.getNightModeStatus(nightMode), true);
                     }
                     break;
                 }
@@ -1389,7 +1371,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     TextCheckCell textCell = (TextCheckCell) holder.itemView;
                     SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
                     if (position == enableAnimationsRow) {
-                        textCell.setTextAndCheck(LocaleController.getString("EnableAnimations", R.string.EnableAnimations), preferences.getBoolean("view_animations", true), true);
+                        textCell.setTextAndCheck(LocaleController.getString("EnableAnimations", R.string.EnableAnimations), preferences.getBoolean("view_animations", true), false);
                     } else if (position == sendByEnterRow) {
                         textCell.setTextAndCheck(LocaleController.getString("SendByEnter", R.string.SendByEnter), preferences.getBoolean("send_by_enter", false), false);
                     } else if (position == saveToGalleryRow) {
@@ -1406,8 +1388,6 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         textCell.setTextAndValueAndCheck(LocaleController.getString("UseGoogleEmoji", R.string.UseGoogleEmoji), LocaleController.getString("UseGoogleEmojiInfo", R.string.UseGoogleEmojiInfo), preferences.getBoolean("useGoogleEmoji", true), false, true);
                     } else if (position == fakeBoldRow) {
                         textCell.setTextAndValueAndCheck("Replace medium font as bold"/*LocaleController.getString("UseGoogleEmoji", R.string.UseGoogleEmoji)*/, "Use it if no medium font in system"/*LocaleController.getString("UseGoogleEmojiInfo", R.string.UseGoogleEmojiInfo)*/, preferences.getBoolean("fakeBold", false), false, true);
-                    } else if (position == nightModeRow) {
-                        textCell.setTextAndCheck(LocaleController.getString("NightMode", R.string.NightMode), preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_NO) != DayNightActivity.MODE_NIGHT_NO, false);
                     }
                     break;
                 }
@@ -1511,7 +1491,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         position == mobileDownloadRow || position == clearLogsRow || position == roamingDownloadRow || position == languageRow || position == usernameRow ||
                         position == switchBackendButtonRow || position == telegramFaqRow || position == contactsSortRow || position == contactsReimportRow || position == saveToGalleryRow ||
                         position == stickersRow || position == cacheRow || position == raiseToSpeakRow || position == privacyPolicyRow || position == customTabsRow || position == directShareRow || position == versionRow ||
-                        position == emojiRow || position == googleEmojiRow || position == fakeBoldRow || position == nightModeRow) { // Rikkagram
+                        position == emojiRow || position == googleEmojiRow || position == fakeBoldRow || position == nightModeRow) {
                     if (holder.itemView instanceof ForegroundFrameLayout) {
                         if (holder.itemView.getForeground() == null) {
                             holder.itemView.setForeground(holder.itemView.getContext()
@@ -1587,9 +1567,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
             if (position == settingsSectionRow || position == supportSectionRow || position == messagesSectionRow || position == mediaDownloadSection || position == contactsSectionRow) {
                 return 1;
-            } else if (position == enableAnimationsRow || position == sendByEnterRow || position == saveToGalleryRow || position == autoplayGifsRow || position == raiseToSpeakRow || position == customTabsRow || position == directShareRow || position == googleEmojiRow || position == fakeBoldRow || position == nightModeRow) { // Rikkagram
+            } else if (position == enableAnimationsRow || position == sendByEnterRow || position == saveToGalleryRow || position == autoplayGifsRow || position == raiseToSpeakRow || position == customTabsRow || position == directShareRow || position == googleEmojiRow || position == fakeBoldRow) {
                 return 3;
-            } else if (position == notificationRow || position == backgroundRow || position == askQuestionRow || position == sendLogsRow || position == privacyRow || position == clearLogsRow || position == switchBackendButtonRow || position == telegramFaqRow || position == contactsReimportRow || position == textSizeRow || position == languageRow || position == contactsSortRow || position == stickersRow || position == cacheRow || position == privacyPolicyRow || position == emojiRow) {
+            } else if (position == notificationRow || position == backgroundRow || position == askQuestionRow || position == sendLogsRow || position == privacyRow || position == clearLogsRow || position == switchBackendButtonRow || position == telegramFaqRow || position == contactsReimportRow || position == textSizeRow || position == languageRow || position == contactsSortRow || position == stickersRow || position == cacheRow || position == privacyPolicyRow || position == emojiRow || position == nightModeRow) {
                 return 2;
             } else if (position == versionRow) {
                 return 5;

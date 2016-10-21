@@ -32,7 +32,7 @@ public class ChatUnreadCell extends ForegroundFrameLayout {
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.chat_drawable_tint)); //setBackgroundResource(R.drawable.newmsg_divider);
         frameLayout.setElevation(AndroidUtilities.dp(1));
-        addView(frameLayout, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 27, Gravity.LEFT | Gravity.TOP, 0, AndroidUtilities.dp(4), 0, AndroidUtilities.dp(4)));
+        addView(frameLayout, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 27, Gravity.LEFT | Gravity.TOP, 0, 8, 0, 4));
 
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.ic_ab_new);

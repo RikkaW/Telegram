@@ -107,6 +107,7 @@ public class AboutLinkCell extends FrameLayout {
             imageView.setImageDrawable(null);
         } else {
             imageView.setImageResource(resId);
+            imageView.getDrawable().setTint(ContextCompat.getColor(getContext(), R.color.secondary_text));
         }
     }
 

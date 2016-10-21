@@ -35,14 +35,32 @@ import java.util.Calendar;
 /**
  * Class which managing whether we are in the night or not.
  */
-class TwilightManager {
+public class TwilightManager {
 
     private static final String TAG = "TwilightManager";
 
-    private static final int SUNRISE = 6; // 6am
-    private static final int SUNSET = 22; // 10pm
+    private static int SUNRISE = 6; // 6am
+    private static int SUNRISE_MINUTE = 0;
+    private static int SUNSET = 22; // 10pm
+    private static int SUNSET_MINUTE = 0;
+
+    private static boolean useLocation;
 
     private static TwilightManager sInstance;
+
+    public static void setUseLocation(boolean useLocation) {
+        TwilightManager.useLocation = useLocation;
+    }
+
+    public static void setSunrise(int hour, int minute) {
+        TwilightManager.SUNRISE = hour;
+        TwilightManager.SUNRISE_MINUTE = minute;
+    }
+
+    public static void setSunset(int hour, int minute) {
+        TwilightManager.SUNSET = hour;
+        TwilightManager.SUNSET_MINUTE = minute;
+    }
 
     static TwilightManager getInstance(@NonNull Context context) {
         if (sInstance == null) {
@@ -84,20 +102,23 @@ class TwilightManager {
 
         // Else, we will try and grab the last known location
         final Location location = getLastKnownLocation();
-        if (location != null) {
+        if (!useLocation || location == null) {
+            if (location == null) {
+                Log.i(TAG, "Could not get last known location. This is probably because the app does not"
+                        + " have any location permissions. Falling back to hardcoded"
+                        + " sunrise/sunset values.");
+            }
+
+            // If we don't have a location, we'll use our hardcoded sunrise/sunset values.
+            // These aren't great, but it's better than nothing.
+            Calendar calendar = Calendar.getInstance();
+            final int hour = calendar.get(Calendar.HOUR_OF_DAY);
+            final int minute = calendar.get(Calendar.MINUTE);
+            return (hour < SUNRISE && minute < SUNRISE_MINUTE) || (hour >= SUNSET && minute >= SUNSET_MINUTE);
+        } else {
             updateState(location);
             return state.isNight;
         }
-
-        Log.i(TAG, "Could not get last known location. This is probably because the app does not"
-                + " have any location permissions. Falling back to hardcoded"
-                + " sunrise/sunset values.");
-
-        // If we don't have a location, we'll use our hardcoded sunrise/sunset values.
-        // These aren't great, but it's better than nothing.
-        Calendar calendar = Calendar.getInstance();
-        final int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        return hour < SUNRISE || hour >= SUNSET;
     }
 
     private Location getLastKnownLocation() {
