@@ -22,10 +22,9 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.text.TextPaint;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
@@ -119,13 +118,19 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         return code;
     }
 
-    private class ImageViewEmoji extends ForegroundTextView {
+    private static TextPaint emojiPaint;
+
+    private class ImageViewEmoji extends ImageView {
 
         private boolean touched;
         private float lastX;
         private float lastY;
         private float touchedX;
         private float touchedY;
+
+        private int mTextSize;
+
+        private String mText;
 
         public ImageViewEmoji(Context context) {
             super(context);
@@ -189,9 +194,14 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 }
             });
             setBackgroundResource(R.drawable.list_selector);
-            setGravity(Gravity.CENTER);
-            setTypeface(AndroidUtilities.getTypeface("fonts/NotoColorEmoji.ttf"));
-            setTextColor(Color.BLACK);
+            setScaleType(ScaleType.CENTER);
+
+            if (emojiPaint == null) {
+                emojiPaint = new TextPaint();
+                emojiPaint.setTypeface(AndroidUtilities.getTypeface("fonts/NotoColorEmoji.ttf"));
+                emojiPaint.setColor(Color.BLACK);
+            }
+
         }
 
         private void sendEmoji(String override) {
@@ -236,8 +246,27 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         @Override
         public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
             setMeasuredDimension(View.MeasureSpec.getSize(widthMeasureSpec), View.MeasureSpec.getSize(widthMeasureSpec));
-            if (getPaint().getTextSize() != 0.6f * getMeasuredWidth()) {
-                getPaint().setTextSize(0.6f * getMeasuredWidth());
+            if (mTextSize == 0) {
+                mTextSize = (int) (0.6f * getMeasuredWidth());
+                emojiPaint.setTextSize(mTextSize);
+            }
+        }
+
+        private android.graphics.Rect r = new android.graphics.Rect();
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+
+            if (mText != null) {
+                canvas.getClipBounds(r);
+                int height = r.height();
+                int width = r.width();
+                emojiPaint.setTextAlign(Paint.Align.LEFT);
+                emojiPaint.getTextBounds(mText, 0, mText.length(), r);
+                float x = width / 2f - r.width() / 2f - r.left;
+                float y = height / 2f + r.height() / 2f - r.bottom;
+                canvas.drawText(mText, x, y, emojiPaint);
             }
         }
 
@@ -276,10 +305,10 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                             }
                             if (MessagesController.getInstance().useGoogleEmoji) {
                                 setText(code);
-                                setForeground(null);
+                                setImageDrawable(null);
                             } else {
                                 setText(null);
-                                setForeground(Emoji.getEmojiBigDrawable(code));
+                                setImageDrawable(Emoji.getEmojiBigDrawable(code));
                             }
                             sendEmoji(null);
                             saveEmojiColors();
@@ -318,6 +347,14 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             lastX = event.getX();
             lastY = event.getY();
             return super.onTouchEvent(event);
+        }
+
+        public void setText(String text) {
+            mText = text;
+        }
+
+        public String getText() {
+            return mText;
         }
     }
 
@@ -2102,10 +2139,10 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             }
             if (MessagesController.getInstance().useGoogleEmoji) {
                 imageView.setText(code);
-                imageView.setForeground(null);
+                imageView.setImageDrawable(null);
             } else {
                 imageView.setText(null);
-                imageView.setForeground(Emoji.getEmojiBigDrawable(code));
+                imageView.setImageDrawable(Emoji.getEmojiBigDrawable(code));
             }
 
             imageView.setTag(code);

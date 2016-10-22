@@ -1301,13 +1301,13 @@
     <string name="UseGoogleEmojiInfo">Use Noto Color Emoji instead of iOS emoji</string>
     <string name="NightMode">Night Mode</string>
     <string name="NightModeStatus">Status</string>
-    <string name="NightModeEnable">Enable</string>
-    <string name="NightModeDisable">Disable</string>
+    <string name="NightModeEnable">Enabled</string>
+    <string name="NightModeDisable">Disabled</string>
     <string name="NightModeAuto">Auto</string>
     <string name="NightModeFollowSystem">Follow System</string>
-    <string name="NightModeAutoSwitch">Auto switch time</string>
-    <string name="NightModeStartTime">Start time</string>
-    <string name="NightModeEndTime">End time</string>
-    <string name="NightModeAutoSwitchInfo">This setting only take effect when you select auto.</string>
-    <string name="NightModeInfo">Follow System may need you to force stop and restart app to take effect.</string>
+    <string name="NightModeAutoSwitch">Night time</string>
+    <string name="NightModeStartTime">From</string>
+    <string name="NightModeAutoSwitchInfo">The above section will only take effect if \'Auto\' is selected.</string>
+    <string name="NightModeEndTime">To</string>
+    <string name="NightModeInfo">Restart of the app may be required for \'Follow System\' to come into effect</string>
 </resources>
