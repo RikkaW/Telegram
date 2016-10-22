@@ -97,7 +97,6 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.DayNightActivity;
 import org.telegram.ui.Components.ForegroundFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.NightModeActivity;
 import org.telegram.ui.Components.NumberPicker;
 import org.telegram.ui.Components.RecyclerListView;
 

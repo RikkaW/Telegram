@@ -1,4 +1,4 @@
-package org.telegram.ui.Components;
+package org.telegram.ui;
 
 import android.app.Activity;
 import android.app.TimePickerDialog;
@@ -22,6 +22,9 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSettingsCell;
+import org.telegram.ui.Components.DayNightActivity;
+import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.TwilightManager;
 
 import java.util.Calendar;
 
