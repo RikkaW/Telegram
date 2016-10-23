@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -15,9 +16,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
 import android.support.annotation.VisibleForTesting;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.R;
+import org.telegram.messenger.exoplayer.C;
 
 /**
  * Created by Rikka on 2016/10/18.
@@ -65,6 +69,13 @@ public class DayNightActivity extends Activity {
                 setTheme(mThemeId);
             }
         }
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        setTaskDescription(new ActivityManager.TaskDescription(null, null, ContextCompat.getColor(this, R.color.colorPrimary)));
     }
 
     @Override
