@@ -1295,7 +1295,6 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             return rowCount;
         }
 
-        @SuppressLint("NewApi")
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             boolean checkBackground = true;
@@ -1492,15 +1491,16 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         position == stickersRow || position == cacheRow || position == raiseToSpeakRow || position == privacyPolicyRow || position == customTabsRow || position == directShareRow || position == versionRow ||
                         position == emojiRow || position == googleEmojiRow || position == fakeBoldRow || position == nightModeRow) {
                     if (holder.itemView instanceof ForegroundFrameLayout) {
-                        if (holder.itemView.getForeground() == null) {
-                            holder.itemView.setForeground(holder.itemView.getContext()
-                                    .getDrawable(R.drawable.list_selector));
+                        ForegroundFrameLayout view = (ForegroundFrameLayout) holder.itemView;
+                        if (view.getForeground() == null) {
+                            view.setForeground(R.drawable.list_selector);
                         }
                     }
                 } else {
                     if (holder.itemView instanceof ForegroundFrameLayout) {
-                        if (holder.itemView.getForeground() != null) {
-                            holder.itemView.setForeground(null);
+                        ForegroundFrameLayout view = (ForegroundFrameLayout) holder.itemView;
+                        if (view.getForeground() != null) {
+                            view.setForeground(null);
                         }
                     }
                 }

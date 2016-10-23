@@ -86,6 +86,7 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.AvatarUpdater;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.Components.ForegroundFrameLayout;
 import org.telegram.ui.Components.IdenticonDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
@@ -2373,7 +2374,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             return new Holder(view);
         }
 
-        @SuppressLint("NewApi")
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int i) {
             boolean checkBackground = true;
@@ -2542,13 +2542,18 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             i == addMemberRow || i == channelNameRow || i == leaveChannelRow || i == membersRow || i == managementRow ||
                             i == blockedUsersRow || i == channelInfoRow;
                 }
-                if (enabled) {
-                    if (holder.itemView.getForeground() == null) {
-                        holder.itemView.setForeground(holder.itemView.getContext().getDrawable(R.drawable.list_selector));
-                    }
-                } else {
-                    if (holder.itemView.getForeground() != null) {
-                        holder.itemView.setForeground(null);
+
+                if (holder.itemView instanceof ForegroundFrameLayout) {
+                    ForegroundFrameLayout view = (ForegroundFrameLayout) holder.itemView;
+
+                    if (enabled) {
+                        if (view.getForeground() == null) {
+                            view.setForeground(R.drawable.list_selector);
+                        }
+                    } else {
+                        if (view.getForeground() != null) {
+                            view.setForeground(null);
+                        }
                     }
                 }
             }

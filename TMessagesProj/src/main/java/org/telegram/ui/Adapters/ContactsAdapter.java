@@ -271,7 +271,7 @@ public class ContactsAdapter extends BaseSectionsAdapter {
         }
         if (type != 4) {
             if (convertView instanceof ForegroundFrameLayout) {
-                convertView.setForeground(convertView.getContext().getDrawable(R.drawable.list_selector));
+                ((ForegroundFrameLayout) convertView).setForeground(R.drawable.list_selector);
             }
         }
         return convertView;
