@@ -10,8 +10,6 @@
         <item name="android:background">@drawable/edit_text</item>
     </style>
 
-    <style name="Theme.TMessages.TextView.Drawer" parent="@style/Theme.TMessages.TextView"/>
-
     <style name="Theme.TMessages.Dialog.Alert.Chat" parent="@style/Theme.TMessages.Dialog.Alert">
         <item name="android:colorBackground">@color/chat_list_background</item>
     </style>

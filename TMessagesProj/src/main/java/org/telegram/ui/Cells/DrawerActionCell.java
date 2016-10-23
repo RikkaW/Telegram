@@ -30,8 +30,8 @@ public class DrawerActionCell extends FrameLayout {
     public DrawerActionCell(Context context) {
         super(context);
 
-        textView = new TextView(context, null, R.style.Theme_TMessages_TextView_Drawer);
-        //textView.setTextColor(0xff444444);
+        textView = new TextView(context);
+        textView.setTextColor(ContextCompat.getColor(context, R.color.drawer_text));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         textView.setLines(1);

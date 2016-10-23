@@ -81,9 +81,9 @@ public class Theme {
     public static final int CHAT_EMPTY_VIEW_TEXT_COLOR = 0xffffffff;
     public static final int CHAT_SEARCH_COUNT_TEXT_COLOR = 0xff4e9ad4;
 
-    public static final int INAPP_PLAYER_PERFORMER_TEXT_COLOR = 0xff2f3438;
-    public static final int INAPP_PLAYER_TITLE_TEXT_COLOR = 0xff2f3438;
-    public static final int INAPP_PLAYER_BACKGROUND_COLOR = 0xffffffff;
+    public static int INAPP_PLAYER_PERFORMER_TEXT_COLOR = 0xff2f3438;
+    public static int INAPP_PLAYER_TITLE_TEXT_COLOR = 0xff2f3438;
+    public static int INAPP_PLAYER_BACKGROUND_COLOR = 0xffffffff;
 
     public static int REPLY_PANEL_NAME_TEXT_COLOR = 0xff3a8ccf;
     public static int REPLY_PANEL_MESSAGE_TEXT_COLOR = 0xff222222;
@@ -96,12 +96,12 @@ public class Theme {
     public static int JOIN_SHEET_NAME_TEXT_COLOR = 0xff212121;
     public static int JOIN_SHEET_COUNT_TEXT_COLOR = 0xff999999;
 
-    public static final int SHARE_SHEET_COPY_TEXT_COLOR = 0xff3a8ccf;
-    public static final int SHARE_SHEET_SEND_TEXT_COLOR = 0xff3ec1f9;
-    public static final int SHARE_SHEET_SEND_DISABLED_TEXT_COLOR = 0xffb3b3b3;
-    public static final int SHARE_SHEET_EDIT_TEXT_COLOR = 0xff212121;
-    public static final int SHARE_SHEET_EDIT_PLACEHOLDER_TEXT_COLOR = 0xff979797;
-    public static final int SHARE_SHEET_BADGE_TEXT_COLOR = 0xffffffff;
+    public static int SHARE_SHEET_COPY_TEXT_COLOR = 0xff3a8ccf;
+    public static int SHARE_SHEET_SEND_TEXT_COLOR = 0xff3ec1f9;
+    public static int SHARE_SHEET_SEND_DISABLED_TEXT_COLOR = 0xffb3b3b3;
+    public static int SHARE_SHEET_EDIT_TEXT_COLOR = 0xff212121;
+    public static int SHARE_SHEET_EDIT_PLACEHOLDER_TEXT_COLOR = 0xff979797;
+    public static int SHARE_SHEET_BADGE_TEXT_COLOR = 0xffffffff;
 
     public static final int STICKERS_SHEET_TITLE_TEXT_COLOR = 0xff212121;
     public static final int STICKERS_SHEET_SEND_TEXT_COLOR = 0xff3a8ccf;
@@ -414,10 +414,25 @@ public class Theme {
         int white = ContextCompat.getColor(context, R.color.material_white_1000);
         int primary = ContextCompat.getColor(context, R.color.primary_text);
         int secondary = ContextCompat.getColor(context, R.color.secondary_text);
+        int primary_inverse = ContextCompat.getColor(context, R.color.primary_text_inverse);
+        int disabled = ContextCompat.getColor(context, R.color.disabled_text);
         int forward = ContextCompat.getColor(context, R.color.message_forward_name);
+        int background = ContextCompat.getColor(context, R.color.background);
+        int out_media = ContextCompat.getColor(context, R.color.message_media);
 
         EmojiView.BACKGROUND_COLOR = ContextCompat.getColor(context, R.color.sticker_select_background);
         EmojiView.INDICATOR_COLOR = ContextCompat.getColor(context, R.color.sticker_indicator_background);
+
+        INAPP_PLAYER_PERFORMER_TEXT_COLOR = ContextCompat.getColor(context, R.color.in_app_player_title);
+        INAPP_PLAYER_TITLE_TEXT_COLOR = ContextCompat.getColor(context, R.color.in_app_player_title);
+        INAPP_PLAYER_BACKGROUND_COLOR = background;
+
+        SHARE_SHEET_COPY_TEXT_COLOR = 0xff3a8ccf;
+        SHARE_SHEET_SEND_TEXT_COLOR = 0xff3ec1f9;
+        SHARE_SHEET_SEND_DISABLED_TEXT_COLOR = disabled;
+        SHARE_SHEET_EDIT_TEXT_COLOR = primary;
+        SHARE_SHEET_EDIT_PLACEHOLDER_TEXT_COLOR = secondary;
+        SHARE_SHEET_BADGE_TEXT_COLOR = primary_inverse;
 
         JOIN_SHEET_NAME_TEXT_COLOR = primary;
 
@@ -465,7 +480,7 @@ public class Theme {
         MSG_IN_CONTACT_NAME_TEXT_COLOR = 0xff4e9ad4;
         MSG_OUT_CONTACT_NAME_TEXT_COLOR = forward;
         MSG_IN_CONTACT_PHONE_TEXT_COLOR = 0xff2f3438;
-        MSG_OUT_CONTACT_PHONE_TEXT_COLOR = 0xff354234;
+        MSG_OUT_CONTACT_PHONE_TEXT_COLOR = out_media;
         MSG_MEDIA_PROGRESS_COLOR = white;
         MSG_IN_AUDIO_PROGRESS_COLOR = white;
         MSG_OUT_AUDIO_PROGRESS_COLOR = 0xffefffde;
@@ -477,7 +492,7 @@ public class Theme {
         MSG_IN_TIME_SELECTED_TEXT_COLOR = 0xff89b4c1;
         MSG_OUT_TIME_SELECTED_TEXT_COLOR = 0xff70b15c;
         MSG_IN_AUDIO_PERFORMER_TEXT_COLOR = 0xff2f3438;
-        MSG_OUT_AUDIO_PERFORMER_TEXT_COLOR = 0xff354234;
+        MSG_OUT_AUDIO_PERFORMER_TEXT_COLOR = out_media;
         MSG_IN_AUDIO_TITLE_TEXT_COLOR = 0xff4e9ad4;
         MSG_OUT_AUDIO_TITLE_TEXT_COLOR = forward;
         MSG_IN_AUDIO_DURATION_TEXT_COLOR = 0xffa1aab3;
@@ -518,7 +533,7 @@ public class Theme {
         MSG_OUT_VENUE_INFO_SELECTED_TEXT_COLOR = 0xff65b05b;
         MSG_MEDIA_INFO_TEXT_COLOR = white;
         MSG_TEXT_COLOR = primary;
-        MSG_LINK_TEXT_COLOR = 0xff2678b6;
+        MSG_LINK_TEXT_COLOR = ContextCompat.getColor(context, R.color.msg_link_text);
         MSG_LINK_SELECT_BACKGROUND_COLOR = 0x3362a9e3;
         MSG_TEXT_SELECT_BACKGROUND_COLOR = 0x6662a9e3;
     }

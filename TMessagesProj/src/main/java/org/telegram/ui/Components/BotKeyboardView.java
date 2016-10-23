@@ -9,6 +9,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -48,7 +49,7 @@ public class BotKeyboardView extends LinearLayout {
         container.setOrientation(VERTICAL);
         scrollView.addView(container);
 
-        setBackgroundColor(0xfff5f6f7);
+        setBackgroundColor(ContextCompat.getColor(context, R.color.sticker_select_background));
     }
 
     public void setDelegate(BotKeyboardViewDelegate botKeyboardViewDelegate) {
@@ -102,10 +103,10 @@ public class BotKeyboardView extends LinearLayout {
                     TLRPC.KeyboardButton button = row.buttons.get(b);
                     TextView textView = new TextView(getContext());
                     textView.setTag(button);
-                    textView.setTextColor(0xff36474f);
+                    textView.setTextColor(ContextCompat.getColor(getContext(), R.color.bot_keyboard_text));
                     textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
                     textView.setGravity(Gravity.CENTER);
-                    textView.setBackgroundResource(R.drawable.bot_keyboard_states);
+                    textView.setBackgroundResource(R.drawable.bot_keyboard_button2);
                     textView.setPadding(AndroidUtilities.dp(4), 0, AndroidUtilities.dp(4), 0);
                     textView.setText(Emoji.replaceEmoji(button.text, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16), false));
                     layout.addView(textView, LayoutHelper.createLinear(0, LayoutHelper.MATCH_PARENT, weight, 0, 0, b != row.buttons.size() - 1 ? 10 : 0, 0));

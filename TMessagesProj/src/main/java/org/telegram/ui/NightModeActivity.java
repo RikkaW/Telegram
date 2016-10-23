@@ -37,8 +37,24 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
     private TextSettingsCell sunriseCell;
     private TextSettingsCell sunsetCell;
 
+    private int[] hourOfDay, minute;
+    private static final int SUNRISE = 0;
+    private static final int SUNSET = 1;
+
+
     @Override
     public View createView(Context context) {
+        hourOfDay = new int[2];
+        minute = new int[2];
+
+        SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
+
+        hourOfDay[SUNRISE] = preferences.getInt("nightModeSunrise", 6);
+        minute[SUNRISE] = preferences.getInt("nightModeSunriseMinute", 0);
+
+        hourOfDay[SUNSET] = preferences.getInt("nightModeSunset", 22);
+        minute[SUNSET] = preferences.getInt("nightModeSunsetMinute", 0);
+
         actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         actionBar.setAllowOverlayTitle(true);
         actionBar.setTitle(LocaleController.getString("NightMode", R.string.NightMode));
@@ -64,7 +80,6 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
 
         ((LinearLayout) fragmentView).setOrientation(LinearLayout.VERTICAL);
 
-        SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
         int nightMode = preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM);
 
         TextSettingsCell nightModeCell = new TextSettingsCell(context);
@@ -87,18 +102,18 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
 
         CharSequence sunset, sunrise;
         if (DateFormat.is24HourFormat(context)) {
-            calendar.set(Calendar.HOUR_OF_DAY, preferences.getInt("nightModeSunrise", 6));
-            calendar.set(Calendar.MINUTE, preferences.getInt("nightModeSunriseMinute", 0));
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay[SUNRISE]);
+            calendar.set(Calendar.MINUTE, minute[SUNRISE]);
             sunrise = DateFormat.format("HH:mm", calendar);
-            calendar.set(Calendar.HOUR_OF_DAY, preferences.getInt("nightModeSunset", 22));
-            calendar.set(Calendar.MINUTE, preferences.getInt("nightModeSunsetMinute", 0));
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay[SUNSET]);
+            calendar.set(Calendar.MINUTE, minute[SUNSET]);
             sunset = DateFormat.format("HH:mm", calendar);
         } else {
-            calendar.set(Calendar.HOUR_OF_DAY, preferences.getInt("nightModeSunrise", 6));
-            calendar.set(Calendar.MINUTE, preferences.getInt("nightModeSunriseMinute", 0));
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay[SUNRISE]);
+            calendar.set(Calendar.MINUTE, minute[SUNRISE]);
             sunrise = DateFormat.format("hh:mm a", calendar);
-            calendar.set(Calendar.HOUR_OF_DAY, preferences.getInt("nightModeSunset", 22));
-            calendar.set(Calendar.MINUTE, preferences.getInt("nightModeSunsetMinute", 0));
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay[SUNSET]);
+            calendar.set(Calendar.MINUTE, minute[SUNSET]);
             sunset = DateFormat.format("hh:mm a", calendar);
         }
 
@@ -120,11 +135,9 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
             @Override
             public void onClick(View view) {
                 BottomSheet.Builder builder = new BottomSheet.Builder(getParentActivity());
-                builder.setApplyTopPadding(false);
-                builder.setApplyBottomPadding(false);
                 builder.setItems(new String[]{
-                                getNightModeStatus(DayNightActivity.MODE_NIGHT_YES),
                                 getNightModeStatus(DayNightActivity.MODE_NIGHT_NO),
+                                getNightModeStatus(DayNightActivity.MODE_NIGHT_YES),
                                 getNightModeStatus(DayNightActivity.MODE_NIGHT_AUTO),
                                 getNightModeStatus(DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM),
                         },
@@ -135,8 +148,8 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
                                 int nightMode = DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM;
 
                                 switch (i) {
-                                    case 0: nightMode = DayNightActivity.MODE_NIGHT_YES; break;
-                                    case 1: nightMode = DayNightActivity.MODE_NIGHT_NO; break;
+                                    case 0: nightMode = DayNightActivity.MODE_NIGHT_NO; break;
+                                    case 1: nightMode = DayNightActivity.MODE_NIGHT_YES; break;
                                     case 2: nightMode = DayNightActivity.MODE_NIGHT_AUTO; break;
                                     case 3: nightMode = DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM; break;
                                 }
@@ -157,14 +170,14 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
         sunsetCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDataPickerDialog(false, 22);
+                showDataPickerDialog(false, hourOfDay[SUNSET], minute[SUNSET]);
             }
         });
 
         sunriseCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDataPickerDialog(true, 6);
+                showDataPickerDialog(true, hourOfDay[SUNRISE], minute[SUNRISE]);
             }
         });
 
@@ -173,15 +186,18 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
 
     private boolean isEditingSunrise;
 
-    private void showDataPickerDialog(boolean isEnd, int hour) {
+    private void showDataPickerDialog(boolean isEnd, int hour, int minute) {
         isEditingSunrise = isEnd;
-        showDialog(new TimePickerDialog(getParentActivity(), this, hour, 0, DateFormat.is24HourFormat(getParentActivity())));
+        showDialog(new TimePickerDialog(getParentActivity(), this, hour, minute, DateFormat.is24HourFormat(getParentActivity())));
     }
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
         if (isEditingSunrise) {
+            this.hourOfDay[SUNRISE] = hourOfDay;
+            this.minute[SUNRISE] = minute;
+
             preferences.edit()
                     .putInt("nightModeSunrise", hourOfDay)
                     .putInt("nightModeSunriseMinute", minute)
@@ -189,6 +205,9 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
             sunriseCell.setValue(getFormattedTime(view.getContext(), hourOfDay, minute));
             TwilightManager.setSunrise(hourOfDay, minute);
         } else {
+            this.hourOfDay[SUNSET] = 0;
+            this.minute[SUNSET] = 0;
+
             preferences.edit()
                     .putInt("nightModeSunset", hourOfDay)
                     .putInt("nightModeSunsetMinute", minute)

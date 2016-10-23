@@ -39,9 +39,9 @@ public class TwilightManager {
 
     private static final String TAG = "TwilightManager";
 
-    private static int SUNRISE = 6; // 6am
+    private static int SUNRISE_HOUR = 6; // 6am
     private static int SUNRISE_MINUTE = 0;
-    private static int SUNSET = 22; // 10pm
+    private static int SUNSET_HOUR = 22; // 10pm
     private static int SUNSET_MINUTE = 0;
 
     private static boolean useLocation;
@@ -53,12 +53,12 @@ public class TwilightManager {
     }
 
     public static void setSunrise(int hour, int minute) {
-        TwilightManager.SUNRISE = hour;
+        TwilightManager.SUNRISE_HOUR = hour;
         TwilightManager.SUNRISE_MINUTE = minute;
     }
 
     public static void setSunset(int hour, int minute) {
-        TwilightManager.SUNSET = hour;
+        TwilightManager.SUNSET_HOUR = hour;
         TwilightManager.SUNSET_MINUTE = minute;
     }
 
@@ -114,7 +114,11 @@ public class TwilightManager {
             Calendar calendar = Calendar.getInstance();
             final int hour = calendar.get(Calendar.HOUR_OF_DAY);
             final int minute = calendar.get(Calendar.MINUTE);
-            return (hour < SUNRISE && minute < SUNRISE_MINUTE) || (hour >= SUNSET && minute >= SUNSET_MINUTE);
+            if (SUNSET_HOUR < SUNRISE_HOUR) {
+                return (hour < SUNRISE_HOUR && minute < SUNRISE_MINUTE) && (hour >= SUNSET_HOUR && minute >= SUNSET_MINUTE);
+            } else {
+                return (hour < SUNRISE_HOUR && minute < SUNRISE_MINUTE) || (hour >= SUNSET_HOUR && minute >= SUNSET_MINUTE);
+            }
         } else {
             updateState(location);
             return state.isNight;

@@ -6831,7 +6831,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         super.onResume();
 
         SizeNotifierFrameLayout contentView = (SizeNotifierFrameLayout) fragmentView;
-        contentView.setBackgroundImage(ApplicationLoader.getCachedWallpaper());
 
         AndroidUtilities.requestAdjustResize(getParentActivity(), classGuid);
         MediaController.getInstance().startRaiseToEarSensors(this);

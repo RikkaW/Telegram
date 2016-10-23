@@ -39,6 +39,7 @@
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
 
     <color name="message_forward_name">#ff55ab4f</color>
+    <color name="message_media">#ff354234</color>
 
     <color name="profile_color">#ff598fba</color>
 
@@ -54,6 +55,16 @@
     <color name="shared_photo_placeholder">#fff5f5f5</color>
 
     <color name="dialog_count_color">#ffffffff</color>
+
+    <color name="in_app_player_title">#ff2f3438</color>
+
+    <color name="msg_link_text">#ff2678b6</color>
+
+    <color name="drawer_text">#ff444444</color>
+
+    <color name="bot_keyboard_background">#E4E7E9</color>
+    <color name="bot_keyboard_background_pressed">#CCD1D4</color>
+    <color name="bot_keyboard_text">#36474f</color>
 
     <!--<color name="avatar_red"></color>
     <color name="avatar_profile_red"></color>-->

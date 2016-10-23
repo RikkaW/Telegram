@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -93,7 +94,7 @@ public class BlockedUsersActivity extends BaseFragment implements NotificationCe
         FrameLayout frameLayout = (FrameLayout) fragmentView;
 
         emptyTextView = new TextView(context);
-        emptyTextView.setTextColor(0xff808080);
+        emptyTextView.setTextColor(ContextCompat.getColor(context, R.color.disabled_text));
         emptyTextView.setTextSize(20);
         emptyTextView.setGravity(Gravity.CENTER);
         emptyTextView.setVisibility(View.INVISIBLE);
@@ -262,6 +263,7 @@ public class BlockedUsersActivity extends BaseFragment implements NotificationCe
             if (type == 0) {
                 if (view == null) {
                     view = new UserCell(mContext, 1, 0, false);
+                    ((UserCell) view).setForeground(R.drawable.list_selector);
                 }
                 TLRPC.User user = MessagesController.getInstance().getUser(MessagesController.getInstance().blockedUsers.get(i));
                 if (user != null) {

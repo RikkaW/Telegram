@@ -202,8 +202,7 @@ public class LaunchActivity extends DayNightActivity implements ActionBarLayout.
         ArchivedStickerSetCell.resetDivider();
         ActionBarPopupWindow.ActionBarPopupWindowLayout.resetDrawable();
         ContextLinkCell.resetPaint();
-
-        ApplicationLoader.reloadWallpaperNightModeChanged();
+        ApplicationLoader.reloadWallpaperNightModeChanged(this);
 
         if (UserConfig.passcodeHash.length() != 0 && UserConfig.appLocked) {
             UserConfig.lastPauseTime = ConnectionsManager.getInstance().getCurrentTime();
@@ -439,7 +438,7 @@ public class LaunchActivity extends DayNightActivity implements ActionBarLayout.
         actionBarLayout.init(mainFragmentsStack);
         actionBarLayout.setDelegate(this);
 
-        ApplicationLoader.loadWallpaper();
+        //ApplicationLoader.loadWallpaper();
 
         passcodeView = new PasscodeView(this);
         drawerLayoutContainer.addView(passcodeView);

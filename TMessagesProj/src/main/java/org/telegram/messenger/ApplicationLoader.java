@@ -69,28 +69,21 @@ public class ApplicationLoader extends Application {
         return selectedColor;
     }
 
-    public static void reloadWallpaperNightModeChanged() {
-        cachedWallpaper = null;
-        serviceMessageColor = 0;
-        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE).edit().remove("serviceMessageColor").commit();
-
-        SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
-        int selectedBackground = preferences.getInt("selectedBackground", 1000001);
-        selectedColor = preferences.getInt("selectedColor", 0);
-        serviceMessageColor = preferences.getInt("serviceMessageColor", 0);
-        serviceSelectedMessageColor = preferences.getInt("serviceSelectedMessageColor", 0);
-        if (selectedColor == 0) {
-            if (selectedBackground == 1000001) {
-                loadWallpaper();
-            }
+    public static void reloadWallpaperNightModeChanged(Context context) {
+        if (isCustomTheme()) {
+            return;
         }
+
+        cachedWallpaper = null;
+
+        loadWallpaper(context);
     }
 
     public static void reloadWallpaper() {
         cachedWallpaper = null;
         serviceMessageColor = 0;
         ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE).edit().remove("serviceMessageColor").commit();
-        loadWallpaper();
+        loadWallpaper(ApplicationLoader.applicationContext);
     }
 
     private static void calcBackgroundColor() {
@@ -109,7 +102,7 @@ public class ApplicationLoader extends Application {
         return serviceSelectedMessageColor;
     }
 
-    public static void loadWallpaper() {
+    public static void loadWallpaper(final Context context) {
         if (cachedWallpaper != null) {
             return;
         }
@@ -126,7 +119,7 @@ public class ApplicationLoader extends Application {
                         serviceSelectedMessageColor = preferences.getInt("serviceSelectedMessageColor", 0);
                         if (selectedColor == 0) {
                             if (selectedBackground == 1000001) {
-                                cachedWallpaper = applicationContext.getResources().getDrawable(R.drawable.background_hd);
+                                cachedWallpaper = context.getResources().getDrawable(R.drawable.background_hd);
                                 isCustomTheme = false;
                             } else {
                                 File toFile = new File(getFilesDirFixed(), "wallpaper.jpg");
@@ -134,7 +127,7 @@ public class ApplicationLoader extends Application {
                                     cachedWallpaper = Drawable.createFromPath(toFile.getAbsolutePath());
                                     isCustomTheme = true;
                                 } else {
-                                    cachedWallpaper = applicationContext.getResources().getDrawable(R.drawable.background_hd);
+                                    cachedWallpaper = context.getResources().getDrawable(R.drawable.background_hd);
                                     isCustomTheme = false;
                                 }
                             }

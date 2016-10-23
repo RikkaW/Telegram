@@ -28,6 +28,8 @@
     <color name="secondary_text_inverse">#82000000</color>
     <color name="disabled_text_inverse">#80000000</color>
 
+    <color name="message_media">#add9a9</color>
+
     <color name="profile_color">#ff253b52</color>
 
     <color name="sticker_select_background">#ff303132</color>
@@ -41,7 +43,17 @@
 
     <color name="shared_photo_placeholder">@color/material_grey_850</color>
 
-    <color name="dialog_count_color">@color/material_grey_850</color>
+    <color name="dialog_count_color">@color/material_grey_800</color>
+
+    <color name="in_app_player_title">#b1c6d6</color>
+
+    <color name="msg_link_text">#3a96db</color>
+
+    <color name="drawer_text">@color/primary_text</color>
+
+    <color name="bot_keyboard_background">#424548</color>
+    <color name="bot_keyboard_background_pressed">#616467</color>
+    <color name="bot_keyboard_text">#c4e0ec</color>
 
     <color name="avatar_profile_back_red">#8f2e24</color>
     <color name="avatar_profile_back_origin">#a55927</color>

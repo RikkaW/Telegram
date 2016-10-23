@@ -13,6 +13,7 @@ import android.content.Context;
 import android.graphics.*;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -185,7 +186,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         containerView.setPadding(backgroundPaddingLeft, 0, backgroundPaddingLeft, 0);
 
         frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(0xffffffff);
+        frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.background));
         frameLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -247,6 +248,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         imageView.setImageResource(R.drawable.search_share);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setPadding(0, AndroidUtilities.dp(2), 0, 0);
+        imageView.getDrawable().setTint(Theme.SHARE_SHEET_EDIT_PLACEHOLDER_TEXT_COLOR);
         frameLayout.addView(imageView, LayoutHelper.createFrame(48, 48, Gravity.LEFT | Gravity.CENTER_VERTICAL));
 
         nameTextView = new EditText(context);

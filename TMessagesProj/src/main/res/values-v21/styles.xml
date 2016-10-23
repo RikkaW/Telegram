@@ -147,8 +147,4 @@
 
     <style name="Theme.TMessages.TextView" parent="android:Widget.TextView"/>
 
-    <style name="Theme.TMessages.TextView.Drawer" parent="@style/Theme.TMessages.TextView">
-        <item name="android:textColor">#ff444444</item>
-    </style>
-
 </resources>
