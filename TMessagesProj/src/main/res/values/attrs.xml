@@ -4,4 +4,11 @@
         <!-- The color applied to framework switch thumbs in their normal state. -->
         <attr name="colorSwitchThumbNormal" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="ColorStateListItem">
+        <attr name="android:color"/>
+        <attr format="float" name="alpha"/>
+        <attr name="android:alpha"/>
+    </declare-styleable>
+
 </resources>

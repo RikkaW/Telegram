@@ -102,12 +102,12 @@ public class Switch extends CompoundButton {
         mThumbDrawable = context.getResources().getDrawable(R.drawable.switch_thumb);
         if (mThumbDrawable != null) {
             mThumbDrawable.setCallback(this);
-            mThumbDrawable.setTintList(ContextCompat.getColorStateList(context, R.color.tint_switch_thumb));
+            mThumbDrawable.setTintList(AppCompatResources.getColorStateList(context, R.color.tint_switch_thumb));
         }
         mTrackDrawable = context.getResources().getDrawable(R.drawable.switch_track);
         if (mTrackDrawable != null) {
             mTrackDrawable.setCallback(this);
-            mTrackDrawable.setTintList(ContextCompat.getColorStateList(context, R.color.tint_switch_track));
+            mTrackDrawable.setTintList(AppCompatResources.getColorStateList(context, R.color.tint_switch_track));
         }
 
         if (AndroidUtilities.density < 1) {
