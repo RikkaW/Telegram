@@ -1315,4 +1315,7 @@
     <string name="NightModeFollowSystemInfo">跟随系统可能需要您重启应用才能生效。</string>
     <string name="NightModeLocation">位置增强</string>
     <string name="NightModeLocationInfo">使用位置来计算日落和日出时间</string>
+
+    <string name="ExternalLinks">用外部浏览器打开的链接</string>
+    <string name="ExternalLinksAddDomain">添加域名</string>
 </resources>

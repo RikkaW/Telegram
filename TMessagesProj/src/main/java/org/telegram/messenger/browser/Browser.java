@@ -13,6 +13,7 @@ import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
@@ -34,6 +35,7 @@ import org.telegram.messenger.support.customtabsclient.shared.CustomTabsHelper;
 import org.telegram.messenger.support.customtabsclient.shared.ServiceConnection;
 import org.telegram.messenger.support.customtabsclient.shared.ServiceConnectionCallback;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ForceExternalLinksActivity;
 import org.telegram.ui.LaunchActivity;
 
 import java.lang.ref.WeakReference;
@@ -161,7 +163,21 @@ public class Browser {
         try {
             String scheme = uri.getScheme() != null ? uri.getScheme().toLowerCase() : "";
             boolean internalUri = isInternalUri(uri);
-            if (Build.VERSION.SDK_INT >= 15 && allowCustom && MediaController.getInstance().canCustomTabs() && !internalUri && !scheme.equals("tel")) {
+            boolean forceExternalUrl = false;
+
+            if (!internalUri) {
+                forceExternalUrl = false;
+                SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
+                String[] urls = preferences.getString("force_external_urls", ForceExternalLinksActivity.getDefaultUrlsString()).split(",");
+                for (String url : urls) {
+                    if (uri.getHost() != null && uri.getHost().endsWith(url)) {
+                        forceExternalUrl = true;
+                        break;
+                    }
+                }
+            }
+
+            if (Build.VERSION.SDK_INT >= 15 && allowCustom && MediaController.getInstance().canCustomTabs() && !internalUri && !scheme.equals("tel") && !forceExternalUrl) {
                 Intent share = new Intent(ApplicationLoader.applicationContext, ShareBroadcastReceiver.class);
                 share.setAction(Intent.ACTION_SEND);
 

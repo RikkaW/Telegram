@@ -151,6 +151,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     private int googleEmojiRow;
     private int fakeBoldRow;
     private int nightModeRow;
+    private int forceExternalRow;
 
     private int raiseToSpeakRow;
     private int sendByEnterRow;
@@ -268,6 +269,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         messagesSectionRow = rowCount++;
         messagesSectionRow2 = rowCount++;
         customTabsRow = rowCount++;
+        forceExternalRow = rowCount++;
         if (Build.VERSION.SDK_INT >= 23) {
             directShareRow = rowCount++;
         }
@@ -740,6 +742,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     }
                 } else if (position == nightModeRow) {
                     presentFragment(new NightModeActivity());
+                } else if (position == forceExternalRow) {
+                    presentFragment(new ForceExternalLinksActivity());
                 }
             }
         });
@@ -1362,6 +1366,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
                         int nightMode = preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM);
                         textCell.setTextAndValue(LocaleController.getString("NightMode", R.string.NightMode), NightModeActivity.getNightModeStatus(nightMode), true);
+                    } else if (position == forceExternalRow) {
+                        textCell.setText(LocaleController.getString("ExternalLinks", R.string.ExternalLinks), true);
                     }
                     break;
                 }
@@ -1489,7 +1495,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         position == mobileDownloadRow || position == clearLogsRow || position == roamingDownloadRow || position == languageRow || position == usernameRow ||
                         position == switchBackendButtonRow || position == telegramFaqRow || position == contactsSortRow || position == contactsReimportRow || position == saveToGalleryRow ||
                         position == stickersRow || position == cacheRow || position == raiseToSpeakRow || position == privacyPolicyRow || position == customTabsRow || position == directShareRow || position == versionRow ||
-                        position == emojiRow || position == googleEmojiRow || position == fakeBoldRow || position == nightModeRow) {
+                        position == emojiRow || position == googleEmojiRow || position == fakeBoldRow || position == nightModeRow || position == forceExternalRow) {
                     if (holder.itemView instanceof ForegroundFrameLayout) {
                         ForegroundFrameLayout view = (ForegroundFrameLayout) holder.itemView;
                         if (view.getForeground() == null) {
@@ -1568,7 +1574,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 return 1;
             } else if (position == enableAnimationsRow || position == sendByEnterRow || position == saveToGalleryRow || position == autoplayGifsRow || position == raiseToSpeakRow || position == customTabsRow || position == directShareRow || position == googleEmojiRow || position == fakeBoldRow) {
                 return 3;
-            } else if (position == notificationRow || position == backgroundRow || position == askQuestionRow || position == sendLogsRow || position == privacyRow || position == clearLogsRow || position == switchBackendButtonRow || position == telegramFaqRow || position == contactsReimportRow || position == textSizeRow || position == languageRow || position == contactsSortRow || position == stickersRow || position == cacheRow || position == privacyPolicyRow || position == emojiRow || position == nightModeRow) {
+            } else if (position == notificationRow || position == backgroundRow || position == askQuestionRow || position == sendLogsRow || position == privacyRow || position == clearLogsRow || position == switchBackendButtonRow || position == telegramFaqRow || position == contactsReimportRow || position == textSizeRow || position == languageRow || position == contactsSortRow || position == stickersRow || position == cacheRow || position == privacyPolicyRow || position == emojiRow || position == nightModeRow || position == forceExternalRow) {
                 return 2;
             } else if (position == versionRow) {
                 return 5;

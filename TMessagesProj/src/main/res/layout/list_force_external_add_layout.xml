@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="56dp"
+             android:paddingLeft="@dimen/list_padding"
+             android:paddingRight="@dimen/list_padding"
+             android:background="?android:attr/selectableItemBackground"
+             xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@android:id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        android:drawableStart="@drawable/ic_add_circle_24dp"
+        android:drawablePadding="16dp"
+        tools:text="Add domain">
+
+    </TextView>
+
+</FrameLayout>

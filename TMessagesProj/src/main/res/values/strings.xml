@@ -1314,4 +1314,7 @@
     <string name="NightModeFollowSystemInfo">Restart of the app may be required for \'Follow System\' to come into effect.</string>
     <string name="NightModeLocation">Location enhancement</string>
     <string name="NightModeLocationInfo">Use location to calculate sunset and sun rise time</string>
+    
+    <string name="ExternalLinks">Links open externally</string>
+    <string name="ExternalLinksAddDomain">Add domain</string>
 </resources>
