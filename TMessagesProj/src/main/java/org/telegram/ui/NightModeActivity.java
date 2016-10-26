@@ -95,7 +95,7 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
 
         int nightMode = preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM);
 
-        TextSettingsCell nightModeCell = new TextSettingsCell(context);
+        final TextSettingsCell nightModeCell = new TextSettingsCell(context);
         nightModeCell.setTextAndValue(LocaleController.getString("NightModeStatus", R.string.NightModeStatus), NightModeActivity.getNightModeStatus(nightMode), false);
         nightModeCell.setForeground(R.drawable.list_selector);
         ((LinearLayout) fragmentView).addView(nightModeCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
@@ -195,7 +195,10 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
                                 DayNightActivity.setDefaultNightMode(nightMode);
 
                                 getParentActivity().getWindow().setWindowAnimations(R.style.AnimationFadeInOut);
-                                getParentActivity().recreate();
+                                if (!((DayNightActivity) getParentActivity()).applyDayNight()) {
+                                    resetViewsVisibility();
+                                    nightModeCell.setValue(NightModeActivity.getNightModeStatus(nightMode));
+                                }
                             }
                         });
                 showDialog(builder.create());
@@ -223,8 +226,6 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
     public void onResume() {
         super.onResume();
 
-        int nightMode = preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (getParentActivity().checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 useLocationCell.setChecked(false);
@@ -232,6 +233,12 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
                 TwilightManager.setUseLocation(false);
             }
         }
+
+        resetViewsVisibility();
+    }
+
+    private void resetViewsVisibility() {
+        int nightMode = preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM);
 
         if (nightMode == DayNightActivity.MODE_NIGHT_AUTO) {
             resetNightModeAutoViewsVisibility();
