@@ -186,7 +186,7 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
                                 }
 
                                 if (nightMode == DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM) {
-                                    Toast.makeText(getParentActivity(), LocaleController.getString("NightModeFollowSystemInfo", R.string.NightModeAutoSwitchInfo), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getParentActivity(), LocaleController.getString("NightModeFollowSystemInfo", R.string.NightModeFollowSystemInfo), Toast.LENGTH_SHORT).show();
                                 }
 
                                 SharedPreferences.Editor editor = preferences.edit();
