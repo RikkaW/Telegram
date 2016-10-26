@@ -1,10 +1,14 @@
 package org.telegram.ui;
 
+import android.Manifest;
+import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.text.format.DateFormat;
 import android.view.MotionEvent;
@@ -12,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
@@ -20,6 +25,8 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.Cells.HeaderCell;
+import org.telegram.ui.Cells.ShadowSectionCell;
+import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.DayNightActivity;
@@ -34,20 +41,25 @@ import java.util.Calendar;
 
 public class NightModeActivity extends BaseFragment implements TimePickerDialog.OnTimeSetListener {
 
+    private SharedPreferences preferences;
+
+    private ShadowSectionCell followSystemCell;
+    private HeaderCell nightTimeHeaderCell;
+    private TextCheckCell useLocationCell;
     private TextSettingsCell sunriseCell;
     private TextSettingsCell sunsetCell;
+    private TextInfoPrivacyCell autoInfoCell;
 
     private int[] hourOfDay, minute;
     private static final int SUNRISE = 0;
     private static final int SUNSET = 1;
-
 
     @Override
     public View createView(Context context) {
         hourOfDay = new int[2];
         minute = new int[2];
 
-        SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
+        preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
 
         hourOfDay[SUNRISE] = preferences.getInt("nightModeSunrise", 6);
         minute[SUNRISE] = preferences.getInt("nightModeSunriseMinute", 0);
@@ -79,6 +91,7 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
         fragmentView.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
 
         ((LinearLayout) fragmentView).setOrientation(LinearLayout.VERTICAL);
+        ((LinearLayout) fragmentView).setLayoutTransition(new LayoutTransition());
 
         int nightMode = preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM);
 
@@ -87,14 +100,32 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
         nightModeCell.setForeground(R.drawable.list_selector);
         ((LinearLayout) fragmentView).addView(nightModeCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
-        TextInfoPrivacyCell infoCell = new TextInfoPrivacyCell(context);
-        infoCell.setText(LocaleController.getString("NightModeInfo", R.string.NightModeInfo));
-        ((LinearLayout) fragmentView).addView(infoCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
+        followSystemCell = new ShadowSectionCell(context);
+        ((LinearLayout) fragmentView).addView(followSystemCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
-        HeaderCell headerCell = new HeaderCell(context);
-        headerCell.setText(LocaleController.getString("NightModeAutoSwitch", R.string.NightModeAutoSwitch));
-        ((LinearLayout) fragmentView).addView(headerCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
+        nightTimeHeaderCell = new HeaderCell(context);
+        nightTimeHeaderCell.setText(LocaleController.getString("NightModeAutoSwitch", R.string.NightModeAutoSwitch));
+        ((LinearLayout) fragmentView).addView(nightTimeHeaderCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
+        useLocationCell = new TextCheckCell(context);
+        useLocationCell.setForeground(R.drawable.list_selector);
+        useLocationCell.setTextAndValueAndCheck(LocaleController.getString("NightModeLocation", R.string.NightModeLocation), LocaleController.getString("NightModeLocationInfo", R.string.NightModeLocationInfo), preferences.getBoolean("nightModeUseLocation", false), true, true);
+        ((LinearLayout) fragmentView).addView(useLocationCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
+        useLocationCell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!useLocationCell.isChecked()
+                        && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                        && getParentActivity().checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    getParentActivity().requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+                } else {
+                    useLocationCell.setChecked(!useLocationCell.isChecked());
+                    preferences.edit().putBoolean("nightModeUseLocation", useLocationCell.isChecked()).apply();
+
+                    resetNightModeAutoViewsVisibility();
+                }
+            }
+        });
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -127,9 +158,9 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
         sunriseCell.setTextAndValue(LocaleController.getString("NightModeEndTime", R.string.NightModeEndTime), sunrise.toString(), false);
         ((LinearLayout) fragmentView).addView(sunriseCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
-        TextInfoPrivacyCell infoCell2 = new TextInfoPrivacyCell(context);
-        infoCell2.setText(LocaleController.getString("NightModeAutoSwitchInfo", R.string.NightModeAutoSwitchInfo));
-        ((LinearLayout) fragmentView).addView(infoCell2, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
+        autoInfoCell = new TextInfoPrivacyCell(context);
+        autoInfoCell.setText(LocaleController.getString("NightModeAutoSwitchInfo", R.string.NightModeAutoSwitchInfo));
+        ((LinearLayout) fragmentView).addView(autoInfoCell, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
 
         nightModeCell.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,6 +183,10 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
                                     case 1: nightMode = DayNightActivity.MODE_NIGHT_YES; break;
                                     case 2: nightMode = DayNightActivity.MODE_NIGHT_AUTO; break;
                                     case 3: nightMode = DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM; break;
+                                }
+
+                                if (nightMode == DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM) {
+                                    Toast.makeText(getParentActivity(), LocaleController.getString("NightModeFollowSystemInfo", R.string.NightModeAutoSwitchInfo), Toast.LENGTH_SHORT).show();
                                 }
 
                                 SharedPreferences.Editor editor = preferences.edit();
@@ -182,6 +217,54 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
         });
 
         return fragmentView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        int nightMode = preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (getParentActivity().checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                useLocationCell.setChecked(false);
+                preferences.edit().putBoolean("nightModeUseLocation", useLocationCell.isChecked()).apply();
+                TwilightManager.setUseLocation(false);
+            }
+        }
+
+        if (nightMode == DayNightActivity.MODE_NIGHT_AUTO) {
+            resetNightModeAutoViewsVisibility();
+        } else {
+            nightTimeHeaderCell.setVisibility(View.GONE);
+            sunriseCell.setVisibility(View.GONE);
+            sunsetCell.setVisibility(View.GONE);
+            autoInfoCell.setVisibility(View.GONE);
+            useLocationCell.setVisibility(View.GONE);
+        }
+    }
+
+    private void resetNightModeAutoViewsVisibility() {
+        if (useLocationCell.isChecked()) {
+            sunriseCell.setVisibility(View.GONE);
+            sunsetCell.setVisibility(View.GONE);
+        } else {
+            sunriseCell.setVisibility(View.VISIBLE);
+            sunsetCell.setVisibility(View.VISIBLE);
+        }
+
+        nightTimeHeaderCell.setVisibility(View.VISIBLE);
+        autoInfoCell.setVisibility(View.VISIBLE);
+        useLocationCell.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
+    public void onRequestPermissionsResultFragment(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 1 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            TwilightManager.setUseLocation(true);
+            useLocationCell.setChecked(true);
+        }
     }
 
     private boolean isEditingSunrise;

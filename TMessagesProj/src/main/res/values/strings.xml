@@ -1309,7 +1309,9 @@
     <string name="NightModeFollowSystem">Follow System</string>
     <string name="NightModeAutoSwitch">Night time</string>
     <string name="NightModeStartTime">From</string>
-    <string name="NightModeAutoSwitchInfo">The above section will only take effect if \'Auto\' is selected.</string>
+    <string name="NightModeAutoSwitchInfo">Restart of the app may be required for above settings to come into effect.</string>
     <string name="NightModeEndTime">To</string>
-    <string name="NightModeInfo">Restart of the app may be required for \'Follow System\' to come into effect</string>
+    <string name="NightModeFollowSystemInfo">Restart of the app may be required for \'Follow System\' to come into effect.</string>
+    <string name="NightModeLocation">Location enhancement</string>
+    <string name="NightModeLocationInfo">Use location to calculate sunset and sun rise time</string>
 </resources>

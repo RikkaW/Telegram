@@ -9,9 +9,9 @@ configurations {
 }
 
 dependencies {
-    compile 'com.google.android.gms:play-services-gcm:9.8.00'
-    compile 'com.google.android.gms:play-services-maps:9.8.00'
-    compile 'com.google.android.gms:play-services-vision:9.8.00'
+    compile 'com.google.android.gms:play-services-gcm:9.8.0'
+    compile 'com.google.android.gms:play-services-maps:9.8.0'
+    compile 'com.google.android.gms:play-services-vision:9.8.0'
     compile 'com.android.support:support-core-ui:25.0.0'
     compile 'com.android.support:support-compat:25.0.0'
     compile 'com.android.support:support-core-utils:25.0.0'
@@ -81,7 +81,7 @@ android {
         }
     }
 
-    defaultConfig.versionCode = 851 + 9
+    defaultConfig.versionCode = 851 + 10
 
     sourceSets.debug {
         manifest.srcFile 'config/debug/AndroidManifest.xml'
@@ -121,7 +121,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 25
-        versionName "3.13.1.9"
+        versionName "3.13.1.10"
 
         /*externalNativeBuild {
             ndkBuild {

@@ -126,6 +126,7 @@ public class TextCheckCell extends ForegroundFrameLayout {
     public boolean isChecked() {
         return checkBox.isChecked();
     }
+
     public void setChecked(boolean checked) {
         checkBox.setChecked(checked);
     }
