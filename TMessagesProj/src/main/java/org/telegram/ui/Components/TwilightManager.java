@@ -114,10 +114,13 @@ public class TwilightManager {
             Calendar calendar = Calendar.getInstance();
             final int hour = calendar.get(Calendar.HOUR_OF_DAY);
             final int minute = calendar.get(Calendar.MINUTE);
-            if (SUNSET_HOUR < SUNRISE_HOUR) {
-                return (hour < SUNRISE_HOUR && minute < SUNRISE_MINUTE) && (hour >= SUNSET_HOUR && minute >= SUNSET_MINUTE);
+            final int current = hour * 60 + minute;
+            final int sunrise = SUNRISE_HOUR * 60 + SUNRISE_MINUTE;
+            final int sunset = SUNSET_HOUR * 60 + SUNSET_MINUTE;
+            if (sunrise < sunset) {
+                return current >= sunset || current < sunrise;
             } else {
-                return (hour < SUNRISE_HOUR && minute < SUNRISE_MINUTE) || (hour >= SUNSET_HOUR && minute >= SUNSET_MINUTE);
+                return current >= sunset && current < sunrise;
             }
         } else {
             updateState(location);
