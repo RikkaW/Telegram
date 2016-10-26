@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -86,13 +87,18 @@ public class ForceExternalLinksActivity extends BaseFragment {
         return fragmentView;
     }
 
-    private void showAddDialog() {
+    private void showAddDialog(final int position) {
         FrameLayout frameLayout = new FrameLayout(getParentActivity());
         frameLayout.setPadding(AndroidUtilities.dp(24), AndroidUtilities.dp(16), AndroidUtilities.dp(24), 0);
 
         final EditText editText = new EditText(getParentActivity());
         editText.setMaxLines(1);
+        editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
         frameLayout.addView(editText, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER_VERTICAL));
+
+        if (position != -1) {
+            editText.setText(urls.get(position));
+        }
 
         editText.post(new Runnable() {
             @Override
@@ -108,8 +114,16 @@ public class ForceExternalLinksActivity extends BaseFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (!TextUtils.isEmpty(editText.getText().toString())) {
-                            urls.add(editText.getText().toString().replace(",", "").toLowerCase());
-                            adapter.notifyItemInserted(adapter.getItemCount() - 1);
+                            String url = editText.getText().toString().replace(",", "").toLowerCase();
+                            if (position == -1) {
+                                urls.add(url);
+                                adapter.notifyItemInserted(adapter.getItemCount() - 1);
+                            } else {
+                                urls.set(position, url);
+                                adapter.notifyItemChanged(position);
+                            }
+
+                            save();
                         }
                     }
                 })
@@ -159,12 +173,19 @@ public class ForceExternalLinksActivity extends BaseFragment {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        showAddDialog();
+                        showAddDialog(-1);
                     }
                 });
 
                 ((AddViewHolder) holder).text.setText(LocaleController.getString("ExternalLinksAddDomain", R.string.ExternalLinksAddDomain));
             } else {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        showAddDialog(holder.getAdapterPosition());
+                    }
+                });
+
                 ((ItemViewHolder) holder).text.setText(urls.get(position));
                 ((ItemViewHolder) holder).delete.setOnClickListener(new View.OnClickListener() {
                     @Override

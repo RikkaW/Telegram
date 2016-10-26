@@ -4,8 +4,6 @@
              android:layout_height="56dp"
              android:paddingLeft="@dimen/list_padding"
              android:paddingRight="@dimen/list_padding"
-             android:clickable="true"
-             android:focusable="true"
              android:background="?android:attr/selectableItemBackground"
              xmlns:tools="http://schemas.android.com/tools">
 
