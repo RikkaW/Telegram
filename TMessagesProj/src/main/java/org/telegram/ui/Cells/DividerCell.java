@@ -24,14 +24,18 @@ public class DividerCell extends BaseCell {
     public DividerCell(Context context) {
         super(context);
         if (paint == null) {
-            paint = new Paint();
-            paint.setColor(ContextCompat.getColor(context, R.color.divider));
-            paint.setStrokeWidth(1);
+            createPaint();
         }
     }
 
     public static void resetDivider() {
         paint = null;
+    }
+
+    private void createPaint() {
+        paint = new Paint();
+        paint.setColor(ContextCompat.getColor(getContext(), R.color.divider));
+        paint.setStrokeWidth(1);
     }
 
     @Override
@@ -41,6 +45,9 @@ public class DividerCell extends BaseCell {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        if (paint == null) {
+            createPaint();
+        }
         canvas.drawLine(getPaddingLeft(), AndroidUtilities.dp(8), getWidth() - getPaddingRight(), AndroidUtilities.dp(8), paint);
     }
 }
