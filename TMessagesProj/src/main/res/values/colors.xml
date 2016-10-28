@@ -66,6 +66,11 @@
     <color name="bot_keyboard_background_pressed">#CCD1D4</color>
     <color name="bot_keyboard_text">#36474f</color>
 
+    <color name="action_bar_action_mode">#ff737373</color>
+
+    <color name="dialog_name">#ff4d83b3</color>
+    <color name="dialog_title_encrypted">#ff00a60e</color>
+
     <!--<color name="avatar_red"></color>
     <color name="avatar_profile_red"></color>-->
     <color name="avatar_profile_back_red">#ffca6056</color>

@@ -9,12 +9,15 @@
 package org.telegram.ui.ActionBar;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
 import org.telegram.ui.Components.LayoutHelper;
 
 public class ActionBarMenu extends LinearLayout {
@@ -72,6 +75,7 @@ public class ActionBarMenu extends LinearLayout {
             menuItem.iconView.setImageDrawable(drawable);
         } else {
             menuItem.iconView.setImageResource(icon);
+            menuItem.iconView.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.secondary_text)));
         }
         addView(menuItem);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) menuItem.getLayoutParams();

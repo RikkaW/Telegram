@@ -46,7 +46,7 @@ public class Theme {
     public static int ACTION_BAR_PROFILE_COLOR = 0xff598fba;
     public static final int ACTION_BAR_PROFILE_SUBTITLE_COLOR = 0xffd7eafa;
     public static final int ACTION_BAR_MAIN_AVATAR_COLOR = 0xff5085b1;
-    public static final int ACTION_BAR_ACTION_MODE_TEXT_COLOR = 0xff737373;
+    public static int ACTION_BAR_ACTION_MODE_TEXT_COLOR = 0xff737373;
     public static final int ACTION_BAR_SELECTOR_COLOR = 0xff406d94;
 
     public static final int INPUT_FIELD_SELECTOR_COLOR = 0xffd6d6d6;
@@ -67,9 +67,10 @@ public class Theme {
     public static int ATTACH_SHEET_TEXT_COLOR = 0xff757575;
 
     public static final int DIALOGS_MESSAGE_TEXT_COLOR = 0xff8f8f8f;
-    public static final int DIALOGS_NAME_TEXT_COLOR = 0xff4d83b3;
-    public static final int DIALOGS_ATTACH_TEXT_COLOR = 0xff4d83b3;
-    public static final int DIALOGS_PRINTING_TEXT_COLOR = 0xff4d83b3;
+    public static int DIALOGS_MESSAGE_ENCRYPTED_TEXT_COLOR = 0xff00a60e;
+    public static int DIALOGS_NAME_TEXT_COLOR = 0xff4d83b3;
+    public static int DIALOGS_ATTACH_TEXT_COLOR = 0xff4d83b3;
+    public static int DIALOGS_PRINTING_TEXT_COLOR = 0xff4d83b3;
     public static final int DIALOGS_DRAFT_TEXT_COLOR = 0xffdd4b39;
 
     public static final int CHAT_UNREAD_TEXT_COLOR = 0xff5695cc;
@@ -422,6 +423,11 @@ public class Theme {
 
         EmojiView.BACKGROUND_COLOR = ContextCompat.getColor(context, R.color.sticker_select_background);
         EmojiView.INDICATOR_COLOR = ContextCompat.getColor(context, R.color.sticker_indicator_background);
+
+        DIALOGS_NAME_TEXT_COLOR = DIALOGS_ATTACH_TEXT_COLOR = DIALOGS_PRINTING_TEXT_COLOR = ContextCompat.getColor(context, R.color.dialog_name);
+        DIALOGS_MESSAGE_ENCRYPTED_TEXT_COLOR = ContextCompat.getColor(context, R.color.dialog_title_encrypted);
+
+        ACTION_BAR_ACTION_MODE_TEXT_COLOR = ContextCompat.getColor(context, R.color.action_bar_action_mode);
 
         INAPP_PLAYER_PERFORMER_TEXT_COLOR = ContextCompat.getColor(context, R.color.in_app_player_title);
         INAPP_PLAYER_TITLE_TEXT_COLOR = ContextCompat.getColor(context, R.color.in_app_player_title);

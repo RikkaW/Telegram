@@ -7,7 +7,7 @@
     <!--EDIT TEXT-->
 
     <style name="Theme.TMessages.EditText" parent="android:Widget.Material.EditText">
-        <item name="android:background">@drawable/edit_text</item>
+        <item name="android:background">@drawable/edit_text_background</item>
     </style>
 
     <style name="Theme.TMessages.Dialog.Alert.Chat" parent="@style/Theme.TMessages.Dialog.Alert">

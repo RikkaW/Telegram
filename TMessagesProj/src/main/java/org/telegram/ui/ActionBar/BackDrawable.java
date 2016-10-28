@@ -80,7 +80,7 @@ public class BackDrawable extends Drawable {
             invalidateSelf();
         }
 
-        int rD = (int) ((117 - 255) * currentRotation);
+        int rD = (int) (((Theme.ACTION_BAR_ACTION_MODE_TEXT_COLOR & 0xff) - 255) * currentRotation);
         int c = Color.rgb(255 + rD, 255 + rD, 255 + rD);
         paint.setColor(c);
 

@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,6 +24,7 @@ import android.widget.ImageView;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimatorListenerAdapterProxy;
+import org.telegram.messenger.R;
 import org.telegram.ui.Components.LayoutHelper;
 
 import java.util.ArrayList;
@@ -206,7 +208,7 @@ public class ActionBar extends FrameLayout {
             return actionMode;
         }
         actionMode = new ActionBarMenu(getContext(), this);
-        actionMode.setBackgroundColor(0xffffffff);
+        actionMode.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.background));
         addView(actionMode, indexOfChild(backButtonImageView));
         actionMode.setPadding(0, occupyStatusBar ? AndroidUtilities.statusBarHeight : 0, 0, 0);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)actionMode.getLayoutParams();

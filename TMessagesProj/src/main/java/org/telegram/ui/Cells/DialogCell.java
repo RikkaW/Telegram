@@ -143,7 +143,6 @@ public class DialogCell extends BaseCell {
             namePaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
 
             nameEncryptedPaint = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
-            nameEncryptedPaint.setColor(0xff00a60e);
             nameEncryptedPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
 
             messagePaint = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
@@ -154,7 +153,6 @@ public class DialogCell extends BaseCell {
             backPaint.setColor(0x0f000000);
 
             messagePrintingPaint = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
-            messagePrintingPaint.setColor(Theme.DIALOGS_PRINTING_TEXT_COLOR);
 
             timePaint = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
             timePaint.setColor(0xff999999);
@@ -202,11 +200,14 @@ public class DialogCell extends BaseCell {
         messagePaint.linkColor = ContextCompat.getColor(context, R.color.secondary_text)/*Theme.DIALOGS_MESSAGE_TEXT_COLOR*/;
         linePaint.setColor(ContextCompat.getColor(context, R.color.chat_list_divider));
         countPaint.setColor(ContextCompat.getColor(context, R.color.dialog_count_color));
+        nameEncryptedPaint.setColor(Theme.DIALOGS_MESSAGE_ENCRYPTED_TEXT_COLOR);
+        messagePrintingPaint.setColor(Theme.DIALOGS_PRINTING_TEXT_COLOR);
 
-        DrawableCompat.setTint(groupDrawable, ContextCompat.getColor(context, R.color.primary_text));
-        DrawableCompat.setTint(broadcastDrawable, ContextCompat.getColor(context, R.color.primary_text));
-        DrawableCompat.setTint(botDrawable, ContextCompat.getColor(context, R.color.primary_text));
-        DrawableCompat.setTint(muteDrawable, ContextCompat.getColor(context, R.color.disabled_text));
+        groupDrawable.setTint(ContextCompat.getColor(context, R.color.primary_text));
+        broadcastDrawable.setTint(ContextCompat.getColor(context, R.color.primary_text));
+        botDrawable.setTint(ContextCompat.getColor(context, R.color.primary_text));
+        muteDrawable.setTint(ContextCompat.getColor(context, R.color.disabled_text));
+        lockDrawable.setTint(Theme.DIALOGS_MESSAGE_ENCRYPTED_TEXT_COLOR);
     }
 
     public void setDialog(TLRPC.TL_dialog dialog, int i, int type) {
