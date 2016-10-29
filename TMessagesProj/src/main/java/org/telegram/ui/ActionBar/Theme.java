@@ -12,7 +12,6 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
@@ -20,16 +19,13 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
-import android.util.TypedValue;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.Emoji;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.EmojiView;
 
@@ -92,7 +88,7 @@ public class Theme {
     public static final int ALERT_PANEL_NAME_TEXT_COLOR = 0xff3a8ccf;
     public static int ALERT_PANEL_MESSAGE_TEXT_COLOR = 0xff999999;
 
-    public static final int AUTODOWNLOAD_SHEET_SAVE_TEXT_COLOR = 0xff3a8ccf;
+    public static int AUTODOWNLOAD_SHEET_SAVE_TEXT_COLOR = 0xff3a8ccf;
 
     public static int JOIN_SHEET_NAME_TEXT_COLOR = 0xff212121;
     public static int JOIN_SHEET_COUNT_TEXT_COLOR = 0xff999999;
@@ -420,9 +416,12 @@ public class Theme {
         int forward = ContextCompat.getColor(context, R.color.message_forward_name);
         int background = ContextCompat.getColor(context, R.color.background);
         int out_media = ContextCompat.getColor(context, R.color.message_media);
+        int accent = ContextCompat.getColor(context, R.color.colorAccent);
 
         EmojiView.BACKGROUND_COLOR = ContextCompat.getColor(context, R.color.sticker_select_background);
         EmojiView.INDICATOR_COLOR = ContextCompat.getColor(context, R.color.sticker_indicator_background);
+
+        AUTODOWNLOAD_SHEET_SAVE_TEXT_COLOR = accent;
 
         DIALOGS_NAME_TEXT_COLOR = DIALOGS_ATTACH_TEXT_COLOR = DIALOGS_PRINTING_TEXT_COLOR = ContextCompat.getColor(context, R.color.dialog_name);
         DIALOGS_MESSAGE_ENCRYPTED_TEXT_COLOR = ContextCompat.getColor(context, R.color.dialog_title_encrypted);
@@ -433,7 +432,7 @@ public class Theme {
         INAPP_PLAYER_TITLE_TEXT_COLOR = ContextCompat.getColor(context, R.color.in_app_player_title);
         INAPP_PLAYER_BACKGROUND_COLOR = background;
 
-        SHARE_SHEET_COPY_TEXT_COLOR = 0xff3a8ccf;
+        SHARE_SHEET_COPY_TEXT_COLOR = accent;
         SHARE_SHEET_SEND_TEXT_COLOR = 0xff3ec1f9;
         SHARE_SHEET_SEND_DISABLED_TEXT_COLOR = disabled;
         SHARE_SHEET_EDIT_TEXT_COLOR = primary;
@@ -449,7 +448,7 @@ public class Theme {
         ACTION_BAR_COLOR = ContextCompat.getColor(context, R.color.colorPrimary);
         ACTION_BAR_PROFILE_COLOR = ContextCompat.getColor(context, R.color.profile_color);
 
-        REPLY_PANEL_NAME_TEXT_COLOR = 0xff3a8ccf;
+        REPLY_PANEL_NAME_TEXT_COLOR = accent;
         REPLY_PANEL_MESSAGE_TEXT_COLOR = ContextCompat.getColor(context, R.color.replay_panel_text);
 
         ATTACH_SHEET_TEXT_COLOR = secondary;
@@ -463,13 +462,13 @@ public class Theme {
         MSG_BOT_PROGRESS_COLOR = white;
         MSG_IN_FORDWARDED_NAME_TEXT_COLOR = 0xff3886c7;
         MSG_OUT_FORDWARDED_NAME_TEXT_COLOR = forward;
-        MSG_IN_VIA_BOT_NAME_TEXT_COLOR = 0xff3a8ccf;
+        MSG_IN_VIA_BOT_NAME_TEXT_COLOR = accent;
         MSG_OUT_VIA_BOT_NAME_TEXT_COLOR = forward;
         MSG_STICKER_VIA_BOT_NAME_TEXT_COLOR = white;
         MSG_IN_REPLY_LINE_COLOR = 0xff70b4e8;
         MSG_OUT_REPLY_LINE_COLOR = 0xff88c97b;
         MSG_STICKER_REPLY_LINE_COLOR = white;
-        MSG_IN_REPLY_NAME_TEXT_COLOR = 0xff3a8ccf;
+        MSG_IN_REPLY_NAME_TEXT_COLOR = accent;
         MSG_OUT_REPLY_NAME_TEXT_COLOR = forward;
         MSG_STICKER_REPLY_NAME_TEXT_COLOR = white;
         MSG_IN_REPLY_MESSAGE_TEXT_COLOR = primary;
@@ -481,7 +480,7 @@ public class Theme {
         MSG_STICKER_REPLY_MESSAGE_TEXT_COLOR = white;
         MSG_IN_WEB_PREVIEW_LINE_COLOR = 0xff70b4e8;
         MSG_OUT_WEB_PREVIEW_LINE_COLOR = 0xff88c97b;
-        MSG_IN_SITE_NAME_TEXT_COLOR = 0xff3a8ccf;
+        MSG_IN_SITE_NAME_TEXT_COLOR = accent;
         MSG_OUT_SITE_NAME_TEXT_COLOR = forward;
         MSG_IN_CONTACT_NAME_TEXT_COLOR = 0xff4e9ad4;
         MSG_OUT_CONTACT_NAME_TEXT_COLOR = forward;
