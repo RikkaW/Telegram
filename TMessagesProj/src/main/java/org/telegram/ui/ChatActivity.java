@@ -34,6 +34,7 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v4.view.ViewCompat;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -2258,7 +2259,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         pagedownButton = new FrameLayout(context);
         pagedownButton.setVisibility(View.INVISIBLE);
-        contentView.addView(pagedownButton, LayoutHelper.createFrame(46, 59, Gravity.RIGHT | Gravity.BOTTOM, 0, 0, 7, 5));
+        contentView.addView(pagedownButton, LayoutHelper.createFrame(54, 59, Gravity.RIGHT | Gravity.BOTTOM, 0, 0, 4, 0));
         pagedownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -2271,11 +2272,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         });
 
         ImageView pagedownButtonImage = new ImageView(context);
-        pagedownButtonImage.setImageResource(R.drawable.pagedown);
-        pagedownButton.addView(pagedownButtonImage, LayoutHelper.createFrame(46, 46, Gravity.LEFT | Gravity.BOTTOM));
+        pagedownButtonImage.setBackground(context.getDrawable(R.drawable.pagedown_background));
+        pagedownButtonImage.setImageDrawable(context.getDrawable(R.drawable.ic_pagedown_button_24dp));
+        pagedownButtonImage.setElevation(AndroidUtilities.dp(4));
+        pagedownButtonImage.setPadding(AndroidUtilities.dp(8), AndroidUtilities.dp(9), AndroidUtilities.dp(8), AndroidUtilities.dp(7));
+        pagedownButton.addView(pagedownButtonImage, LayoutHelper.createFrame(42, 42, Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 6, 6, 6, 6));
 
         pagedownButtonCounter = new TextView(context);
         pagedownButtonCounter.setVisibility(View.INVISIBLE);
+        pagedownButtonCounter.setElevation(AndroidUtilities.dp(4));
         pagedownButtonCounter.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         pagedownButtonCounter.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
         pagedownButtonCounter.setTextColor(0xffffffff);

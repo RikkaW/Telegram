@@ -75,7 +75,12 @@ public class ActionBarMenu extends LinearLayout {
             menuItem.iconView.setImageDrawable(drawable);
         } else {
             menuItem.iconView.setImageResource(icon);
-            menuItem.iconView.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.secondary_text)));
+            if (icon == R.drawable.ic_ab_reply
+                    || icon == R.drawable.ic_ab_fwd_copy
+                    || icon == R.drawable.ic_ab_fwd_forward
+                    || icon == R.drawable.ic_ab_fwd_delete) {
+                menuItem.iconView.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.secondary_text)));
+            }
         }
         addView(menuItem);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) menuItem.getLayoutParams();

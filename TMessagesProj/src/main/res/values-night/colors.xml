@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#1f3145</color>
     <color name="colorPrimaryDark">#1c2c3e</color>
-    <color name="colorAccent">@color/material_blue_A100</color>
+    <color name="colorAccent">@color/material_light_blue_A100</color>
 
     <color name="fab">#a4000000</color>
 
@@ -57,7 +57,7 @@
 
     <color name="action_bar_action_mode">#ffbdbdbd</color>
 
-    <color name="dialog_name">#9ac0ff</color>
+    <color name="dialog_name">#bcdfff</color>
     <color name="dialog_title_encrypted">@color/material_green_A100</color>
 
     <color name="avatar_profile_back_red">#8f2e24</color>

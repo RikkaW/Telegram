@@ -64,11 +64,11 @@
     </style>
 
     <style name="Theme.TMessages.Dialog" parent="@style/Theme.DayNight.Dialog">
-        <item name="android:colorAccent">#4991cc</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="Theme.TMessages.Dialog.Alert" parent="@style/Theme.DayNight.Dialog.Alert">
-        <item name="android:colorAccent">#4991cc</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="Theme.TMessages.Dialog.Alert.Chat" parent="@style/Theme.TMessages.Dialog.Alert"/>
@@ -107,7 +107,7 @@
     <!--BORDERLESS BUTTON-->
 
     <style name="Theme.TMessages.BorderLessButton" parent="android:Widget.Material.Light.ButtonBar.AlertDialog">
-        <item name="android:textColor">#4991cc</item>
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
 
     <!--LIST VIEW-->

@@ -52,7 +52,7 @@ public class CheckBoxCell extends FrameLayout {
         addView(textView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, (LocaleController.isRTL ? 17 : 46), 0, (LocaleController.isRTL ? 46 : 17), 0));
 
         valueTextView = new TextView(context);
-        valueTextView.setTextColor(0xff2f8cc9);
+        valueTextView.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
         valueTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         valueTextView.setLines(1);
         valueTextView.setMaxLines(1);
@@ -62,7 +62,7 @@ public class CheckBoxCell extends FrameLayout {
         addView(valueTextView, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.MATCH_PARENT, (LocaleController.isRTL ? Gravity.LEFT : Gravity.RIGHT) | Gravity.TOP, 17, 0, 17, 0));
 
         checkBox = new CheckBoxSquare(context);
-        addView(checkBox, LayoutHelper.createFrame(18, 18, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, (LocaleController.isRTL ? 0 : 17), 15, (LocaleController.isRTL ? 17 : 0), 0));
+        addView(checkBox, LayoutHelper.createFrame(24, 24, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, (LocaleController.isRTL ? 0 : 9), 7, (LocaleController.isRTL ? 9 : 0), 0));
     }
 
     @Override
