@@ -457,7 +457,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     break;
                 case 2:
                     view = new TextSettingsCell(mContext);
-                    view.setForeground(view.getContext().getDrawable(R.drawable.list_selector));
+                    ((TextSettingsCell) view).setForeground(R.drawable.list_selector);
                     break;
                 case 3:
                     view = new ShadowSectionCell(mContext);
