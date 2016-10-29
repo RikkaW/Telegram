@@ -13,11 +13,17 @@
     <style name="Theme" parent="@android:style/Theme.Material">
         <item name="colorSwitchThumbNormal">@color/switch_thumb_material_dark</item>
         <item name="android:actionBarStyle">@style/ActionBar</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/btn_radio_material_anim</item>
+        <item name="android:listChoiceIndicatorMultiple">@drawable/btn_check_material_anim</item>
+        <item name="android:switchStyle">@style/Theme.TMessages.Switch</item>
     </style>
 
     <style name="Theme.Light" parent="@android:style/Theme.Material.Light">
         <item name="colorSwitchThumbNormal">@color/switch_thumb_material_light</item>
         <item name="android:actionBarStyle">@style/ActionBar</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/btn_radio_material_anim</item>
+        <item name="android:listChoiceIndicatorMultiple">@drawable/btn_check_material_anim</item>
+        <item name="android:switchStyle">@style/Theme.TMessages.Switch</item>
     </style>
 
     <style name="Theme.DayNight" parent="@style/Theme.Light"/>
@@ -147,5 +153,15 @@
     </style>
 
     <style name="Theme.TMessages.TextView" parent="android:Widget.TextView"/>
+
+    <!--SWITCH-->
+
+    <style name="Theme.TMessages.Switch">
+        <item name="android:track">@drawable/switch_track_material</item>
+        <item name="android:thumb">@drawable/switch_thumb_material_anim</item>
+        <item name="android:switchTextAppearance">@android:style/TextAppearance.Material.Button</item>
+        <item name="android:background">@drawable/control_background_40dp_material</item>
+        <item name="android:showText">false</item>
+    </style>
 
 </resources>

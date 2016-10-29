@@ -15,20 +15,20 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.LayoutHelper;
 
 public class CheckBoxCell extends FrameLayout {
 
     private TextView textView;
     private TextView valueTextView;
-    private CheckBoxSquare checkBox;
+    private CheckBox checkBox;
     private static Paint paint;
     private boolean needDivider;
 
@@ -61,8 +61,11 @@ public class CheckBoxCell extends FrameLayout {
         valueTextView.setGravity((LocaleController.isRTL ? Gravity.LEFT : Gravity.RIGHT) | Gravity.CENTER_VERTICAL);
         addView(valueTextView, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.MATCH_PARENT, (LocaleController.isRTL ? Gravity.LEFT : Gravity.RIGHT) | Gravity.TOP, 17, 0, 17, 0));
 
-        checkBox = new CheckBoxSquare(context);
-        addView(checkBox, LayoutHelper.createFrame(18, 18, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, (LocaleController.isRTL ? 0 : 17), 15, (LocaleController.isRTL ? 17 : 0), 0));
+        checkBox = new CheckBox(context);
+        checkBox.setClickable(false);
+        checkBox.setFocusable(false);
+        checkBox.setBackground(null);
+        addView(checkBox, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.CENTER_VERTICAL, (LocaleController.isRTL ? 0 : 7), 0, (LocaleController.isRTL ? 7 : 0), 0));
     }
 
     @Override
@@ -73,7 +76,7 @@ public class CheckBoxCell extends FrameLayout {
 
         valueTextView.measure(MeasureSpec.makeMeasureSpec(availableWidth / 2, MeasureSpec.AT_MOST), MeasureSpec.makeMeasureSpec(getMeasuredHeight(), MeasureSpec.EXACTLY));
         textView.measure(MeasureSpec.makeMeasureSpec(availableWidth - valueTextView.getMeasuredWidth() - AndroidUtilities.dp(8), MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(getMeasuredHeight(), MeasureSpec.EXACTLY));
-        checkBox.measure(MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(18), MeasureSpec.AT_MOST), MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(18), MeasureSpec.EXACTLY));
+        checkBox.measure(MeasureSpec.makeMeasureSpec(widthMeasureSpec, MeasureSpec.AT_MOST), MeasureSpec.makeMeasureSpec(heightMeasureSpec, MeasureSpec.EXACTLY));
     }
 
     public void setTextColor(int color) {
@@ -82,14 +85,14 @@ public class CheckBoxCell extends FrameLayout {
 
     public void setText(String text, String value, boolean checked, boolean divider) {
         textView.setText(text);
-        checkBox.setChecked(checked, false);
+        checkBox.setChecked(checked/*, false*/);
         valueTextView.setText(value);
         needDivider = divider;
         setWillNotDraw(!divider);
     }
 
     public void setChecked(boolean checked, boolean animated) {
-        checkBox.setChecked(checked, animated);
+        checkBox.setChecked(checked/*, animated*/);
     }
 
     public boolean isChecked() {

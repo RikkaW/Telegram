@@ -589,9 +589,8 @@ public class ChannelEditActivity extends BaseFragment implements AvatarUpdater.A
                     presentFragment(fragment);
                 }
             });
-            // TODO accent color
             typeCell.setTextColor(ContextCompat.getColor(fragmentView.getContext(), R.color.primary_text));
-            typeCell.setTextValueColor(0xff2f8cc9);
+            typeCell.setTextValueColor(ContextCompat.getColor(fragmentView.getContext(), R.color.colorAccent));
         } else {
             typeCell.setOnClickListener(null);
             typeCell.setTextColor(ContextCompat.getColor(fragmentView.getContext(), R.color.disabled_text));

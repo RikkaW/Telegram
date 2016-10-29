@@ -10,21 +10,19 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.ColorInt;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.FrameLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.RadioButton;
 
 public class RadioCell extends FrameLayout {
 
@@ -56,9 +54,12 @@ public class RadioCell extends FrameLayout {
         addView(textView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, 17, 0, 17, 0));
 
         radioButton = new RadioButton(context);
-        radioButton.setSize(AndroidUtilities.dp(20));
-        radioButton.setColor(0xffb3b3b3, 0xff37a9f0);
-        addView(radioButton, LayoutHelper.createFrame(22, 22, (LocaleController.isRTL ? Gravity.LEFT : Gravity.RIGHT) | Gravity.TOP, (LocaleController.isRTL ? 18 : 0), 13, (LocaleController.isRTL ? 0 : 18), 0));
+        radioButton.setClickable(false);
+        radioButton.setFocusable(false);
+        radioButton.setBackground(null);
+        /*radioButton.setSize(AndroidUtilities.dp(20));
+        radioButton.setColor(0xffb3b3b3, 0xff37a9f0);*/
+        addView(radioButton, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, (LocaleController.isRTL ? Gravity.LEFT : Gravity.RIGHT) | Gravity.CENTER_VERTICAL, (LocaleController.isRTL ? 18 : 0), 0, (LocaleController.isRTL ? 0 : 18), 0));
     }
 
     @Override
@@ -66,7 +67,7 @@ public class RadioCell extends FrameLayout {
         setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), AndroidUtilities.dp(48) + (needDivider ? 1 : 0));
 
         int availableWidth = getMeasuredWidth() - getPaddingLeft() - getPaddingRight() - AndroidUtilities.dp(34);
-        radioButton.measure(MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(22), MeasureSpec.AT_MOST), MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(22), MeasureSpec.EXACTLY));
+        radioButton.measure(MeasureSpec.makeMeasureSpec(getMeasuredWidth(), MeasureSpec.AT_MOST), MeasureSpec.makeMeasureSpec(getMeasuredHeight(), MeasureSpec.EXACTLY));
         textView.measure(MeasureSpec.makeMeasureSpec(availableWidth, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(getMeasuredHeight(), MeasureSpec.EXACTLY));
     }
 
@@ -76,13 +77,13 @@ public class RadioCell extends FrameLayout {
 
     public void setText(String text, boolean checked, boolean divider) {
         textView.setText(text);
-        radioButton.setChecked(checked, false);
+        radioButton.setChecked(checked/*, false*/);
         needDivider = divider;
         setWillNotDraw(!divider);
     }
 
     public void setChecked(boolean checked, boolean animated) {
-        radioButton.setChecked(checked, animated);
+        radioButton.setChecked(checked/*, animated*/);
     }
 
     @Override

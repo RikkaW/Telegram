@@ -15,7 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
@@ -23,7 +23,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.ForegroundFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.RadioButton;
 
 public class RadioButtonCell extends ForegroundFrameLayout {
 
@@ -46,10 +45,14 @@ public class RadioButtonCell extends ForegroundFrameLayout {
         }
 
         radioButton = new RadioButton(context);
-        radioButton.setSize(AndroidUtilities.dp(20));
-        // TODO accent color
-        radioButton.setColor(0xffb3b3b3, 0xff37a9f0);
-        addView(radioButton, LayoutHelper.createFrame(22, 22, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, (LocaleController.isRTL ? 0 : 18), 10, (LocaleController.isRTL ? 18 : 0), 0));
+        radioButton.setClickable(false);
+        radioButton.setFocusable(false);
+        radioButton.setBackground(null);
+        radioButton.setScaleX(22f / 24);
+        radioButton.setScaleY(22f / 24);
+        //radioButton.setSize(AndroidUtilities.dp(20));
+        //radioButton.setColor(0xffb3b3b3, 0xff37a9f0);
+        addView(radioButton, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, (LocaleController.isRTL ? 0 : 12), 6, (LocaleController.isRTL ? 12 : 0), 0));
 
         textView = new TextView(context);
         textView.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
@@ -80,12 +83,12 @@ public class RadioButtonCell extends ForegroundFrameLayout {
         textView.setText(text);
         valueTextView.setText(value);
         needDivider = divider;
-        radioButton.setChecked(checked, false);
+        radioButton.setChecked(checked/*, false*/);
         setWillNotDraw(!divider);
     }
 
     public void setChecked(boolean checked, boolean animated) {
-        radioButton.setChecked(checked, animated);
+        radioButton.setChecked(checked/*, animated*/);
     }
 
     @Override

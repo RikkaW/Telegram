@@ -17,9 +17,11 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.graphics.drawable.AnimatedVectorDrawable;
 import android.view.View;
 
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
 
 public class CheckBoxSquare extends View {
 
@@ -46,9 +48,10 @@ public class CheckBoxSquare extends View {
         super(context);
         if (checkPaint == null) {
             checkPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            checkPaint.setColor(0xffffffff);
+            //checkPaint.setColor(0xffffffff);
             checkPaint.setStyle(Paint.Style.STROKE);
             checkPaint.setStrokeWidth(AndroidUtilities.dp(2));
+            checkPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
             eraser = new Paint(Paint.ANTI_ALIAS_FLAG);
             eraser.setColor(0);
             eraser.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
