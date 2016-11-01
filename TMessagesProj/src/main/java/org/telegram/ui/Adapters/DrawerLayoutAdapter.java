@@ -27,6 +27,8 @@ public class DrawerLayoutAdapter extends BaseAdapter {
 
     private Context mContext;
 
+    private DrawerProfileCell mDrawerProfileCell;
+
     public DrawerLayoutAdapter(Context context) {
         mContext = context;
     }
@@ -65,13 +67,12 @@ public class DrawerLayoutAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         int type = getItemViewType(i);
         if (type == 0) {
-            DrawerProfileCell drawerProfileCell;
             if (view == null) {
-                view = drawerProfileCell = new DrawerProfileCell(mContext);
+                view = mDrawerProfileCell = new DrawerProfileCell(mContext);
             } else {
-                drawerProfileCell = (DrawerProfileCell) view;
+                mDrawerProfileCell = (DrawerProfileCell) view;
             }
-            drawerProfileCell.setUser(MessagesController.getInstance().getUser(UserConfig.getClientUserId()));
+            mDrawerProfileCell.setUser(MessagesController.getInstance().getUser(UserConfig.getClientUserId()));
         } else if (type == 1) {
             if (view == null) {
                 view = new EmptyCell(mContext, AndroidUtilities.dp(8));
@@ -125,5 +126,9 @@ public class DrawerLayoutAdapter extends BaseAdapter {
     @Override
     public boolean isEmpty() {
         return !UserConfig.isClientActivated();
+    }
+
+    public DrawerProfileCell getDrawerProfileCell() {
+        return mDrawerProfileCell;
     }
 }

@@ -24,6 +24,8 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.Adapters.DrawerLayoutAdapter;
+import org.telegram.ui.Cells.DrawerProfileCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextCheckCell;
@@ -198,6 +200,13 @@ public class NightModeActivity extends BaseFragment implements TimePickerDialog.
                                 if (!((DayNightActivity) getParentActivity()).applyDayNight()) {
                                     resetViewsVisibility();
                                     nightModeCell.setValue(NightModeActivity.getNightModeStatus(nightMode));
+                                    if (getParentActivity() instanceof LaunchActivity) {
+                                        LaunchActivity activity = (LaunchActivity) getParentActivity();
+                                        if (!activity.isFinishing()) {
+                                            DrawerProfileCell cell = ((DrawerLayoutAdapter) activity.getDrawerListView().getAdapter()).getDrawerProfileCell();
+                                            cell.getDayNightView().setNightMode(nightMode);
+                                        }
+                                    }
                                 }
                             }
                         });

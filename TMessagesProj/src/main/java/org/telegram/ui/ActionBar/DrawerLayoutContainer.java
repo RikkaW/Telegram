@@ -207,7 +207,7 @@ public class DrawerLayoutContainer extends FrameLayout {
         animatorSet.start();
     }
 
-    private void onDrawerAnimationEnd(boolean opened) {
+    public void onDrawerAnimationEnd(boolean opened) {
         startedTracking = false;
         currentAnimation = null;
         drawerOpened = opened;
@@ -246,6 +246,8 @@ public class DrawerLayoutContainer extends FrameLayout {
             }
         }
     }
+
+
 
     private void prepareForDrawerOpen(MotionEvent ev) {
         maybeStartTracking = false;

@@ -2079,6 +2079,9 @@ public class LaunchActivity extends DayNightActivity implements ActionBarLayout.
     protected void onSaveInstanceState(Bundle outState) {
         try {
             super.onSaveInstanceState(outState);
+
+            outState.putBoolean("drawer_open", drawerLayoutContainer.isDrawerOpened());
+
             BaseFragment lastFragment = null;
             if (AndroidUtilities.isTablet()) {
                 if (!layersActionBarLayout.fragmentsStack.isEmpty()) {
@@ -2419,5 +2422,24 @@ public class LaunchActivity extends DayNightActivity implements ActionBarLayout.
             }
         }
         drawerLayoutAdapter.notifyDataSetChanged();
+    }
+
+    public ListView getDrawerListView() {
+        return listView;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        if (savedInstanceState.getBoolean("drawer_open")) {
+            drawerLayoutContainer.post(new Runnable() {
+                @Override
+                public void run() {
+                    drawerLayoutContainer.setDrawerPosition(drawerLayoutContainer.getDrawerLayout().getMeasuredWidth());
+                    drawerLayoutContainer.onDrawerAnimationEnd(true);
+                }
+            });
+        }
     }
 }

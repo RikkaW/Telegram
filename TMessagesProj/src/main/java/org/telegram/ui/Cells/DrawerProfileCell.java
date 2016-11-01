@@ -8,7 +8,10 @@
 
 package org.telegram.ui.Cells;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -36,8 +39,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.DayNightActivity;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.LaunchActivity;
 
 public class DrawerProfileCell extends FrameLayout {
 
@@ -46,6 +51,7 @@ public class DrawerProfileCell extends FrameLayout {
     private TextView phoneTextView;
     private ImageView shadowView;
     private CloudView cloudView;
+    private DayNightView dayNightView;
     private Rect srcRect = new Rect();
     private Rect destRect = new Rect();
     private Paint paint = new Paint();
@@ -74,6 +80,64 @@ public class DrawerProfileCell extends FrameLayout {
             int t = (getMeasuredHeight() - AndroidUtilities.dp(33)) / 2;
             cloudDrawable.setBounds(l, t, l + AndroidUtilities.dp(33), t + AndroidUtilities.dp(33));
             cloudDrawable.draw(canvas);
+        }
+    }
+
+    public class DayNightView extends View implements OnClickListener {
+
+        private Drawable drawable;
+        private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+        public DayNightView(Context context) {
+            super(context);
+
+            drawable = getResources().getDrawable(
+                    (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_YES) > 0
+                     ? R.drawable.ic_night_mode_day_24dp : R.drawable.ic_night_mode_night_24dp);
+            drawable.setTint(0xffffffff);
+
+            SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
+            setNightMode(preferences.getInt("nightMode", DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM));
+
+            setOnClickListener(this);
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            if (ApplicationLoader.isCustomTheme() && ApplicationLoader.getCachedWallpaper() != null) {
+                paint.setColor(ApplicationLoader.getServiceMessageColor());
+            } else {
+                paint.setColor(0xff427ba9);
+            }
+            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(34) / 2.0f, paint);
+            int l = (getMeasuredWidth() - AndroidUtilities.dp(24)) / 2;
+            int t = (getMeasuredHeight() - AndroidUtilities.dp(24)) / 2;
+            drawable.setBounds(l, t, l + AndroidUtilities.dp(24), t + AndroidUtilities.dp(24));
+            drawable.draw(canvas);
+        }
+
+        public void setNightMode(int mode) {
+            if (mode != DayNightActivity.MODE_NIGHT_AUTO && mode != DayNightActivity.MODE_NIGHT_FOLLOW_SYSTEM) {
+                setVisibility(VISIBLE);
+            } else {
+                setVisibility(GONE);
+            }
+        }
+
+        @Override
+        public void onClick(View view) {
+            int mode = (getContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_YES) > 0 ? DayNightActivity.MODE_NIGHT_NO : DayNightActivity.MODE_NIGHT_YES;
+            SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
+            preferences
+                    .edit()
+                    .putInt("nightMode", mode)
+                    .apply();
+
+            if (getContext() instanceof LaunchActivity) {
+                ((LaunchActivity) getContext()).setLocalNightMode(mode);
+                ((LaunchActivity) getContext()).getWindow().setWindowAnimations(R.style.AnimationFadeInOut);
+                ((LaunchActivity) getContext()).recreate();
+            }
         }
     }
 
@@ -113,6 +177,11 @@ public class DrawerProfileCell extends FrameLayout {
 
         cloudView = new CloudView(context);
         addView(cloudView, LayoutHelper.createFrame(61, 61, Gravity.RIGHT | Gravity.BOTTOM));
+
+        dayNightView = new DayNightView(context);
+        FrameLayout.LayoutParams lp = LayoutHelper.createFrame(61, 61, Gravity.RIGHT | Gravity.TOP);
+        lp.setMargins(0, (Build.VERSION.SDK_INT >= 21) ? AndroidUtilities.statusBarHeight : 0, 0, 0);
+        addView(dayNightView, lp);
     }
 
     @Override
@@ -183,5 +252,10 @@ public class DrawerProfileCell extends FrameLayout {
     public void invalidate() {
         super.invalidate();
         cloudView.invalidate();
+        dayNightView.invalidate();
+    }
+
+    public DayNightView getDayNightView() {
+        return dayNightView;
     }
 }
