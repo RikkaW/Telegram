@@ -81,7 +81,7 @@ android {
         }
     }
 
-    defaultConfig.versionCode = 851 + 13
+    defaultConfig.versionCode = 851 + 15
 
     sourceSets.debug {
         manifest.srcFile 'config/debug/AndroidManifest.xml'
@@ -121,7 +121,9 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 25
-        versionName "3.13.1.13"
+        versionName "3.13.1.15"
+
+        buildConfigField "String", "BASE64_PUBLIC_KEY", "\"${base64_public_key}\""
 
         /*externalNativeBuild {
             ndkBuild {

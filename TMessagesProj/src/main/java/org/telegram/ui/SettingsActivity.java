@@ -70,6 +70,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.query.StickersQuery;
+import org.telegram.messenger.support.iap.DonateHelper;
 import org.telegram.messenger.support.widget.LinearLayoutManager;
 import org.telegram.messenger.support.widget.RecyclerView;
 import org.telegram.tgnet.ConnectionsManager;
@@ -152,6 +153,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     private int fakeBoldRow;
     private int nightModeRow;
     private int forceExternalRow;
+    private int donateRow;
 
     private int raiseToSpeakRow;
     private int sendByEnterRow;
@@ -172,6 +174,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
     private final static int edit_name = 1;
     private final static int logout = 2;
+
+    private DonateHelper mDonateHelper;
 
     public SettingsActivity() {
     }
@@ -286,6 +290,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         supportSectionRow = rowCount++;
         supportSectionRow2 = rowCount++;
         //askQuestionRow = rowCount++;
+        donateRow = rowCount++;
         telegramFaqRow = rowCount++;
         privacyPolicyRow = rowCount++;
         if (BuildVars.DEBUG_VERSION) {
@@ -301,8 +306,12 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         StickersQuery.checkFeaturedStickers();
         MessagesController.getInstance().loadFullUser(UserConfig.getCurrentUser(), classGuid, true);
 
+        mDonateHelper = new DonateHelper(ApplicationLoader.applicationContext);
+
         return true;
     }
+
+
 
     @Override
     public void onFragmentDestroy() {
@@ -314,6 +323,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         NotificationCenter.getInstance().removeObserver(this, NotificationCenter.updateInterfaces);
         NotificationCenter.getInstance().removeObserver(this, NotificationCenter.featuredStickersDidLoaded);
         avatarUpdater.clear();
+        mDonateHelper.onDestroy();
     }
 
     @Override
@@ -744,6 +754,32 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     presentFragment(new NightModeActivity());
                 } else if (position == forceExternalRow) {
                     presentFragment(new ForceExternalLinksActivity());
+                } else if (position == donateRow) {
+                    if (AndroidUtilities.isPackageInstalled(getParentActivity(), "com.eg.android.AlipayGphone")) {
+                        showDialog(new AlertDialog.Builder(getParentActivity())
+                                .setTitle("Donate via")
+                                .setItems(new CharSequence[]{"Google Play", "Alipay"}, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        switch (which) {
+                                            case 0:
+                                                showDialog(mDonateHelper.getDialog(getParentActivity()));
+                                                break;
+                                            case 1:
+                                                try {
+                                                    getParentActivity().startActivity(new Intent(Intent.ACTION_VIEW,
+                                                            Uri.parse("alipayqr://platformapi/startapp?saId=10000007&qrcode=https%3A%2F%2Fqr.alipay.com%2Faex01083scje5axcttivf13")));
+                                                } catch (Exception ignored) {
+                                                    AndroidUtilities.addToClipboard("rikka@xing.moe");
+                                                    Toast.makeText(getParentActivity(), "rikka@xing.moe has copied to clipboard.", Toast.LENGTH_SHORT).show();
+                                                }
+                                                break;
+                                        }
+                                    }
+                                }).create());
+                    } else {
+                        showDialog(mDonateHelper.getDialog(getParentActivity()));
+                    }
                 }
             }
         });
@@ -1093,7 +1129,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
     @Override
     public void onActivityResultFragment(int requestCode, int resultCode, Intent data) {
-        avatarUpdater.onActivityResult(requestCode, resultCode, data);
+        if (!mDonateHelper.onActivityResult(requestCode, resultCode, data)) {
+            avatarUpdater.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override
@@ -1368,6 +1406,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         textCell.setTextAndValue(LocaleController.getString("NightMode", R.string.NightMode), NightModeActivity.getNightModeStatus(nightMode), true);
                     } else if (position == forceExternalRow) {
                         textCell.setText(LocaleController.getString("ExternalLinks", R.string.ExternalLinks), true);
+                    } else if (position == donateRow) {
+                        textCell.setText(LocaleController.getString("Donate", R.string.Donate), true);
                     }
                     break;
                 }
@@ -1495,7 +1535,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         position == mobileDownloadRow || position == clearLogsRow || position == roamingDownloadRow || position == languageRow || position == usernameRow ||
                         position == switchBackendButtonRow || position == telegramFaqRow || position == contactsSortRow || position == contactsReimportRow || position == saveToGalleryRow ||
                         position == stickersRow || position == cacheRow || position == raiseToSpeakRow || position == privacyPolicyRow || position == customTabsRow || position == directShareRow || position == versionRow ||
-                        position == emojiRow || position == googleEmojiRow || position == fakeBoldRow || position == nightModeRow || position == forceExternalRow) {
+                        position == emojiRow || position == googleEmojiRow || position == fakeBoldRow || position == nightModeRow || position == forceExternalRow || position == donateRow) {
                     if (holder.itemView instanceof ForegroundFrameLayout) {
                         ForegroundFrameLayout view = (ForegroundFrameLayout) holder.itemView;
                         if (view.getForeground() == null) {
@@ -1574,7 +1614,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 return 1;
             } else if (position == enableAnimationsRow || position == sendByEnterRow || position == saveToGalleryRow || position == autoplayGifsRow || position == raiseToSpeakRow || position == customTabsRow || position == directShareRow || position == googleEmojiRow || position == fakeBoldRow) {
                 return 3;
-            } else if (position == notificationRow || position == backgroundRow || position == askQuestionRow || position == sendLogsRow || position == privacyRow || position == clearLogsRow || position == switchBackendButtonRow || position == telegramFaqRow || position == contactsReimportRow || position == textSizeRow || position == languageRow || position == contactsSortRow || position == stickersRow || position == cacheRow || position == privacyPolicyRow || position == emojiRow || position == nightModeRow || position == forceExternalRow) {
+            } else if (position == notificationRow || position == backgroundRow || position == askQuestionRow || position == sendLogsRow || position == privacyRow || position == clearLogsRow || position == switchBackendButtonRow || position == telegramFaqRow || position == contactsReimportRow || position == textSizeRow || position == languageRow || position == contactsSortRow || position == stickersRow || position == cacheRow || position == privacyPolicyRow || position == emojiRow || position == nightModeRow || position == forceExternalRow || position == donateRow) {
                 return 2;
             } else if (position == versionRow) {
                 return 5;

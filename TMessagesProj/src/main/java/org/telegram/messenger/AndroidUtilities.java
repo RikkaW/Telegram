@@ -1528,4 +1528,13 @@ public class AndroidUtilities {
         matrix.preScale(sx, sy);
         matrix.preTranslate(tx, ty);
     }
+
+    public static boolean isPackageInstalled(Context context, String packageName) {
+        try {
+            context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
 }

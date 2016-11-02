@@ -1315,4 +1315,12 @@
 
     <string name="ExternalLinks">Links open externally</string>
     <string name="ExternalLinksAddDomain">Add domain</string>
+
+    <string name="Donate">Donate</string>
+    <string name="DonateThanks">Thank you for your support</string>
+
+    <string name="SendFeedback">Send feedback</string>
+    <string name="SendFeedbackSendVia">Send via</string>
+    <string name="SendFeedbackNoMailApp">No mail app</string>
 </resources>
+
