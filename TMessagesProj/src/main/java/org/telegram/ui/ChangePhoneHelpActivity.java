@@ -11,6 +11,7 @@ package org.telegram.ui;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -117,7 +118,7 @@ public class ChangePhoneHelpActivity extends BaseFragment {
         textView = new TextView(context);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
         textView.setGravity(Gravity.CENTER_HORIZONTAL);
-        textView.setTextColor(0xff4d83b3);
+        textView.setTextColor(ContextCompat.getColor(context, R.color.colorAccent) /*0xff4d83b3*/);
         textView.setText(LocaleController.getString("PhoneNumberChange", R.string.PhoneNumberChange));
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         textView.setPadding(0, AndroidUtilities.dp(10), 0, AndroidUtilities.dp(10));

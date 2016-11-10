@@ -1323,6 +1323,6 @@
     <string name="DonateThanks">感谢您的支持</string>
 
     <string name="SendFeedback">发送反馈</string>
-    <string name="SendFeedbackSendVia">发送方式</string>
+    <string name="SendFeedbackSendTo">发送至</string>
     <string name="SendFeedbackNoMailApp">没有邮件应用</string>
 </resources>

@@ -1320,7 +1320,7 @@
     <string name="DonateThanks">Thank you for your support</string>
 
     <string name="SendFeedback">Send feedback</string>
-    <string name="SendFeedbackSendVia">Send via</string>
+    <string name="SendFeedbackSendTo">Send to</string>
     <string name="SendFeedbackNoMailApp">No mail app</string>
 </resources>
 

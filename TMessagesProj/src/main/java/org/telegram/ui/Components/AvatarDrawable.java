@@ -57,7 +57,15 @@ public class AvatarDrawable extends Drawable {
                 ContextCompat.getColor(context, R.color.avatar_profile_back_blue)};
 
         arrColorsProfilesText = new int[]{0xfff9cbc5, 0xfffdddc8, 0xffcdc4ed, 0xffc0edba, 0xffb8e2f0, Theme.ACTION_BAR_PROFILE_SUBTITLE_COLOR, 0xffcdc4ed, 0xffb3d7f7};
-        arrColorsNames = new int[]{0xffca5650, 0xffd87b29, 0xff4e92cc, 0xff50b232, 0xff42b1a8, 0xff4e92cc, 0xff4e92cc, 0xff4e92cc};
+        arrColorsNames = new int[]{
+                ContextCompat.getColor(context, R.color.name_red),
+                ContextCompat.getColor(context, R.color.name_origin),
+                ContextCompat.getColor(context, R.color.name_blue),
+                ContextCompat.getColor(context, R.color.name_green),
+                ContextCompat.getColor(context, R.color.name_cyan),
+                ContextCompat.getColor(context, R.color.name_blue),
+                ContextCompat.getColor(context, R.color.name_blue),
+                ContextCompat.getColor(context, R.color.name_blue)};
         arrColorsButtons = new int[]{Theme.ACTION_BAR_RED_SELECTOR_COLOR, Theme.ACTION_BAR_ORANGE_SELECTOR_COLOR, Theme.ACTION_BAR_VIOLET_SELECTOR_COLOR,
                 Theme.ACTION_BAR_GREEN_SELECTOR_COLOR, Theme.ACTION_BAR_CYAN_SELECTOR_COLOR, Theme.ACTION_BAR_BLUE_SELECTOR_COLOR, Theme.ACTION_BAR_VIOLET_SELECTOR_COLOR, Theme.ACTION_BAR_BLUE_SELECTOR_COLOR};
     }

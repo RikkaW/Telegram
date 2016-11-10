@@ -14,6 +14,7 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.*;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -445,7 +446,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         pickerBottomLayout.doneButtonBadgeTextView.setBackgroundResource(R.drawable.stickercounter);
 
         stickerPreviewLayout = new FrameLayout(context);
-        stickerPreviewLayout.setBackgroundColor(0xdfffffff);
+        if ((context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_YES) != 0) {
+            stickerPreviewLayout.setBackgroundColor(0x00ffffff & ContextCompat.getColor(context, R.color.card_background) | 0xdf000000);
+        } else {
+            stickerPreviewLayout.setBackgroundColor(0xdfffffff);
+        }
         stickerPreviewLayout.setVisibility(View.GONE);
         stickerPreviewLayout.setSoundEffectsEnabled(false);
         containerView.addView(stickerPreviewLayout, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
@@ -483,7 +488,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         previewSendButton.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
         previewSendButton.setTextColor(Theme.STICKERS_SHEET_SEND_TEXT_COLOR);
         previewSendButton.setGravity(Gravity.CENTER);
-        previewSendButton.setBackgroundColor(0xffffffff);
+        previewSendButton.setBackgroundColor(ContextCompat.getColor(context, R.color.background));
         previewSendButton.setPadding(AndroidUtilities.dp(29), 0, AndroidUtilities.dp(29), 0);
         previewSendButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         stickerPreviewLayout.addView(previewSendButton, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 48, Gravity.BOTTOM | Gravity.LEFT));

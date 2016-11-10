@@ -71,6 +71,13 @@
     <color name="dialog_name">#ff4d83b3</color>
     <color name="dialog_title_encrypted">#ff00a60e</color>
 
+    <color name="message_error">#ffcf3030</color>
+    <color name="message_ok">#ff26972c</color>
+
+    <color name="sheet_danger_action">#ffcd5a5a</color>
+
+    <color name="action_button">#ff3a8ccf</color>
+
     <!--<color name="avatar_red"></color>
     <color name="avatar_profile_red"></color>-->
     <color name="avatar_profile_back_red">#ffca6056</color>
@@ -78,5 +85,11 @@
     <color name="avatar_profile_back_purple">#ff7d6ac4</color>
     <color name="avatar_profile_back_green">#ff56a14c</color>
     <color name="avatar_profile_back_cyan">#ff4492ac</color>
-    <color name="avatar_profile_back_blue">#4c84b6</color>
+    <color name="avatar_profile_back_blue">#ff4c84b6</color>
+
+    <color name="name_red">#ffca5650</color>
+    <color name="name_origin">#ffd87b29</color>
+    <color name="name_green">#ff50b232</color>
+    <color name="name_cyan">#ff42b1a8</color>
+    <color name="name_blue">#ff4e92cc</color>
 </resources>

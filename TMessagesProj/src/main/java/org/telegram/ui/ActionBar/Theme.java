@@ -73,7 +73,7 @@ public class Theme {
     public static final int CHAT_ADD_CONTACT_TEXT_COLOR = 0xff4a82b5;
     public static final int CHAT_REPORT_SPAM_TEXT_COLOR = 0xffcf5957;
     public static final int CHAT_BOTTOM_OVERLAY_TEXT_COLOR = 0xff7f7f7f;
-    public static final int CHAT_BOTTOM_CHAT_OVERLAY_TEXT_COLOR = 0xff3a8ccf;
+    public static int CHAT_BOTTOM_CHAT_OVERLAY_TEXT_COLOR = 0xff3a8ccf;
     public static final int CHAT_GIF_HINT_TEXT_COLOR = 0xffffffff;
     public static final int CHAT_EMPTY_VIEW_TEXT_COLOR = 0xffffffff;
     public static final int CHAT_SEARCH_COUNT_TEXT_COLOR = 0xff4e9ad4;
@@ -85,7 +85,7 @@ public class Theme {
     public static int REPLY_PANEL_NAME_TEXT_COLOR = 0xff3a8ccf;
     public static int REPLY_PANEL_MESSAGE_TEXT_COLOR = 0xff222222;
 
-    public static final int ALERT_PANEL_NAME_TEXT_COLOR = 0xff3a8ccf;
+    public static int ALERT_PANEL_NAME_TEXT_COLOR = 0xff3a8ccf;
     public static int ALERT_PANEL_MESSAGE_TEXT_COLOR = 0xff999999;
 
     public static int AUTODOWNLOAD_SHEET_SAVE_TEXT_COLOR = 0xff3a8ccf;
@@ -101,12 +101,12 @@ public class Theme {
     public static int SHARE_SHEET_BADGE_TEXT_COLOR = 0xffffffff;
 
     public static final int STICKERS_SHEET_TITLE_TEXT_COLOR = 0xff212121;
-    public static final int STICKERS_SHEET_SEND_TEXT_COLOR = 0xff3a8ccf;
-    public static final int STICKERS_SHEET_ADD_TEXT_COLOR = 0xff3a8ccf;
-    public static final int STICKERS_SHEET_CLOSE_TEXT_COLOR = 0xff3a8ccf;
-    public static final int STICKERS_SHEET_REMOVE_TEXT_COLOR = 0xffcd5a5a;
+    public static int STICKERS_SHEET_SEND_TEXT_COLOR = 0xff3a8ccf;
+    public static int STICKERS_SHEET_ADD_TEXT_COLOR = 0xff3a8ccf;
+    public static int STICKERS_SHEET_CLOSE_TEXT_COLOR = 0xff3a8ccf;
+    public static int STICKERS_SHEET_REMOVE_TEXT_COLOR = 0xffcd5a5a;
 
-    public static final int PINNED_PANEL_NAME_TEXT_COLOR = 0xff3a8ccf;
+    public static int PINNED_PANEL_NAME_TEXT_COLOR = 0xff3a8ccf;
     public static int PINNED_PANEL_MESSAGE_TEXT_COLOR = 0xff999999;
 
     public static final int SECRET_CHAT_INFO_TEXT_COLOR = 0xffffffff;
@@ -421,6 +421,8 @@ public class Theme {
         EmojiView.BACKGROUND_COLOR = ContextCompat.getColor(context, R.color.sticker_select_background);
         EmojiView.INDICATOR_COLOR = ContextCompat.getColor(context, R.color.sticker_indicator_background);
 
+        STICKERS_SHEET_REMOVE_TEXT_COLOR = ContextCompat.getColor(context, R.color.sheet_danger_action);
+
         AUTODOWNLOAD_SHEET_SAVE_TEXT_COLOR = accent;
 
         DIALOGS_NAME_TEXT_COLOR = DIALOGS_ATTACH_TEXT_COLOR = DIALOGS_PRINTING_TEXT_COLOR = ContextCompat.getColor(context, R.color.dialog_name);
@@ -541,6 +543,18 @@ public class Theme {
         MSG_LINK_TEXT_COLOR = ContextCompat.getColor(context, R.color.msg_link_text);
         MSG_LINK_SELECT_BACKGROUND_COLOR = 0x3362a9e3;
         MSG_TEXT_SELECT_BACKGROUND_COLOR = 0x6662a9e3;
+
+        CHAT_BOTTOM_CHAT_OVERLAY_TEXT_COLOR = accent;
+        REPLY_PANEL_NAME_TEXT_COLOR = accent;
+        ALERT_PANEL_NAME_TEXT_COLOR = accent;
+        AUTODOWNLOAD_SHEET_SAVE_TEXT_COLOR = accent;
+        STICKERS_SHEET_SEND_TEXT_COLOR = accent;
+        STICKERS_SHEET_ADD_TEXT_COLOR = accent;
+        STICKERS_SHEET_CLOSE_TEXT_COLOR = accent;
+        PINNED_PANEL_NAME_TEXT_COLOR = accent;
+        MSG_IN_VIA_BOT_NAME_TEXT_COLOR = accent;
+        MSG_IN_REPLY_NAME_TEXT_COLOR = accent;
+        MSG_IN_SITE_NAME_TEXT_COLOR = accent;
     }
 
     public static void loadChatResources(Context context) {

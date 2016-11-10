@@ -215,7 +215,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         if (name != null) {
             if (name.startsWith("_") || name.endsWith("_")) {
                 checkTextView.setText(LocaleController.getString("UsernameInvalid", R.string.UsernameInvalid));
-                checkTextView.setTextColor(0xffcf3030);
+                checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_error));
                 return false;
             }
             for (int a = 0; a < name.length(); a++) {
@@ -225,7 +225,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                         showErrorAlert(LocaleController.getString("UsernameInvalidStartNumber", R.string.UsernameInvalidStartNumber));
                     } else {
                         checkTextView.setText(LocaleController.getString("UsernameInvalidStartNumber", R.string.UsernameInvalidStartNumber));
-                        checkTextView.setTextColor(0xffcf3030);
+                        checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_error));
                     }
                     return false;
                 }
@@ -234,7 +234,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                         showErrorAlert(LocaleController.getString("UsernameInvalid", R.string.UsernameInvalid));
                     } else {
                         checkTextView.setText(LocaleController.getString("UsernameInvalid", R.string.UsernameInvalid));
-                        checkTextView.setTextColor(0xffcf3030);
+                        checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_error));
                     }
                     return false;
                 }
@@ -245,7 +245,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 showErrorAlert(LocaleController.getString("UsernameInvalidShort", R.string.UsernameInvalidShort));
             } else {
                 checkTextView.setText(LocaleController.getString("UsernameInvalidShort", R.string.UsernameInvalidShort));
-                checkTextView.setTextColor(0xffcf3030);
+                checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_error));
             }
             return false;
         }
@@ -254,7 +254,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 showErrorAlert(LocaleController.getString("UsernameInvalidLong", R.string.UsernameInvalidLong));
             } else {
                 checkTextView.setText(LocaleController.getString("UsernameInvalidLong", R.string.UsernameInvalidLong));
-                checkTextView.setTextColor(0xffcf3030);
+                checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_error));
             }
             return false;
         }
@@ -266,7 +266,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             }
             if (name.equals(currentName)) {
                 checkTextView.setText(LocaleController.formatString("UsernameAvailable", R.string.UsernameAvailable, name));
-                checkTextView.setTextColor(0xff26972c);
+                checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_ok));
                 return true;
             }
 
@@ -288,11 +288,11 @@ public class ChangeUsernameActivity extends BaseFragment {
                                     if (lastCheckName != null && lastCheckName.equals(name)) {
                                         if (error == null && response instanceof TLRPC.TL_boolTrue) {
                                             checkTextView.setText(LocaleController.formatString("UsernameAvailable", R.string.UsernameAvailable, name));
-                                            checkTextView.setTextColor(0xff26972c);
+                                            checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_ok));
                                             lastNameAvailable = true;
                                         } else {
                                             checkTextView.setText(LocaleController.getString("UsernameInUse", R.string.UsernameInUse));
-                                            checkTextView.setTextColor(0xffcf3030);
+                                            checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_error));
                                             lastNameAvailable = false;
                                         }
                                     }

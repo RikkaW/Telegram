@@ -9,6 +9,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,6 +17,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -35,7 +37,7 @@ import org.telegram.ui.ProfileActivity;
 public class ChatAvatarContainer extends FrameLayout {
 
     private BackupImageView avatarImageView;
-    private SimpleTextView titleTextView;
+    private TextView titleTextView;
     private SimpleTextView subtitleTextView;
     private ImageView timeItem;
     private TimerDrawable timerDrawable;
@@ -55,13 +57,16 @@ public class ChatAvatarContainer extends FrameLayout {
         avatarImageView.setRoundRadius(AndroidUtilities.dp(21));
         addView(avatarImageView);
 
-        titleTextView = new SimpleTextView(context);
+        titleTextView = new TextView(context);
         titleTextView.setTextColor(Theme.ACTION_BAR_TITLE_COLOR);
         titleTextView.setTextSize(18);
-        titleTextView.setGravity(Gravity.LEFT);
+        titleTextView.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
         titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        titleTextView.setLeftDrawableTopPadding(-AndroidUtilities.dp(1.3f));
-        titleTextView.setRightDrawableTopPadding(-AndroidUtilities.dp(1.3f));
+        titleTextView.setEllipsize(TextUtils.TruncateAt.END);
+        titleTextView.setMaxLines(1);
+        /*titleTextView.setLeftDrawableTopPadding(-AndroidUtilities.dp(1.3f));
+        titleTextView.setRightDrawableTopPadding(-AndroidUtilities.dp(1.3f));*/
+        titleTextView.setCompoundDrawablePadding(-AndroidUtilities.dp(1.3f));
         addView(titleTextView);
 
         subtitleTextView = new SimpleTextView(context);
@@ -136,7 +141,7 @@ public class ChatAvatarContainer extends FrameLayout {
         int actionBarHeight = ActionBar.getCurrentActionBarHeight();
         int viewTop = (actionBarHeight - AndroidUtilities.dp(42)) / 2 + (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
         avatarImageView.layout(AndroidUtilities.dp(8), viewTop, AndroidUtilities.dp(42 + 8), viewTop + AndroidUtilities.dp(42));
-        titleTextView.layout(AndroidUtilities.dp(8 + 54), viewTop + AndroidUtilities.dp(1.3f), AndroidUtilities.dp(8 + 54) + titleTextView.getMeasuredWidth(), viewTop + titleTextView.getTextHeight() + AndroidUtilities.dp(1.3f));
+        titleTextView.layout(AndroidUtilities.dp(8 + 54), viewTop + AndroidUtilities.dp(1.3f), AndroidUtilities.dp(8 + 54) + titleTextView.getMeasuredWidth(), viewTop + titleTextView.getMeasuredHeight() + AndroidUtilities.dp(1.3f));
         if (timeItem != null) {
             timeItem.layout(AndroidUtilities.dp(8 + 16), viewTop + AndroidUtilities.dp(15), AndroidUtilities.dp(8 + 16 + 34), viewTop + AndroidUtilities.dp(15 + 34));
         }
@@ -165,8 +170,17 @@ public class ChatAvatarContainer extends FrameLayout {
     }
 
     public void setTitleIcons(int leftIcon, int rightIcon) {
-        titleTextView.setLeftDrawable(leftIcon);
-        titleTextView.setRightDrawable(rightIcon);
+        Drawable left = null, right = null;
+        if (leftIcon != 0) {
+            left = getContext().getDrawable(leftIcon);
+        }
+        if (rightIcon != 0) {
+            right = getContext().getDrawable(rightIcon);
+        }
+
+        titleTextView.setCompoundDrawables(left, null, right, null);
+        /*titleTextView.setLeftDrawable(leftIcon);
+        titleTextView.setRightDrawable(rightIcon);*/
     }
 
     public void setTitle(CharSequence value) {

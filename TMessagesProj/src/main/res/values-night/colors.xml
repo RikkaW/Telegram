@@ -47,7 +47,8 @@
 
     <color name="in_app_player_title">#b1c6d6</color>
 
-    <color name="msg_link_text">#79abd1</color>
+    <!--<color name="msg_link_text">#cea3dcf5</color>-->
+    <color name="msg_link_text">@color/material_light_blue_A100</color>
 
     <color name="drawer_text">@color/primary_text</color>
 
@@ -60,10 +61,23 @@
     <color name="dialog_name">#bcdfff</color>
     <color name="dialog_title_encrypted">@color/material_green_A100</color>
 
+    <color name="message_error">@color/material_red_A100</color>
+    <color name="message_ok">@color/material_green_A100</color>
+
+    <color name="sheet_danger_action">@color/material_red_A100</color>
+
+    <color name="action_button">@color/colorAccent</color>
+
     <color name="avatar_profile_back_red">#8f2e24</color>
     <color name="avatar_profile_back_origin">#a55927</color>
     <color name="avatar_profile_back_purple">#473070</color>
     <color name="avatar_profile_back_green">#3c6c36</color>
     <color name="avatar_profile_back_cyan">#1a7579</color>
     <color name="avatar_profile_back_blue">#3a5c7a</color>
+
+    <color name="name_red">@color/material_red_100</color>
+    <color name="name_origin">@color/material_orange_100</color>
+    <color name="name_green">@color/material_green_100</color>
+    <color name="name_cyan">@color/material_cyan_100</color>
+    <color name="name_blue">@color/material_blue_100</color>
 </resources>

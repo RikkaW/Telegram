@@ -887,7 +887,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         }
         if (!isPrivate && !canCreatePublic) {
             typeInfoCell.setText(LocaleController.getString("ChangePublicLimitReached", R.string.ChangePublicLimitReached));
-            typeInfoCell.setTextColor(0xffcf3030);
+            typeInfoCell.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_error));
             linkContainer.setVisibility(View.GONE);
             sectionCell.setVisibility(View.GONE);
             if (loadingAdminedChannels) {
@@ -1133,31 +1133,31 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         if (name != null) {
             if (name.startsWith("_") || name.endsWith("_")) {
                 checkTextView.setText(LocaleController.getString("LinkInvalid", R.string.LinkInvalid));
-                checkTextView.setTextColor(0xffcf3030);
+                checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_error));
                 return false;
             }
             for (int a = 0; a < name.length(); a++) {
                 char ch = name.charAt(a);
                 if (a == 0 && ch >= '0' && ch <= '9') {
                     checkTextView.setText(LocaleController.getString("LinkInvalidStartNumber", R.string.LinkInvalidStartNumber));
-                    checkTextView.setTextColor(0xffcf3030);
+                    checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_error));
                     return false;
                 }
                 if (!(ch >= '0' && ch <= '9' || ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z' || ch == '_')) {
                     checkTextView.setText(LocaleController.getString("LinkInvalid", R.string.LinkInvalid));
-                    checkTextView.setTextColor(0xffcf3030);
+                    checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_error));
                     return false;
                 }
             }
         }
         if (name == null || name.length() < 5) {
             checkTextView.setText(LocaleController.getString("LinkInvalidShort", R.string.LinkInvalidShort));
-            checkTextView.setTextColor(0xffcf3030);
+            checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_error));
             return false;
         }
         if (name.length() > 32) {
             checkTextView.setText(LocaleController.getString("LinkInvalidLong", R.string.LinkInvalidLong));
-            checkTextView.setTextColor(0xffcf3030);
+            checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_error));
             return false;
         }
 
@@ -1180,7 +1180,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                                 if (lastCheckName != null && lastCheckName.equals(name)) {
                                     if (error == null && response instanceof TLRPC.TL_boolTrue) {
                                         checkTextView.setText(LocaleController.formatString("LinkAvailable", R.string.LinkAvailable, name));
-                                        checkTextView.setTextColor(0xff26972c);
+                                        checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_ok));
                                         lastNameAvailable = true;
                                     } else {
                                         if (error != null && error.text.equals("CHANNELS_ADMIN_PUBLIC_TOO_MUCH")) {
@@ -1189,7 +1189,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                                         } else {
                                             checkTextView.setText(LocaleController.getString("LinkInUse", R.string.LinkInUse));
                                         }
-                                        checkTextView.setTextColor(0xffcf3030);
+                                        checkTextView.setTextColor(ContextCompat.getColor(getParentActivity(), R.color.message_error));
                                         lastNameAvailable = false;
                                     }
                                 }

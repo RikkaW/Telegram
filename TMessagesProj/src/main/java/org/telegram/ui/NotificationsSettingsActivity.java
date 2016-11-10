@@ -19,6 +19,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -176,6 +177,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         });
 
         fragmentView = new FrameLayout(context);
+        fragmentView.setBackgroundColor(ContextCompat.getColor(context, R.color.settings_background));
         FrameLayout frameLayout = (FrameLayout) fragmentView;
 
         listView = new ListView(context);

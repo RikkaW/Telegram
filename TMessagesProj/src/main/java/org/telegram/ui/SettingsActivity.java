@@ -22,6 +22,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -103,6 +105,7 @@ import org.telegram.ui.Components.RecyclerListView;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class SettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, PhotoViewer.PhotoViewerProvider {
@@ -154,6 +157,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     private int nightModeRow;
     private int forceExternalRow;
     private int donateRow;
+    private int feedbackRow;
 
     private int raiseToSpeakRow;
     private int sendByEnterRow;
@@ -291,6 +295,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         supportSectionRow2 = rowCount++;
         //askQuestionRow = rowCount++;
         donateRow = rowCount++;
+        feedbackRow = rowCount++;
         telegramFaqRow = rowCount++;
         privacyPolicyRow = rowCount++;
         if (BuildVars.DEBUG_VERSION) {
@@ -779,6 +784,19 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                                 }).create());
                     } else {
                         showDialog(mDonateHelper.getDialog(getParentActivity()));
+                    }
+                } else if (position == feedbackRow) {
+                    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "rikkanyaaa+rikkagramFeedback@gmail.com", null));
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Rikkagram feedback");
+                    intent.putExtra(Intent.EXTRA_TEXT, "");
+
+                    PackageManager packageManager = getParentActivity().getPackageManager();
+                    List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
+                    if (activities.size() > 0) {
+                        intent = Intent.createChooser(intent, LocaleController.getString("SendFeedbackSendTo", R.string.SendFeedbackSendTo));
+                        getParentActivity().startActivity(intent);
+                    } else {
+                        Toast.makeText(getParentActivity(), LocaleController.getString("SendFeedbackNoMailApp", R.string.SendFeedbackNoMailApp), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -1408,6 +1426,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         textCell.setText(LocaleController.getString("ExternalLinks", R.string.ExternalLinks), true);
                     } else if (position == donateRow) {
                         textCell.setText(LocaleController.getString("Donate", R.string.Donate), true);
+                    } else if (position == feedbackRow) {
+                        textCell.setText(LocaleController.getString("SendFeedback", R.string.SendFeedback), true);
                     }
                     break;
                 }
@@ -1535,7 +1555,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                         position == mobileDownloadRow || position == clearLogsRow || position == roamingDownloadRow || position == languageRow || position == usernameRow ||
                         position == switchBackendButtonRow || position == telegramFaqRow || position == contactsSortRow || position == contactsReimportRow || position == saveToGalleryRow ||
                         position == stickersRow || position == cacheRow || position == raiseToSpeakRow || position == privacyPolicyRow || position == customTabsRow || position == directShareRow || position == versionRow ||
-                        position == emojiRow || position == googleEmojiRow || position == fakeBoldRow || position == nightModeRow || position == forceExternalRow || position == donateRow) {
+                        position == emojiRow || position == googleEmojiRow || position == fakeBoldRow || position == nightModeRow || position == forceExternalRow || position == donateRow || position == feedbackRow) {
                     if (holder.itemView instanceof ForegroundFrameLayout) {
                         ForegroundFrameLayout view = (ForegroundFrameLayout) holder.itemView;
                         if (view.getForeground() == null) {
@@ -1614,7 +1634,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 return 1;
             } else if (position == enableAnimationsRow || position == sendByEnterRow || position == saveToGalleryRow || position == autoplayGifsRow || position == raiseToSpeakRow || position == customTabsRow || position == directShareRow || position == googleEmojiRow || position == fakeBoldRow) {
                 return 3;
-            } else if (position == notificationRow || position == backgroundRow || position == askQuestionRow || position == sendLogsRow || position == privacyRow || position == clearLogsRow || position == switchBackendButtonRow || position == telegramFaqRow || position == contactsReimportRow || position == textSizeRow || position == languageRow || position == contactsSortRow || position == stickersRow || position == cacheRow || position == privacyPolicyRow || position == emojiRow || position == nightModeRow || position == forceExternalRow || position == donateRow) {
+            } else if (position == notificationRow || position == backgroundRow || position == askQuestionRow || position == sendLogsRow || position == privacyRow || position == clearLogsRow || position == switchBackendButtonRow || position == telegramFaqRow || position == contactsReimportRow || position == textSizeRow || position == languageRow || position == contactsSortRow || position == stickersRow || position == cacheRow || position == privacyPolicyRow || position == emojiRow || position == nightModeRow || position == forceExternalRow || position == donateRow || position == feedbackRow) {
                 return 2;
             } else if (position == versionRow) {
                 return 5;

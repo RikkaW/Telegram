@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -113,6 +114,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
 
         fragmentView = new FrameLayout(context);
         FrameLayout frameLayout = (FrameLayout) fragmentView;
+        frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.card_background));
 
         listView = new ListView(context);
         listView.setDivider(null);
@@ -515,6 +517,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
             if (type == 0) {
                 if (view == null) {
                     view = new TextDetailSettingsCell(mContext);
+                    view.setElevation(0);
                     ((ForegroundFrameLayout) view).setForeground(R.drawable.list_selector);
                 }
 
@@ -594,6 +597,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
             } else if (type == 1) {
                 if (view == null) {
                     view = new TextColorCell(mContext);
+                    view.setElevation(0);
                     ((ForegroundFrameLayout) view).setForeground(R.drawable.list_selector);
                 }
 
