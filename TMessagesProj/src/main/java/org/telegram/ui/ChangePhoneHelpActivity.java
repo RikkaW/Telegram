@@ -121,7 +121,8 @@ public class ChangePhoneHelpActivity extends BaseFragment {
         textView.setTextColor(ContextCompat.getColor(context, R.color.colorAccent) /*0xff4d83b3*/);
         textView.setText(LocaleController.getString("PhoneNumberChange", R.string.PhoneNumberChange));
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        textView.setPadding(0, AndroidUtilities.dp(10), 0, AndroidUtilities.dp(10));
+        textView.setPadding(AndroidUtilities.dp(16), AndroidUtilities.dp(12), AndroidUtilities.dp(16), AndroidUtilities.dp(12));
+        textView.setBackground(context.getDrawable(R.drawable.list_selector));
         linearLayout.addView(textView);
         layoutParams2 = (LinearLayout.LayoutParams) textView.getLayoutParams();
         layoutParams2.width = LayoutHelper.WRAP_CONTENT;

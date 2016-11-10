@@ -702,13 +702,13 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 }
             }
         });
-        try {
+        /*try {
             Field mCursorDrawableRes = TextView.class.getDeclaredField("mCursorDrawableRes");
             mCursorDrawableRes.setAccessible(true);
             mCursorDrawableRes.set(messageEditText, R.drawable.field_carret);
         } catch (Exception e) {
             //nothing to do
-        }
+        }*/
 
         if (isChat) {
             attachButton = new LinearLayout(context);
