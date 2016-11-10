@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RippleDrawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ConfigurationHelper;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -65,9 +66,9 @@ public class FloatingActionButton extends ImageView {
 
         TypedValue outValue = new TypedValue();
         context.getTheme().resolveAttribute(android.R.attr.colorAccent, outValue, true);
-        int color = outValue.data;
+        int color = ContextCompat.getColor(context, outValue.resourceId);
         context.getTheme().resolveAttribute(android.R.attr.colorControlHighlight, outValue, true);
-        int rippleColor = outValue.data;
+        int rippleColor = ContextCompat.getColor(context, outValue.resourceId);
 
         Drawable shapeDrawable = createShapeDrawable();
         shapeDrawable.setTint(color);
