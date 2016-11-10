@@ -26,6 +26,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,35 +41,41 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.PhoneFormat.PhoneFormat;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimatorListenerAdapterProxy;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
 import org.telegram.messenger.SecretChatHelper;
 import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.query.BotQuery;
 import org.telegram.messenger.query.SharedMediaQuery;
-import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.support.widget.LinearLayoutManager;
 import org.telegram.messenger.support.widget.RecyclerView;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarMenu;
+import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.BackDrawable;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.AboutLinkCell;
 import org.telegram.ui.Cells.DividerCell;
 import org.telegram.ui.Cells.EmptyCell;
@@ -78,19 +85,15 @@ import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextDetailCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.UserCell;
-import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.ActionBarMenu;
-import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.AutoMarqueeTextView;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.AvatarUpdater;
 import org.telegram.ui.Components.BackupImageView;
-import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.ForegroundFrameLayout;
 import org.telegram.ui.Components.IdenticonDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.ActionBar.Theme;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -104,7 +107,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private LinearLayoutManager layoutManager;
     private ListAdapter listAdapter;
     private BackupImageView avatarImage;
-    private SimpleTextView nameTextView[] = new SimpleTextView[2];
+    private TextView nameTextView[] = new TextView[2];
     private SimpleTextView onlineTextView[] = new SimpleTextView[2];
     private ImageView writeButton;
     private AnimatorSet writeButtonAnimation;
@@ -174,6 +177,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private int blockedUsersRow;
     private int leaveChannelRow;
     private int startSecretChatRow;
+    private int emptyRowChat3;
     private int sectionRow;
     private int userSectionRow;
     private int userInfoRow;
@@ -822,13 +826,15 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (!playProfileAnimation && a == 0) {
                 continue;
             }
-            nameTextView[a] = new SimpleTextView(context);
+            nameTextView[a] = new AutoMarqueeTextView(context);
             nameTextView[a].setTextColor(0xffffffff);
             nameTextView[a].setTextSize(18);
-            nameTextView[a].setGravity(Gravity.LEFT);
+            nameTextView[a].setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
             nameTextView[a].setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-            nameTextView[a].setLeftDrawableTopPadding(-AndroidUtilities.dp(1.3f));
-            nameTextView[a].setRightDrawableTopPadding(-AndroidUtilities.dp(1.3f));
+            nameTextView[a].setCompoundDrawablePadding(-AndroidUtilities.dp(1.3f));
+            nameTextView[a].setMaxLines(1);
+            /*nameTextView[a].setLeftDrawableTopPadding(-AndroidUtilities.dp(1.3f));
+            nameTextView[a].setRightDrawableTopPadding(-AndroidUtilities.dp(1.3f));*/
             nameTextView[a].setPivotX(0);
             nameTextView[a].setPivotY(0);
             frameLayout.addView(nameTextView[a], LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.LEFT | Gravity.TOP, 118, 0, a == 0 ? 48 : 0, 0));
@@ -1274,7 +1280,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         width = AndroidUtilities.displaySize.x;
                     }
                     width = (int) (width - AndroidUtilities.dp(118 + 8 + 40 * (1.0f - diff)) - nameTextView[a].getTranslationX());
-                    float width2 = nameTextView[a].getPaint().measureText(nameTextView[a].getText().toString()) * nameTextView[a].getScaleX() + nameTextView[a].getSideDrawablesSize();
+                    float width2 = nameTextView[a].getPaint().measureText(nameTextView[a].getText().toString()) * nameTextView[a].getScaleX() + getSideDrawablesSize(nameTextView[a]);
                     layoutParams = (FrameLayout.LayoutParams) nameTextView[a].getLayoutParams();
                     if (width < width2) {
                         layoutParams.width = (int) Math.ceil(width / nameTextView[a].getScaleX());
@@ -1592,7 +1598,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 onlineTextView[1].setLayoutParams(layoutParams);
 
                 int width = (int) Math.ceil(AndroidUtilities.displaySize.x - AndroidUtilities.dp(118 + 8) + 21 * AndroidUtilities.density);
-                float width2 = nameTextView[1].getPaint().measureText(nameTextView[1].getText().toString()) * 1.12f + nameTextView[1].getSideDrawablesSize();
+                float width2 = nameTextView[1].getPaint().measureText(nameTextView[1].getText().toString()) * 1.12f + getSideDrawablesSize(nameTextView[1]);
                 layoutParams = (FrameLayout.LayoutParams) nameTextView[1].getLayoutParams();
                 if (width < width2) {
                     layoutParams.width = (int) Math.ceil(width / 1.12f);
@@ -1946,6 +1952,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
             if (user != null && !user.bot && currentEncryptedChat == null && user.id != UserConfig.getClientUserId()) {
                 startSecretChatRow = rowCount++;
+                emptyRowChat3 = rowCount++;
             }
         } else if (chat_id != 0) {
             if (chat_id > 0) {
@@ -2076,8 +2083,17 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 } else if (user.verified) {
                     rightIcon = R.drawable.check_profile_fixed;
                 }
-                nameTextView[a].setLeftDrawable(leftIcon);
-                nameTextView[a].setRightDrawable(rightIcon);
+                Drawable left = null, right = null;
+                if (leftIcon != 0) {
+                    left = getParentActivity().getDrawable(leftIcon);
+                }
+                if (rightIcon != 0) {
+                    right = getParentActivity().getDrawable(rightIcon);
+                }
+
+                nameTextView[a].setCompoundDrawables(left, null, right, null);
+                /*nameTextView[a].setLeftDrawable(leftIcon);
+                nameTextView[a].setRightDrawable(rightIcon);*/
             }
 
             avatarImage.getImageReceiver().setVisible(!PhotoViewer.getInstance().isShowingImage(photoBig), false);
@@ -2133,16 +2149,26 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 if (chat.title != null && !nameTextView[a].getText().equals(chat.title)) {
                     nameTextView[a].setText(chat.title);
                 }
-                nameTextView[a].setLeftDrawable(null);
+                nameTextView[a].setCompoundDrawables(null, null, null, null);
+                //nameTextView[a].setLeftDrawable(null);
+                Drawable right;
                 if (a != 0) {
                     if (chat.verified) {
-                        nameTextView[a].setRightDrawable(R.drawable.check_profile_fixed);
+                        right = getParentActivity().getDrawable(R.drawable.check_profile_fixed);
+                        //nameTextView[a].setRightDrawable(R.drawable.check_profile_fixed);
                     } else {
-                        nameTextView[a].setRightDrawable(null);
+                        right = null;
+                        //nameTextView[a].setRightDrawable(null);
                     }
                 } else {
-                    nameTextView[a].setRightDrawable(MessagesController.getInstance().isDialogMuted((long) -chat_id) ? R.drawable.mute_fixed : 0);
+                    if (MessagesController.getInstance().isDialogMuted((long) -chat_id)) {
+                        right = getParentActivity().getDrawable(R.drawable.mute_fixed);
+                    } else {
+                        right = null;
+                    }
+                    //nameTextView[a].setRightDrawable(MessagesController.getInstance().isDialogMuted((long) -chat_id) ? R.drawable.mute_fixed : 0);
                 }
+                nameTextView[a].setCompoundDrawables(null, null, right, null);
                 if (currentChat.megagroup && info != null && info.participants_count <= 200 && onlineCount > 0) {
                     if (!onlineTextView[a].getText().equals(newString)) {
                         onlineTextView[a].setText(newString);
@@ -2379,7 +2405,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             boolean checkBackground = true;
             switch (holder.getItemViewType()) {
                 case 0:
-                    if (i == emptyRowChat || i == emptyRowChat2) {
+                    if (i == emptyRowChat || i == emptyRowChat2 || i == emptyRowChat3) {
                         ((EmptyCell) holder.itemView).setHeight(AndroidUtilities.dp(8));
                         holder.itemView.setElevation(AndroidUtilities.dp(2));
                         holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.card_background));
@@ -2536,7 +2562,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 boolean enabled = false;
                 if (user_id != 0) {
                     enabled = i == phoneRow || i == settingsTimerRow || i == settingsKeyRow || i == settingsNotificationsRow ||
-                            i == sharedMediaRow || i == startSecretChatRow || i == usernameRow || i == userInfoRow;
+                            i == sharedMediaRow || i == startSecretChatRow || i == usernameRow || i == userInfoRow || i == emptyRowChat3;
                 } else if (chat_id != 0) {
                     enabled = i == convertRow || i == settingsNotificationsRow || i == sharedMediaRow || i > emptyRowChat2 && i < membersEndRow ||
                             i == addMemberRow || i == channelNameRow || i == leaveChannelRow || i == membersRow || i == managementRow ||
@@ -2566,7 +2592,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         @Override
         public int getItemViewType(int i) {
-            if (i == emptyRow || i == emptyRowChat || i == emptyRowChat2) {
+            if (i == emptyRow || i == emptyRowChat || i == emptyRowChat2 || i == emptyRowChat3) {
                 return 0;
             } else if (i == sectionRow || i == userSectionRow) {
                 return 1;
@@ -2587,5 +2613,17 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
             return 0;
         }
+    }
+
+    private static int getSideDrawablesSize(TextView textView) {
+        Drawable[] drawable = textView.getCompoundDrawables();
+        int size = 0;
+        if (drawable[0] != null) {
+            size += drawable[0].getIntrinsicWidth() + textView.getCompoundDrawablePadding();
+        }
+        if (drawable[2] != null) {
+            size += drawable[2].getIntrinsicWidth() + textView.getCompoundDrawablePadding();
+        }
+        return size;
     }
 }
