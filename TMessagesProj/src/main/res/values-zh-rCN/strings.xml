@@ -108,7 +108,7 @@
     <string name="ActionPinnedPhoto">un1 已置顶 1 张图片</string>
     <string name="ActionPinnedVideo">un1 已置顶 1 个视频</string>
     <string name="ActionPinnedFile">un1 已置顶 1 个文件</string>
-    <string name="ActionPinnedSticker">%@ 已置顶 1 张贴纸</string>
+    <string name="ActionPinnedSticker">un1 已置顶 1 张贴纸</string>
     <string name="ActionPinnedVoice">un1 已置顶 1 条语音消息</string>
     <string name="ActionPinnedContact">un1 已置顶 1 个联系人信息</string>
     <string name="ActionPinnedGame">un1 已置顶 %1$s</string>
