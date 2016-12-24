@@ -14,7 +14,7 @@
     <string name="YourCode">手机验证</string>
     <string name="SentSmsCode">我们已向您的手机 <![CDATA[<b>]]>%1$s<![CDATA[</b>]]> 发送了一条验证码短信。</string>
     <string name="SentAppCode">我们已向您其他设备上的 <![CDATA[<b>]]>Telegram<![CDATA[</b>]]> 应用发送了一条验证码消息。</string>
-    <string name="SentCallCode">我们已呼叫您的手机 <![CDATA[<b>]]>%1$s<![CDATA[</b>]]> 。请不要接听，Telegram 将会自动解决接下来的问题。</string>
+    <string name="SentCallCode">我们已呼叫您的手机 <![CDATA[<b>]]>%1$s<![CDATA[</b>]]> 。请不要接听，Rikkagram 将会自动解决接下来的问题。</string>
     <string name="SentCallOnly">我们正在呼叫您的手机 <![CDATA[<b>]]>%1$s<![CDATA[</b>]]> 并播报验证码。</string>
     <string name="CallText">我们会在 %1$d:%2$02d 后使用电话语音播放验证码</string>
     <string name="SmsText">我们会在 %1$d:%2$02d 后给您发送短信</string>
@@ -66,7 +66,7 @@
     <string name="HiddenName">删除帐号</string>
     <string name="SelectChat">选择对话</string>
     <string name="PhotoTip">长按预览</string>
-    <string name="CompatibilityChat">%1$s 正在使用旧版 Telegram，因此图片会以兼容模式显示。\n\n当 %2$s 更新 Telegram 后，阅后即焚计时器设为1分钟以内时，图片会使用“长按预览”的模式显示；对方截屏时，您也会收到通知。</string>
+    <string name="CompatibilityChat">%1$s 正在使用旧版 Rikkagram，因此图片会以兼容模式显示。\n\n当 %2$s 更新 Rikkagram 后，阅后即焚计时器设为1分钟以内时，图片会使用“长按预览”的模式显示；对方截屏时，您也会收到通知。</string>
     <string name="SearchMessages">搜索消息</string>
     <string name="Search">搜索</string>
     <string name="MuteNotifications">暂停消息通知</string>
@@ -121,7 +121,7 @@
     <string name="NewChannel">新建频道</string>
     <string name="EnterChannelName">频道名称</string>
     <string name="AddMutual">添加联系人到您的频道</string>
-    <string name="ChannelUsernameHelp">人们可以与他人分享此链接，并使用Telegram的搜索找到您的频道。</string>
+    <string name="ChannelUsernameHelp">人们可以与他人分享此链接，并使用 Rikkagram/Telegram 的搜索找到您的频道。</string>
     <string name="MegaUsernameHelp">用户可以分享此链接给他人，并且能通过搜索找到您的群组。</string>
     <string name="ChannelUsernamePlaceholder">链接</string>
     <string name="ChannelPrivateLinkHelp">人们可以通过以上链接加入您的频道。您可以随时撤销此链接。</string>
@@ -186,7 +186,7 @@
     <string name="ChannelRemoveUserAdmin">移除</string>
     <string name="ChannelMembersInfo">此列表仅频道管理员可见。</string>
     <string name="ChannelAdminNotParticipant">这名用户尚未加入此频道。您要发送邀请吗？</string>
-    <string name="ChannelLinkInfo">任何Telegram用户都能够通过此链接加入您的频道。</string>
+    <string name="ChannelLinkInfo">任何 Telegram 用户都能够通过此链接加入您的频道。</string>
     <string name="ChannelAdminsInfo">您可以添加管理员帮助您管理频道。长按可删除管理员。</string>
     <string name="ChannelJoinTo">您确定要加入 “%1$s” 频道？</string>
     <string name="ChannelCantOpenPrivate">抱歉，该对话已无法访问。</string>
@@ -438,7 +438,7 @@
     <!--contacts view-->
     <string name="SelectContact">选择联系人</string>
     <string name="NoContacts">还没有联系人</string>
-    <string name="InviteText">嘿！和我一起用 Telegram 吧，超棒的聊天工具，简洁高效，没有广告，对话加密，尊重隐私，不受审查过滤：https://telegram.org/dl</string>
+    <string name="InviteText">嘿！和我一起用 Rikkagram 吧，超棒的聊天工具，基于 Telegram 制作，简洁高效，没有广告，对话加密，尊重隐私：https://play.google.com/store/apps/details?id=rikka.rikkagram</string>
     <string name="TodayAt">于</string>
     <string name="YesterdayAt">于昨天</string>
     <string name="Online">在线</string>
@@ -472,7 +472,7 @@
     <string name="RevokeLinkAlertChannel">您确定要撤销此链接 <![CDATA[<b>]]>%1$s<![CDATA[</b>]]> ？\n\n频道\"<![CDATA[<b>]]>%2$s<![CDATA[</b>]]>\" 将转变成私人模式。</string>
     <string name="CopyLink">复制链接</string>
     <string name="ShareLink">分享链接</string>
-    <string name="LinkInfo">任何已安装 Telegram 的用户都将可以通过此链接加入您的群组。</string>
+    <string name="LinkInfo">任何已安装 Rikkagram/Telegram 的用户都将可以通过此链接加入您的群组。</string>
     <!--set admins view-->
     <string name="SetAdminsTitle">管理员</string>
     <string name="SetAdminsAll">将所有成员都设为管理员</string>
@@ -498,7 +498,7 @@
     <string name="ShareContact">分享</string>
     <string name="AddContact">添加</string>
     <string name="AddContactTitle">添加联系人</string>
-    <string name="ContactNotRegistered">%1$s 暂时没有在使用 Telegram，是否邀请他加入？</string>
+    <string name="ContactNotRegistered">%1$s 暂时没有在使用 Rikkagram/Telegram，是否邀请他加入？</string>
     <string name="Invite">邀请</string>
     <string name="BlockContact">屏蔽</string>
     <string name="EditContact">编辑</string>
@@ -613,7 +613,7 @@
     <string name="NotificationsService">后台服务常驻</string>
     <string name="NotificationsServiceInfo">当应用被终止时自动重启后台服务，确保及时收到通知。</string>
     <string name="NotificationsServiceConnection">后台网络连接</string>
-    <string name="NotificationsServiceConnectionInfo">Telegram 接收通知需要一个低功耗的后台网络连接。打开此开关以确保收到通知。</string>
+    <string name="NotificationsServiceConnectionInfo">Rikkagram 接收通知需要一个低功耗的后台网络连接。打开此开关以确保收到通知。</string>
     <string name="SortBy">排序</string>
     <string name="ImportContacts">导入通讯录</string>
     <string name="SortFirstName">名字</string>
@@ -679,7 +679,7 @@
     <string name="CacheSettings">缓存设置</string>
     <string name="LocalDatabase">本地数据库</string>
     <string name="LocalDatabaseClear">清空缓存的消息记录？</string>
-    <string name="LocalDatabaseInfo">清空本地数据库将删除缓存在本地的聊天记录并压缩数据库以节省存储空间。Telegram 需要一些数据来维持正常工作，所以数据库大小不会完全归零。\n\n此操作需要一些时间来完成。</string>
+    <string name="LocalDatabaseInfo">清空本地数据库将删除缓存在本地的聊天记录并压缩数据库以节省存储空间。Rikkagram 需要一些数据来维持正常工作，所以数据库大小不会完全归零。\n\n此操作需要一些时间来完成。</string>
     <string name="ClearMediaCache">清除媒体缓存</string>
     <string name="CacheClear">清除</string>
     <string name="CalculatingSize">正在计算...</string>
@@ -697,7 +697,7 @@
     <string name="SessionsTitle">活动会话</string>
     <string name="CurrentSession">当前会话</string>
     <string name="NoOtherSessions">没有其他的活动会话</string>
-    <string name="NoOtherSessionsInfo">您可以从其他的手机、平板和桌面设备用同样的手机号码登陆Telegram。所有数据将被实时同步。</string>
+    <string name="NoOtherSessionsInfo">您可以从其他的手机、平板和桌面设备用同样的手机号码登陆 Rikkagram/Telegram。所有数据将被实时同步。</string>
     <string name="OtherSessions">活动会话</string>
     <string name="SessionsInfo">控制您在其它设备上的会话。</string>
     <string name="TerminateSessionInfo">点击一个会话来注销它。</string>
@@ -706,8 +706,8 @@
     <!--passcode view-->
     <string name="Passcode">锁定码</string>
     <string name="ChangePasscode">修改锁定码</string>
-    <string name="ChangePasscodeInfo">当您设置好一个锁定码后，聊天列表上方会出现一个锁形图标。点击它来锁定或解锁Telegram应用。\n\n注意：如果您忘记了锁定码，您将只能卸载然后重新安装Telegram。重装之后您将丢失所有的加密对话。</string>
-    <string name="ChangePasscodeAlert">您会聊天界面看到锁形图标，点击它即可锁定Telegram。</string>
+    <string name="ChangePasscodeInfo">当您设置好一个锁定码后，聊天列表上方会出现一个锁形图标。点击它来锁定或解锁 Rikkagram 应用。\n\n注意：如果您忘记了锁定码，您将只能卸载然后重新安装 Rikkagram。重装之后您将丢失所有的加密对话。</string>
+    <string name="ChangePasscodeAlert">您会聊天界面看到锁形图标，点击它即可锁定 Rikkagram。</string>
     <string name="PasscodePIN">PIN</string>
     <string name="PasscodePassword">密码</string>
     <string name="EnterCurrentPasscode">请输入您当前的锁定码</string>
@@ -858,7 +858,7 @@
     <string name="PasswordRecovery">找回密码</string>
     <string name="PasswordCode">验证码</string>
     <string name="PasswordReset">密码已删除</string>
-    <string name="EnabledPasswordText">您已启用两步验证。\n今后您在登录新设备时将需要输入您设置的附加密码才能登录您的Telegram帐号。</string>
+    <string name="EnabledPasswordText">您已启用两步验证。\n今后您在登录新设备时将需要输入您设置的附加密码才能登录您的 Telegram 帐号。</string>
     <string name="PendingEmailText">您的密码恢复邮箱 %1$s 正等待验证。</string>
     <!--privacy settings-->
     <string name="PrivacySettings">隐私和安全</string>
@@ -970,7 +970,7 @@
     <string name="ActionAddUserSelf">un1 返回了此群组</string>
     <string name="ActionAddUserSelfMega">un1 加入了这个群组</string>
     <string name="ActionAddUserSelfYou">您返回了此群组</string>
-    <string name="UnsupportedMedia">您当前的 Telegram 版本无法查看这条消息。请前往这里下载新版：https://telegram.org/update</string>
+    <string name="UnsupportedMedia">您当前的 Rikkagram 版本无法查看这条消息。请前往这里下载新版：https://play.google.com/store/apps/details?id=rikka.rikkagram</string>
     <string name="AttachPhoto">图片</string>
     <string name="AttachVideo">视频</string>
     <string name="AttachGif">GIF</string>
@@ -996,7 +996,7 @@
     <string name="NoPlayerInstalled">没有可用的视频播放器，请先安装一个再播放</string>
     <string name="NoMailInstalled">请发送邮件到 sms@stel.com 来告诉我们您遇到的问题。</string>
     <string name="NoHandleAppInstalled">您没有安装可执行 \'%1$s\' 类型文件的软件，请先安装一个再继续</string>
-    <string name="InviteUser">此用户还未加入 Telegram ，是否发送邀请？</string>
+    <string name="InviteUser">此用户还未加入 Rikkagram/Telegram ，是否发送邀请？</string>
     <string name="AreYouSure">您确定吗？</string>
     <string name="AddToTheGroupTitle">添加 %1$s 到群组 %2$s？</string>
     <string name="AddToTheGroupForwardCount">要转发的最近消息数：</string>
@@ -1006,7 +1006,7 @@
     <string name="SendMessagesTo">发送消息给 %1$s ？</string>
     <string name="SendGameTo">分享游戏给 %1$s ？</string>
     <string name="SendContactTo">发送联系人信息给 %1$s ？</string>
-    <string name="AreYouSureLogout">您确定要注销吗？\n\n请注意，您可以同时在所有设备上无缝地使用 Telegram。\n\n请记住，注销将会清除所有的加密聊天数据。</string>
+    <string name="AreYouSureLogout">您确定要注销吗？\n\n请注意，您可以同时在所有设备上无缝地使用 Rikkagram/Telegram。\n\n请记住，注销将会清除所有的加密聊天数据。</string>
     <string name="AreYouSureSessions">您确定要注销所有其它设备上的会话吗？</string>
     <string name="AreYouSureDeleteAndExit">您确定要删除并离开此群组吗？</string>
     <string name="AreYouSureDeleteThisChat">您确定要删除此对话吗？</string>
@@ -1039,18 +1039,18 @@
     <string name="SecretChatContextBotAlert">请注意消息框内机器人是由第三方开发者提供的。为了使机器人工作，您使用这些机器人时发送的消息将会传送给相应的开发者。</string>
     <string name="RaiseToSpeakAlert">您想要启用抬起手机到耳边即开始录音的功能吗？</string>
     <string name="EditMessageError">抱歉，您不能编辑这条消息。</string>
-    <string name="AllowReadSms">请授予 Telegram 读取短信权限以便我们自动读取验证短信。</string>
-    <string name="AllowReadCall">请授予 Telegram 接听电话权限以便我们自动读取验证码。</string>
-    <string name="AllowReadCallAndSms">请授予 Telegram 读取短信及通话权限以便我们自动读取验证码。</string>
+    <string name="AllowReadSms">请授予 Rikkagram 读取短信权限以便我们自动读取验证短信。</string>
+    <string name="AllowReadCall">请授予 Rikkagram 接听电话权限以便我们自动读取验证码。</string>
+    <string name="AllowReadCallAndSms">请授予 Rikkagram 读取短信及通话权限以便我们自动读取验证码。</string>
     <string name="UserRestricted">抱歉，您无法执行此操作。</string>
     <string name="JoinGroup">加入群组</string>
     <!--permissions-->
-    <string name="PermissionContacts">Telegram 需要访问您的通讯录才能使您在任何设备上联系您的朋友。</string>
-    <string name="PermissionStorage">Telegram 需要访问您的本地存储才能使您发送和保存照片，视频，音乐和其他媒体文件。</string>
-    <string name="PermissionNoAudio">Telegram 需要访问您的麦克风来录制语音消息。</string>
-    <string name="PermissionNoCamera">Telegram 需要访问您的相机来拍照或录像。</string>
-    <string name="PermissionNoLocation">Telegram 需要使用定位服务才能获取您的地址并分享给您的联系人。</string>
-    <string name="PermissionNoLocationPosition">Telegram 需要获取您的定位服务权限</string>
+    <string name="PermissionContacts">Rikkagram 需要访问您的通讯录才能使您在任何设备上联系您的朋友。</string>
+    <string name="PermissionStorage">Rikkagram 需要访问您的本地存储才能使您发送和保存照片，视频，音乐和其他媒体文件。</string>
+    <string name="PermissionNoAudio">Rikkagram 需要访问您的麦克风来录制语音消息。</string>
+    <string name="PermissionNoCamera">Rikkagram 需要访问您的相机来拍照或录像。</string>
+    <string name="PermissionNoLocation">Rikkagram 需要使用定位服务才能获取您的地址并分享给您的联系人。</string>
+    <string name="PermissionNoLocationPosition">Rikkagram 需要获取您的定位服务权限</string>
     <string name="PermissionOpenSettings">设置</string>
     <!--Intro view-->
     <string name="IntroUnofficialMessage"><![CDATA[<b>Rikkagram</b>]]> 是一个非官方的 <![CDATA[<b>Telegram</b>]]> 客户端。</string>
@@ -1301,7 +1301,7 @@
 
     <!--Rikkagram-->
     <string name="UseGoogleEmoji">Google emoji</string>
-    <string name="UseGoogleEmojiInfo">使用 Noto Color Emoji 而不是 iOS emoji</string>
+    <string name="UseGoogleEmojiInfo">使用 Noto Color Emoji 代替 iOS emoji</string>
     <string name="NightMode">夜间模式</string>
     <string name="NightModeStatus">状态</string>
     <string name="NightModeEnable">开启</string>
